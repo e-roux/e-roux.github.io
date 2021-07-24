@@ -4,14 +4,19 @@
 
 ## VirtualBox
 
-[VirtualBox](https://www.virtualbox.org/wiki/VirtualBox) is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.
+[VirtualBox](https://www.virtualbox.org/wiki/VirtualBox) is a general-purpose
+full virtualizer for x86 hardware, targeted at server, desktop and embedded
+use.
 
 ### Installation
 
-Binaries, extension and source code can be installed from the [wiki](https://www.virtualbox.org/wiki/Downloads).
+Binaries, extension and source code can be installed from the
+[wiki](https://www.virtualbox.org/wiki/Downloads).
 
 
-A handy feature is the ability to run common commands for managing VM from the cli after installing the [extension pack](https://www.virtualbox.org/wiki/Downloads)
+A handy feature is the ability to run common commands for managing VM from the
+cli after installing the [extension
+pack](https://www.virtualbox.org/wiki/Downloads)
 
 ### Basic command for running VM
 
@@ -44,15 +49,59 @@ vbm controlvm "MyVM" resume --type headless
 vbm controlvm "MyVM" poweroff --type headless
 ```
 
-View VM properties with `vboxmanage guestproperty` <badge-doc href='https://docs.oracle.com/en/virtualization/virtualbox/6.1/user/vboxmanage.html#vboxmanage-guestproperty' logo='VirtualBox'></badge-doc>
-```bash
+View VM properties with `vboxmanage guestproperty` <badge-doc
+href='https://docs.oracle.com/en/virtualization/virtualbox/6.1/user/vboxmanage.html#vboxmanage-guestproperty'
+logo='VirtualBox'></badge-doc> ```bash
 # Enumerate all properties of the VM named MyVM
 vbm guestproperty enumerate MyVM
 
 # Get the IP address of the VM named Cloudera
 vbm guestproperty get Cloudera /VirtualBox/GuestInfo/Net/0/V4/IP
+# or
+vbm guestproperty enumerate Cloudera | grep IP | awk '{print $4}' | sed -e 's/,//'
 ```
 
+??? info "Install an OS"
+
+    **Virtual box creation**
+
+    ```console
+    vbm createvm --name <VM> --ostype <OSTYPE> --basefolder <BASEFOLDER> --register
+    # OSTYPE can be set from a list, e.g. RedHat_64
+    vbm list ostypes
+    ```
+
+    **System settings**
+
+    ```console
+    # RAM and video memory
+    vbm modifyvm <VM> --memory 2048 --vram 128
+
+    # Disable audio
+    vbm modifyvm <VM> --audio none
+
+    # Set network
+    vbm modifyvm <VM> --nic1 nat
+
+    # Create a disk with size 100G, default format vdi
+    vbm createhd --filename <DISK_NAME>.vdi --size 100000
+
+    vbm storagectl <VM> --name "SATA Controller" --add sata --controller IntelAhci
+    vbm storageattach <VM> --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium <DISK_NAME>.vdi
+    # None: to remove a storage, set the medium to none, e.g.
+    vbm storageattach <VM> --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium none
+
+
+    vbm storagectl <VM> --name "IDE Controller" --add ide --controller PIIX4
+    vbm storageattach <VM> --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium <ISO>
+
+    # Set boot order
+    vbm modifyvm <VM> --boot1 dvd --boot2 disk --boot3 none --boot4 none
+
+    # [Enabling the I/O APIC is required](http://www.virtualbox.org/manual/ch03.html#settings-motherboard), especially for 64-bit Windows guest OSes. It is also required if you want to use more than one virtual CPU in a virtual machine.
+
+    vbm modifyvm <VM> --ioapic on
+    ```
 
 ## Vagrant
 
@@ -117,6 +166,10 @@ reboot
 ```
 
 ## Links
+
+[Controlling VirtualBox from the Command Line](https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html)
+
+## Footnotes
 
 [^1]: Unified Extensible Firmware Interface - https://wiki.debian.org/UEFI
 [^2]: [Debian secure boot documentation page](https://wiki.debian.org/SecureBoot)
