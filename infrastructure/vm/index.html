@@ -1125,47 +1125,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#vagrant" class="md-nav__link">
-    Vagrant
-  </a>
-  
-    <nav class="md-nav" aria-label="Vagrant">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-on-debian-based-systems" class="md-nav__link">
-    Installation on Debian based systems
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vagranfile" class="md-nav__link">
-    vagranfile
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting-on-hosts-with-secure-mode-enabled" class="md-nav__link">
-    Troubleshooting on hosts with secure mode enabled
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
-    Links
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2605,47 +2564,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#vagrant" class="md-nav__link">
-    Vagrant
-  </a>
-  
-    <nav class="md-nav" aria-label="Vagrant">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation-on-debian-based-systems" class="md-nav__link">
-    Installation on Debian based systems
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vagranfile" class="md-nav__link">
-    vagranfile
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting-on-hosts-with-secure-mode-enabled" class="md-nav__link">
-    Troubleshooting on hosts with secure mode enabled
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
-    Links
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2662,10 +2580,15 @@
                 <h1 id="vm">VM<a class="headerlink" href="#vm" title="Permanent link">&para;</a></h1>
 <p><a href="https://fr.wikipedia.org/wiki/Virtualisation">Wikipedia</a></p>
 <h2 id="virtualbox">VirtualBox<a class="headerlink" href="#virtualbox" title="Permanent link">&para;</a></h2>
-<p><a href="https://www.virtualbox.org/wiki/VirtualBox">VirtualBox</a> is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</p>
+<p><a href="https://www.virtualbox.org/wiki/VirtualBox">VirtualBox</a> is a general-purpose
+full virtualizer for x86 hardware, targeted at server, desktop and embedded
+use.</p>
 <h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
-<p>Binaries, extension and source code can be installed from the <a href="https://www.virtualbox.org/wiki/Downloads">wiki</a>.</p>
-<p>A handy feature is the ability to run common commands for managing VM from the cli after installing the <a href="https://www.virtualbox.org/wiki/Downloads">extension pack</a></p>
+<p>Binaries, extension and source code can be installed from the
+<a href="https://www.virtualbox.org/wiki/Downloads">wiki</a>.</p>
+<p>A handy feature is the ability to run common commands for managing VM from the
+cli after installing the <a href="https://www.virtualbox.org/wiki/Downloads">extension
+pack</a></p>
 <h3 id="basic-command-for-running-vm">Basic command for running VM<a class="headerlink" href="#basic-command-for-running-vm" title="Permanent link">&para;</a></h3>
 <p>The extension pack cli entry point <code>VBoxManage</code> can be aliased as:
 <div class="highlight"><pre><span></span><code><span class="nb">alias</span> <span class="nv">vbm</span><span class="o">=</span>VBoxManage
@@ -2686,60 +2609,118 @@ vbm list runningvms
 vbm controlvm <span class="s2">&quot;MyVM&quot;</span> resume --type headless
 vbm controlvm <span class="s2">&quot;MyVM&quot;</span> poweroff --type headless
 </code></pre></div></p>
-<p>View VM properties with <code>vboxmanage guestproperty</code> <badge-doc href='https://docs.oracle.com/en/virtualization/virtualbox/6.1/user/vboxmanage.html#vboxmanage-guestproperty' logo='VirtualBox'></badge-doc>
-<div class="highlight"><pre><span></span><code><span class="c1"># Enumerate all properties of the VM named MyVM</span>
-vbm guestproperty enumerate MyVM
+<p>View VM properties with <code>vboxmanage guestproperty</code> <badge-doc
+href='https://docs.oracle.com/en/virtualization/virtualbox/6.1/user/vboxmanage.html#vboxmanage-guestproperty'
+logo='VirtualBox'></badge-doc> ```bash</p>
+<h1 id="enumerate-all-properties-of-the-vm-named-myvm">Enumerate all properties of the VM named MyVM<a class="headerlink" href="#enumerate-all-properties-of-the-vm-named-myvm" title="Permanent link">&para;</a></h1>
+<p>vbm guestproperty enumerate MyVM</p>
+<h1 id="get-the-ip-address-of-the-vm-named-cloudera">Get the IP address of the VM named Cloudera<a class="headerlink" href="#get-the-ip-address-of-the-vm-named-cloudera" title="Permanent link">&para;</a></h1>
+<p>vbm guestproperty get Cloudera /VirtualBox/GuestInfo/Net/0/V4/IP</p>
+<h1 id="or">or<a class="headerlink" href="#or" title="Permanent link">&para;</a></h1>
+<p>vbm guestproperty enumerate Cloudera | grep IP | awk '{print $4}' | sed -e 's/,//'
+<div class="highlight"><pre><span></span><code>??? info &quot;Install an OS&quot;
 
-<span class="c1"># Get the IP address of the VM named Cloudera</span>
-vbm guestproperty get Cloudera /VirtualBox/GuestInfo/Net/0/V4/IP
-</code></pre></div></p>
-<h2 id="vagrant">Vagrant<a class="headerlink" href="#vagrant" title="Permanent link">&para;</a></h2>
-<h3 id="installation-on-debian-based-systems">Installation on Debian based systems<a class="headerlink" href="#installation-on-debian-based-systems" title="Permanent link">&para;</a></h3>
-<p>deb package can be found at <a href="https://www.vagrantup.com/downloads.html">download</a></p>
-<div class="highlight"><pre><span></span><code>curl -LO https://releases.hashicorp.com/vagrant/2.2.17/vagrant_2.2.17_x86_64.deb
-sudo apt install ./vagrant_2.2.17_x86_64.deb
-# or dpkg -i
+    **Virtual box creation**
+
+    ```console
+    vbm createvm --name &lt;VM&gt; --ostype &lt;OSTYPE&gt; --basefolder &lt;BASEFOLDER&gt; --register
+    # OSTYPE can be set from a list, e.g. RedHat_64
+    vbm list ostypes
+    ```
+
+    **System settings**
+
+    ```console
+    # RAM and video memory
+    vbm modifyvm &lt;VM&gt; --memory 2048 --vram 128
+
+    # Disable audio
+    vbm modifyvm &lt;VM&gt; --audio none
+
+    # Set network
+    vbm modifyvm &lt;VM&gt; --nic1 nat
+
+    # Create a disk with size 100G, default format vdi
+    vbm createhd --filename &lt;DISK_NAME&gt;.vdi --size 100000
+
+    vbm storagectl &lt;VM&gt; --name &quot;SATA Controller&quot; --add sata --controller IntelAhci
+    vbm storageattach &lt;VM&gt; --storagectl &quot;SATA Controller&quot; --port 0 --device 0 --type hdd --medium &lt;DISK_NAME&gt;.vdi
+    # None: to remove a storage, set the medium to none, e.g.
+    vbm storageattach &lt;VM&gt; --storagectl &quot;SATA Controller&quot; --port 0 --device 0 --type hdd --medium none
+
+
+    vbm storagectl &lt;VM&gt; --name &quot;IDE Controller&quot; --add ide --controller PIIX4
+    vbm storageattach &lt;VM&gt; --storagectl &quot;IDE Controller&quot; --port 1 --device 0 --type dvddrive --medium &lt;ISO&gt;
+
+    # Set boot order
+    vbm modifyvm &lt;VM&gt; --boot1 dvd --boot2 disk --boot3 none --boot4 none
+
+    # [Enabling the I/O APIC is required](http://www.virtualbox.org/manual/ch03.html#settings-motherboard), especially for 64-bit Windows guest OSes. It is also required if you want to use more than one virtual CPU in a virtual machine.
+
+    vbm modifyvm &lt;VM&gt; --ioapic on
+    ```
+
+## Vagrant
+
+### Installation on Debian based systems
+
+deb package can be found at [download](https://www.vagrantup.com/downloads.html)
 </code></pre></div>
-<h3 id="vagranfile"><code>vagranfile</code><a class="headerlink" href="#vagranfile" title="Permanent link">&para;</a></h3>
-<p>Vagrant climbs up the directory tree looking for the first
-<a href="https://www.vagrantup.com/docs/vagrantfile">Vagrantfile</a> it can
-find, starting first in the current directory (or using <code>$VAGRANT_CWD</code> value).
-See <a href="https://www.vagrantup.com/docs/vagrantfile#load-order">load oder and
-merging</a>.</p>
-<p><a href="https://thornelabs.net/posts/customizing-vagrant-vmware-fusion-virtual-machines-with-vmx-parameters.html">Customizing Vagrant VMware Fusion Virtual Machines with VMX Parameters</a></p>
-<p><a href="https://medium.com/@severi/how-to-create-a-vagrant-box-running-red-hat-enterprise-linux-55410f8cfa7d">How to create a Vagrant Box running Red Hat Enterprise Linux</a></p>
-<h3 id="troubleshooting-on-hosts-with-secure-mode-enabled">Troubleshooting on hosts with secure mode enabled<a class="headerlink" href="#troubleshooting-on-hosts-with-secure-mode-enabled" title="Permanent link">&para;</a></h3>
-<p>UEFI<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> Secure Boot<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> (SB) is a verification mechanism for ensuring that
-code launched by a computer's UEFI firmware is trusted. Unsigned drivers are
-therefor not allowed to load.</p>
-<p>2 kernels modules are compiled at installation time and must be loaded. If the
+curl -LO https://releases.hashicorp.com/vagrant/2.2.17/vagrant_2.2.17_x86_64.deb
+sudo apt install ./vagrant_2.2.17_x86_64.deb</p>
+<h1 id="or-dpkg-i">or dpkg -i<a class="headerlink" href="#or-dpkg-i" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>### `vagranfile`
+
+Vagrant climbs up the directory tree looking for the first
+[Vagrantfile](https://www.vagrantup.com/docs/vagrantfile) it can
+find, starting first in the current directory (or using `$VAGRANT_CWD` value).
+See [load oder and
+merging](https://www.vagrantup.com/docs/vagrantfile#load-order).
+
+[Customizing Vagrant VMware Fusion Virtual Machines with VMX Parameters](https://thornelabs.net/posts/customizing-vagrant-vmware-fusion-virtual-machines-with-vmx-parameters.html)
+
+[How to create a Vagrant Box running Red Hat Enterprise Linux](https://medium.com/@severi/how-to-create-a-vagrant-box-running-red-hat-enterprise-linux-55410f8cfa7d)
+
+### Troubleshooting on hosts with secure mode enabled
+
+UEFI[^1] Secure Boot[^2] (SB) is a verification mechanism for ensuring that
+code launched by a computer&#39;s UEFI firmware is trusted. Unsigned drivers are
+therefor not allowed to load.
+
+2 kernels modules are compiled at installation time and must be loaded. If the
 host provides the proper kernel headers and gcc, these two modules will be
-built silently. The progress is logged into /tmp/vmware-root/vmware-PID.log<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
-<p>On error type like:</p>
-<blockquote>
-<p>Cannot open <code>/dev/vmmon</code>: No such file or directory. Please make sure that the kernel module <code>vmmon</code> is loaded</p>
-</blockquote>
-<p>The modules must be signed and the keys added to a database recognised by the first stage of the bootloader, the <strong>Machine Owner Key</strong></p>
-<div class="highlight"><pre><span></span><code><span class="gp">#</span> Modules must be signed by a CA <span class="o">(</span>Certificate Authority<span class="o">)</span>, here self-signed
-<span class="go">openssl req -new -x509 -newkey rsa:2048 -keyout &lt;MOK.priv&gt; -outform DER -out &lt;MOK.der&gt; -nodes -days 36500 -subj &quot;/CN=VMware/&quot;</span>
-<span class="go">sudo /usr/src/linux-headers-``uname -r``/scripts/sign-file sha256 &lt;MOK.priv&gt; &lt;MOK.der&gt; $(modinfo -n vmmon)</span>
-<span class="go">sudo /usr/src/linux-headers-``uname -r``/scripts/sign-file sha256 &lt;MOK.priv&gt; &lt;MOK.der&gt; $(modinfo -n vmnet)</span>
+built silently. The progress is logged into /tmp/vmware-root/vmware-PID.log[^3].
 
-<span class="go">sudo mokutil --test-key &lt;MOK.der&gt;</span>
-<span class="gp">#</span> cert should not be currently enrolled
+On error type like:
 
-<span class="go">sudo mokutil --import &lt;MOK.der&gt;</span>
-<span class="gp">#</span> mokutil should request <span class="nb">pwd</span>
+&gt; Cannot open `/dev/vmmon`: No such file or directory. Please make sure that the kernel module `vmmon` is loaded
 
-<span class="go">sudo mokutil --test-key &lt;MOK.der&gt;</span>
-<span class="gp">#</span> cert should be enrolled now
+The modules must be signed and the keys added to a database recognised by the first stage of the bootloader, the **Machine Owner Key**
 
-<span class="go">sudo mokutil --list-new</span>
-<span class="gp">#</span> your cert should be displayed
 
-<span class="go">reboot</span>
+```console
+# Modules must be signed by a CA (Certificate Authority), here self-signed
+openssl req -new -x509 -newkey rsa:2048 -keyout &lt;MOK.priv&gt; -outform DER -out &lt;MOK.der&gt; -nodes -days 36500 -subj &quot;/CN=VMware/&quot;
+sudo /usr/src/linux-headers-``uname -r``/scripts/sign-file sha256 &lt;MOK.priv&gt; &lt;MOK.der&gt; $(modinfo -n vmmon)
+sudo /usr/src/linux-headers-``uname -r``/scripts/sign-file sha256 &lt;MOK.priv&gt; &lt;MOK.der&gt; $(modinfo -n vmnet)
+
+sudo mokutil --test-key &lt;MOK.der&gt;
+# cert should not be currently enrolled
+
+sudo mokutil --import &lt;MOK.der&gt;
+# mokutil should request pwd
+
+sudo mokutil --test-key &lt;MOK.der&gt;
+# cert should be enrolled now
+
+sudo mokutil --list-new
+# your cert should be displayed
+
+reboot
 </code></pre></div>
 <h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html">Controlling VirtualBox from the Command Line</a></p>
+<h2 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Permanent link">&para;</a></h2>
 <div class="footnote">
 <hr />
 <ol>
