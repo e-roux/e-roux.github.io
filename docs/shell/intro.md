@@ -186,12 +186,12 @@ Link: https://learnbyexample.github.io/substitution-with-ripgrep/
 
 - `which` was a csh cmd, locates a command, get aliases from `~/.cshrc` and assumes an interactive shell. Neither POSIX nor UNIX std.
 - `type` display was a bash addition in the mid 80's, command informations. **UNIX std**.
-- `whence` is a korn-shell addition of the mid 80's with flags:
+- `whence` is a korn-shell addition of the mid 80's
 
-  - `whence` as `command -v`
-  - `whence -c` as `which`
-  - `whence -v` as `type` or `command -V`
-  - `whence -ca` as `where`
+    - `whence` as `command -v`
+    - `whence -c` as `which`
+    - `whence -v` as `type` or `command -V`
+    - `whence -ca` as `where`
 
 - `where` is a tcsh addition, acting like Unix's ` type -a`. Neither POSIX nor UNIX std.
 - `command` runs a simple command, suppressing the shell function lookup. **POSIX std**.
