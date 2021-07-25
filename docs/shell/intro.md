@@ -1,5 +1,7 @@
 # Shell
 
+The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](http://pubs.opengroup.org/onlinepubs/9699919799/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
+
 ## Initialization
 
 === "bash"
@@ -15,6 +17,8 @@
     | BASH_ENV         |                   |                       |    A   |
     | ~/.bash_logout   |         C         |                       |        |
 
+    Executes A, then B, then C, etc. The B1, B2, B3 means it executes only the
+    first of those files found.
 
 === "zsh"
 
@@ -32,7 +36,7 @@
     | ~/.zlogout    |         I         |                       |        |
     | /etc/zlogout  |         J         |                       |        |
 
-[Souce](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
+[Source](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
 
 
 ## Configuration
@@ -177,6 +181,46 @@ Link: https://learnbyexample.github.io/substitution-with-ripgrep/
     ```bash
     rg -g '!/pack/**' g:ale
     ```
+
+## Command information
+
+- `which` was a csh cmd, locates a command, get aliases from `~/.cshrc` and assumes an interactive shell. Neither POSIX nor UNIX std.
+- `type` display was a bash addition in the mid 80's, command informations. **UNIX std**.
+- `whence` is a korn-shell addition of the mid 80's with flags:
+
+  - `whence` as `command -v`
+  - `whence -c` as `which`
+  - `whence -v` as `type` or `command -V`
+  - `whence -ca` as `where`
+
+- `where` is a tcsh addition, acting like Unix's ` type -a`. Neither POSIX nor UNIX std.
+- `command` runs a simple command, suppressing the shell function lookup. **POSIX std**.
+
+
+Further utilities:
+
+- `whereis` locate the binary, source and man page for a command. Neither POSIX nor UNIX std.
+- `whatis` display one line manual page descriptions, renamed `type` on Unix v8. Neither POSIX nor UNIX std.
+
+- `apropos`  search the manual pages names and decriptions, seems similar to `man -k`.
+
+Genral check if one command is available:
+
+> ```bash
+> if command -v given-command &> /dev/null 2>&1; then
+>   echo given-command is available
+> else
+>   echo given-command is not available
+> fi
+> ```
+
+!!! note
+
+    - these commands have various modifiers, see their help
+    - `whence` equivalents are valid on `zsh`.
+    - some info on post [Stackexchange
+      85249](https://unix.stackexchange.com/questions/85249/why-not-use-which-what-to-use-then).
+
 
 ## Working with structured data
 
