@@ -18,6 +18,9 @@ theme:
   palette:
     primary: "indigo"
     accent: "lime"
+    toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
 
 nav:
   - Home: index.md
@@ -62,7 +65,7 @@ nav:
           - Ansible: infrastructure/devops/ansible.md
           - Molecule: infrastructure/devops/molecule.md
       - Containerization:
-          - Docker: infrastructure/containerization/intro.md
+          - Docker: infrastructure/containerization/index.md
           - Containerd: infrastructure/containerization/containerd.md
           - Docker CLI: infrastructure/containerization/cli.md
           - Images:
