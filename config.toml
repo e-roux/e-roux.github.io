@@ -1,0 +1,73 @@
+baseURL = 'https://e-roux.github.io'
+defaultContentLanguage = "en"
+languageCode = 'en-gb'
+title = 'Blabla'
+showBreadCrumbs = true
+theme = "beautifulhugo"
+
+[Params]
+  homeTitle = "Hi"
+  comments = true
+  commit = false
+  dateFormat = "January 2, 2006"
+  delayDisqus = true
+  favicon = "img/favico.ico"
+  hideFooter = false
+  logo = "https://avatars.githubusercontent.com/u/15956441?v=4"
+  mainSections = ["post","posts"]
+  readingTime = true
+  rss = true
+  selfHosted = false
+  showRelatedPosts = true
+  socialShare = true
+  subtitle = "So what"
+  useHLJS = true
+  wordCount = true
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+
+[Author]
+  name = "Emmanuel Roux"
+  # website = "yourwebsite.com"
+  email = "youremail@domain.com"
+  github = "e-roux"
+  # gitlab = "emmanuel.roux"
+
+[Menus]
+[main]
+  name = "Blog"
+  url = "pages"
+  weight = 1
+
+
+[[menu.main]]
+    name = "Blog"
+    url = ""
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "page/about/"
+    weight = 3
+
+[[menu.main]]
+    identifier = "samples"
+    name = "Samples"
+    weight = 2
+
+[module]
+  [module.hugoVersion]
+  min = "0.56.0"
+
+[menu]
+[[menu.after]]
+name = "Github"
+url = "https://github.com/alex-shpak/hugo-book"
+weight = 10
+
+[[menu.after]]
+name = "Hugo Themes"
+url = "https://themes.gohugo.io/hugo-book/"
+weight = 20

@@ -4,3 +4,6 @@ site
 *.md.tmp
 .jedi
 nohup.out
+trash
+tutorial
+.DS_Store

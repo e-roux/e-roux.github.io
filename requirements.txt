@@ -1,5 +1,0 @@
-mkdocs-material
-mknotebooks
-mkdocs-exclude
-mkdocs-awesome-pages-plugin
-pymdown-extensions
