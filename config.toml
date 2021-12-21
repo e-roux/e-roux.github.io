@@ -23,7 +23,10 @@ theme = "beautifulhugo"
   subtitle = "So what"
   useHLJS = true
   wordCount = true
-
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 #[[Params.bigimg]]
 #  src = "img/triangle.jpg"
 #  desc = "Triangle"
