@@ -1,7 +1,16 @@
 ---
-title: "Podman"
+title: "Podman machine"
 date: 2021-12-20T11:21:10+01:00
 draft: false
+resources:
+  - name: Replace docker
+    href: https://www.redhat.com/sysadmin/replace-docker-podman-mac-revisited
+  - name: Podman mac architecture
+    href: https://www.redhat.com/sysadmin/podman-mac-machine-architecture
+  - name: Podman at oracle
+    href: https://docs.oracle.com/en/operating-systems/oracle-linux/podman/podman-preface.html
+  - name: Setting Up a Remote Podman Service
+    href: https://www.cloudassembler.com/post/remote-podman-service/
 ---
 
 ## Intro
@@ -115,10 +124,3 @@ short-name-mode="enforcing"
 [Butane](https://coreos.github.io/butane/) (formerly Fedora CoreOS Config
 Transpiler, FCCT) translates human readable Butane Configs into machine
 readable Ignition Configs.
-
-## Resources
-
-- https://www.redhat.com/sysadmin/replace-docker-podman-mac-revisited
-- https://www.redhat.com/sysadmin/podman-mac-machine-architecture
-- https://docs.oracle.com/en/operating-systems/oracle-linux/podman/podman-preface.html
-- [Setting Up a Remote Podman Service](https://www.cloudassembler.com/post/remote-podman-service/)

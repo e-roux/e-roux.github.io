@@ -1,0 +1,68 @@
+---
+baseurl: 'https://e-roux.github.io'
+defaultcontentlanguage: "en"
+languagecode: 'en-gb'
+title: 'My site'
+showbreadcrumbs: true
+paginate: 3
+taxonomies:
+  category: categories
+  language: languages
+  tag: tags
+
+Params:
+  homeTitle: "Hi"
+  comments: true
+  commit: false
+  dateFormat: "January 2, 2006"
+  delayDisqus: true
+  favicon: "img/favico.ico"
+  hideFooter: false
+  logo: "https://avatars.githubusercontent.com/u/15956441?v=4"
+  mainSections: ["post","posts"]
+  readingTime: true
+  rss: true
+  selfHosted: false
+  showRelatedPosts: true
+  socialShare: true
+  subtitle: "So what"
+  useHLJS: true
+  tags: true
+  wordCount: true
+  gcse: false
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+
+Author:
+  Name: "Emmanuel Roux"
+  # website = "yourwebsite.com"
+  email: "youremail@domain.com"
+  github: "e-roux"
+  # gitlab = "emmanuel.roux"
+
+menu:
+  main:
+    - name: "Blog"
+      url: "posts"
+      weight: 1
+    - name: "About"
+      url: "about"
+      weight: 3
+    - name: "Docs"
+      url: "docs"
+      weight: 2
+  after:
+    - name: "Github"
+      url: "https://github.com/alex-shpak/hugo-book"
+      weight: 10
+
+module:
+  hugoVersion:
+    min: "0.56.0"

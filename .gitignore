@@ -7,3 +7,6 @@ nohup.out
 trash
 tutorial
 .DS_Store
+node_modules
+static/vendors
+public

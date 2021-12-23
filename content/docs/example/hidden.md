@@ -1,5 +1,9 @@
 ---
-bookHidden: true
+title: hidden
+date: 2021-12-13T10:10:27+0100
+draft: false
+tags:
+  - bla
 ---
 
 # This page is hidden in menu

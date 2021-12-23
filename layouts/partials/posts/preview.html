@@ -1,0 +1,50 @@
+<article class="post-preview">
+  <a href="{{ .Permalink }}">
+    <h2 class="post-title">{{ .Title }}</h2>
+    {{ if .Params.subtitle }}
+    <h3 class="post-subtitle">
+      {{ .Params.subtitle }}
+    </h3>
+    {{ end }}
+    <!-- os.FileExists -->
+      {{ $image := .Page.Resources.GetMatch "example.jpg" }}
+
+      {{ $imgBaseFileName := .File.Dir }}
+      {{ where .Site.Pages  ".File" "in" "podman" }}
+
+
+      {{ $imgs := readDir ( printf "content/%s" .File.Dir ) }}
+      {{ range $imgs }}
+      {{ printf "Nom de fichier: %s" .Name }}
+      {{ end }}
+    {{ if .Params.image }}
+    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="img-title" />
+    {{ end }}
+    {{ if .Params.video }}
+    <video loop autoplay muted playsinline class="img-title">
+      <source src="{{ .Params.video }}">
+    </video>
+    {{ end }}
+  </a>
+
+  <p class="post-meta">
+  {{ partial "posts/meta.html" . }}
+  </p>
+  <div class="post-entry">
+    {{ if .Truncated }}
+    {{ .Summary }}
+    <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
+    {{ else }}
+    {{ .Content }}
+    {{ end }}
+  </div>
+
+  {{ if .Params.tags }}
+  <div class="blog-tags">
+    {{ range .Params.tags }}
+    <a href="{{ $.Site.LanguagePrefix | absURL }}/tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
+    {{ end }}
+  </div>
+  {{ end }}
+
+</article>

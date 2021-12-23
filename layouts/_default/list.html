@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        {{ with .Content }}
+          <div class="well">
+            {{.}}
+          </div>
+        {{ end }}
+
+        <div class="posts-list">
+          {{ (.Paginate .RegularPagesRecursive).Pages }}
+          {{ range .Paginator.Pages }}
+            {{ partial "posts/preview.html" .}}
+          {{ end }}
+        </div>
+
+        {{ partial "paginator.html" . }}
+
+      </div>
+    </div>
+  </div>
+{{ end }}
