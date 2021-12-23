@@ -25,11 +25,12 @@ BOOTSTRAP_ARCHIVE := bootstrap-$(BOOTSTRAP_VERSION)-dist.zip
 BOOTSTRAP_URL := https://github.com/twbs/bootstrap/releases/download/v$(BOOTSTRAP_VERSION)
 BOOTSTRAP := $(VENDOR_DIR)/bootstrap
 BOOTSTRAP_TMP := /tmp
+BOOTSTRAP_CSS := $(BOOTSTRAP)/css/bootstrap.min.css
 
-$(BOOTSTRAP)/css/bootstrap.min.css:
+$(BOOTSTRAP_CSS):
 	curl -L $(BOOTSTRAP_URL)/$(BOOTSTRAP_ARCHIVE) -o $(BOOTSTRAP_TMP)/$(BOOTSTRAP_ARCHIVE)
-	@unzip $(BOOTSTRAP_TMP)/$(BOOTSTRAP_ARCHIVE) -d static/vendors
-	@mv static/vendors/$(basename $(BOOTSTRAP_ARCHIVE)) $(BOOTSTRAP)
+	@unzip $(BOOTSTRAP_TMP)/$(BOOTSTRAP_ARCHIVE) -d $(VENDOR_DIR)
+	@mv $(VENDOR_DIR)/$(basename $(BOOTSTRAP_ARCHIVE)) $(BOOTSTRAP)
 # 1}}}
 
 # Highlight.js {{{1
@@ -70,14 +71,16 @@ $(KATEX_CSS) $(KATEX_JS):
 FONTAWESOME_VERSION := 5.15.4
 FONTAWESOME_ARCHIVE := fontawesome-free-$(FONTAWESOME_VERSION)-web.zip
 FONTAWESOME_URL := https://use.fontawesome.com/releases/v$(FONTAWESOME_VERSION)
-FONTAWESOME := static/vendors/fontawesome
+FONTAWESOME := $(VENDOR_DIR)/fontawesome
 FONTAWESOME_TMP := /tmp
 
-$(FONTAWESOME)/css/all.css:
-	@mkdir -p $(@D)
+FONTAWESOME_CSS := $(FONTAWESOME)/css/all.css
+
+$(FONTAWESOME_CSS):
+	@mkdir -p $(VENDOR_DIR)
 	@curl -L $(FONTAWESOME_URL)/$(FONTAWESOME_ARCHIVE) -o $(FONTAWESOME_TMP)/$(FONTAWESOME_ARCHIVE)
-	@unzip $(FONTAWESOME_TMP)/$(FONTAWESOME_ARCHIVE) -d static/vendors
-	@mv static/vendors/$(basename $(FONTAWESOME_ARCHIVE)) $(FONTAWESOME)
+	@unzip $(FONTAWESOME_TMP)/$(FONTAWESOME_ARCHIVE) -d $(VENDOR_DIR)
+	@mv $(VENDOR_DIR)/$(basename $(FONTAWESOME_ARCHIVE)) $(FONTAWESOME)
 # 1}}}
 
 _VENDORS_JS := $(HIGHLIGHT_JS) $(KATEX_JS) $(BOOTSTRAP_JS)
