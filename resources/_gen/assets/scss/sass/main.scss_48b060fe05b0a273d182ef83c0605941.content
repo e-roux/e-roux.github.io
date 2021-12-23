@@ -1,1 +1,0 @@
-body{font-family:lora,times new roman,serif;font-size:18px;color:#404040;position:relative;background:#fff;display:flex;flex-flow:column;height:100vh}.navbar-custom .navbar-brand:hover,.navbar-custom .navbar-brand:focus,.navbar-custom .nav li a:hover,.navbar-custom .nav li a:focus{color:#0085a1}.avatar-container{margin-top:10px;left:95%}
