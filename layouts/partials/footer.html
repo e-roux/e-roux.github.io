@@ -1,5 +1,5 @@
-{{ if eq .Type "page" }}
-{{ partial "page_meta.html" . }}
+{{ if eq .Kind "page" }}
+  {{ partial "page_meta.html" . }}
 {{ end }}
 <footer>
   <div class="container">
@@ -7,53 +7,48 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <ul class="list-inline text-center footer-links">
           {{ range .Site.Data.social.social_icons }}
-          {{- if isset $.Site.Author .id }}
-          <li class="list-inline-item">
-            <a href="{{ printf .url (index $.Site.Author .id) }}" title="{{ .title }}">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="{{ .icon }} fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          {{- end -}}
+            {{- if isset $.Site.Author .id }}
+              <li class="list-inline-item">
+                <a href="{{ printf .url (index $.Site.Author .id) }}" title="{{ .title }}">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="{{ .icon }} fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            {{- end -}}
           {{ end }}
           {{ if .Site.Params.rss }}
-          <li class="list-inline-item">
-            <a href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li clas="list-inline-item">
+            <li class="list-inline-item">
+              <a href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}" title="RSS">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li clas="list-inline-item">
           {{ end }}
         </ul>
         <p class="credits copyright text-muted">
         {{ if .Site.Author.name }}
-        {{ if .Site.Author.website }}
-        <a href="{{ .Site.Author.website }}">{{ .Site.Author.name }}</a>
-        {{ else }}
-        {{ .Site.Author.name }}
-        {{ end }}
+          {{ if .Site.Author.website }}
+            <a href="{{ .Site.Author.website }}">{{ .Site.Author.name }}</a>
+          {{ else }}
+            {{ .Site.Author.name }}
+          {{ end }}
         {{ end }}
 
         &nbsp;&bull;&nbsp;&copy;
         {{ if .Site.Params.since }}
-        {{ .Site.Params.since }} - {{ .Site.LastChange.Format "2006" }}
+          {{ .Site.Params.since }} - {{ .Site.LastChange.Format "2006" }}
         {{ else }}
-        {{ .Site.LastChange.Format "2006" }}
+          {{ .Site.LastChange.Format "2006" }}
         {{ end }}
 
         {{ if .Site.Title }}
-        &nbsp;&bull;&nbsp;
-        <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
+          &nbsp;&bull;&nbsp;
+          <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
         {{ end }}
-        </p>
-        <!-- Please don't remove this, keep my open source work credited :) -->
-        <p class="credits theme-by text-muted">
-        {{ i18n "poweredBy" . | safeHTML }}
-        {{ if $.GitInfo }}&nbsp;&bull;&nbsp;[<a href="{{ .Site.Params.commit }}{{ .GitInfo.Hash }}">{{ substr .GitInfo.Hash 0 8 }}</a>]{{ end }}
         </p>
       </div>
     </div>
@@ -61,66 +56,69 @@
 </footer>
 
 {{- if .Params.renderMath -}}
-<script src="{{ "vendors/katex/js/katex.min.js" | absURL }}"></script>
-<script src="{{ "js/auto-render.min.js" | absURL }}"></script>
+  <script src="{{ "vendors/katex/js/katex.min.js" | absURL }}"></script>
+  <script src="{{ "js/auto-render.min.js" | absURL }}"></script>
 {{- end -}}
-<script src="{{ "vendors/bootstrap/js/bootstrap.min.js" | absURL }}"></script>
 
+<script src="{{ "vendors/bootstrap/js/bootstrap.min.js" | absURL }}"></script>
 <script src="{{ "js/wc.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+
 {{- if .Site.Params.staticman }}
-<script src="{{ "js/staticman.js" | absURL }}"></script>
+  <script src="{{ "js/staticman.js" | absURL }}"></script>
 {{- end }}
-{{- if  .Site.Params.useHLJS }}
+
+
 <script src="{{ "vendors/highlight/js/highlight.min.js" | absURL }}"></script>
-<!-- <script> hljs.initHighlightingOnLoad(); </script> -->
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+          hljs.highlightElement(el);
+        });
+    });
+</script>
+
 <!-- <script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script> -->
-{{- end -}}
 <!-- <script> renderMathInElement(document.body); </script> -->
 
-{{- if .Site.Params.selfHosted -}}
-<script src="{{ "js/photoswipe.min.js" | absURL }}"></script>
-<script src="{{ "js/photoswipe-ui-default.min.js" | absURL }}"></script>
-{{- else -}}
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script> -->
-{{- end -}}
+<script src="{{ "vendors/photoswipe/photoswipe.min.js" | absURL }}"></script>
+<script src="{{ "vendors/photoswipe/photoswipe-ui-default.min.js" | absURL }}"></script>
 <!-- <script src="{{ "js/load-photoswipe.js" | absURL }}"></script> -->
 
 <!-- Google Custom Search Engine -->
 {{ if .Site.Params.gcse }}
-<script>
-  (function() {
-      var cx = '{{ .Site.Params.gcse }}';
-      var gcse = document.createElement('script');
-      gcse.type = 'text/javascript';
-      gcse.async = true;
-      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(gcse, s);
-    })();
-</script>
+  <script>
+    (function() {
+          var cx = '{{ .Site.Params.gcse }}';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+  </script>
 {{ end }}
 
 {{ if .Site.Params.piwik }}
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
+  <!-- Piwik -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
 
-  (function() {
-      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://{{ .Site.Params.piwik.server }}/";
-      _paq.push(["setTrackerUrl", u+"piwik.php"]);
-      _paq.push(["setSiteId", "{{ .Site.Params.piwik.id }}"]);
-      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-    })();
-</script>
-<noscript>
-  <!-- Piwik Image Tracker -->
-  <img src="http://{{ .Site.Params.piwik.server }}/piwik.php?idsite={{ .Site.Params.piwik.id }}&amp;rec=1" style="border:0" alt="" />
-  <!-- End Piwik -->
-</noscript>
-<!-- End Piwik Code -->
+    (function() {
+          var u=(("https:" == document.location.protocol) ? "https" : "http") + "://{{ .Site.Params.piwik.server }}/";
+          _paq.push(["setTrackerUrl", u+"piwik.php"]);
+          _paq.push(["setSiteId", "{{ .Site.Params.piwik.id }}"]);
+          var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+          g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+        })();
+  </script>
+  <noscript>
+    <!-- Piwik Image Tracker -->
+    <img src="http://{{ .Site.Params.piwik.server }}/piwik.php?idsite={{ .Site.Params.piwik.id }}&amp;rec=1" style="border:0" alt="" />
+    <!-- End Piwik -->
+  </noscript>
+  <!-- End Piwik Code -->
 {{ end }}

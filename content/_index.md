@@ -1,6 +1,7 @@
 ---
-title: Introduction
-type: docs
+title: Home
+tags:
+    - that
 ---
 
 # Acerbo datus maxime

@@ -1,0 +1,33 @@
+<div role="breadcrumb">
+  <ol class="breadcrumb">
+    {{ template "bdcrbrec" (dict "p1" . "p2" . "idx" (len .SectionsEntries)) }}
+  </ol>
+</div>
+
+{{ define "bdcrbrec" }}
+  {{ if .p1.Parent }}
+    {{ template "bdcrbrec" (dict "p1" .p1.Parent "p2" .p2 "idx" (len .p1.Parent.SectionsEntries ) )  }}
+  {{ else if not .p1.IsHome }}
+    {{ template "bdcrbrec" (dict "p1" .p1.Site.Home "p2" .p2 "idx" (len .p1.Parent.SectionsEntries ) )  }}
+  {{end}}
+
+  {{ if .p1.Parent }}
+    {{ if ne .p1.Parent.SectionsPath .p1.SectionsPath }}
+      {{ template "bdcrbli" (dict "p1" .p1 "p2" .p2 "idx" .idx) }}
+    {{ end }}
+  {{ else }}
+    {{ template "bdcrbli" (dict "p1" .p1 "p2" .p2 "idx" .idx) }}
+  {{ end }}
+{{ end }}
+
+{{ define "bdcrbli" }}
+  <li role="main" class="breadcrumb-item{{ if eq .p1 .p2 }} active{{ end }}">
+    <a href="{{ .p1.Permalink }}">
+      {{- if eq .idx 0 -}}
+        <span class="fas fa-home"/>
+        {{- else -}}
+          {{ index .p1.SectionsEntries (sub .idx 1) }}
+        {{- end -}}
+    </a>
+  </li>
+{{ end }}

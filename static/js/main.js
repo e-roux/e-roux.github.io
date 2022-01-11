@@ -1,7 +1,7 @@
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show
  * the navbar */
 function updateNavbar() {
-  const navbar = document.getElementById("navbarCustom");
+  const navbar = document.getElementById("navbar");
   let prevScrollpos = 0;
   const updatePosition = function () {
     const newScrollPos = window.scrollY;

@@ -1,2 +1,4 @@
-github.com/alex-shpak/hugo-book v0.0.0-20211019200541-8bb6d7ebec03 h1:GNE3B7LiDnbBF/3DIPjkc+QsxHc1R78Rn/UTjWaSup0=
-github.com/alex-shpak/hugo-book v0.0.0-20211019200541-8bb6d7ebec03/go.mod h1:L4NMyzbn15fpLIpmmtDg9ZFFyTZzw87/lk7M2bMQ7ds=
+github.com/gohugoio/hugo-mod-bootstrap-scss-v5 v1.0.0 h1:ImJHfWXVsUkCuull09NqcTpTx5bVnEBYyWlVE04paA0=
+github.com/gohugoio/hugo-mod-bootstrap-scss-v5 v1.0.0/go.mod h1:OkLoYy/rU+UFHFd/TPzRxfgXkaOtqqW+mEQGBUzydk4=
+github.com/twbs/bootstrap v5.0.2+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
+github.com/twbs/bootstrap v5.1.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=

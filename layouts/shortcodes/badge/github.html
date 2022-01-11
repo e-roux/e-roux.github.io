@@ -1,12 +1,10 @@
 {{if .Get "repo"}}
 <a href="https://github.com/{{.Get "repo"}}"
-   target="_default"
-   class="{{.Get "class"}}"
+   target="_blank"
    style="text-decoration-line: none;">
-  {{.Get "repo"}}
 <img
    alt="{{.Get "alt"}}"
-   style="display: inline-block;"
+   style="cursor: pointer; display: inline-block;"
    src="https://img.shields.io/github/stars/{{.Get "repo"}}?style=social&label=☆">
 </a>
 {{end}}

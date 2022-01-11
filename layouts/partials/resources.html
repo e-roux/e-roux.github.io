@@ -1,0 +1,11 @@
+
+{{ with .Params.resources }}
+<div class="resources">
+    <h3>Resources</h3>
+    <ul>
+        {{ range . }}
+        <li><a href='{{ .href}}' target="_default">{{ .name }}</a></li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}

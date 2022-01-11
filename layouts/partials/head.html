@@ -46,46 +46,34 @@
 <!-- Links and stylesheets -->
   <link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 
- {{ $style := resources.Get "sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+ {{ $style := resources.Get "scss/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
   {{- if .Params.renderMath -}}
   <link rel="stylesheet" href="{{ "vendors/katex/css/katex.min.css" | absURL }}" />
   {{- end -}}
-  <link rel="stylesheet" href="{{ "vendors/fontawesome/css/all.css" | absURL }}" />
-  <link rel="stylesheet" href="{{ "vendors/bootstrap/css/bootstrap.min.css" | absURL }}" />
-  <!-- CSS only -->
-  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" />
 
   {{- if .Site.Params.staticman -}}
   <link rel="stylesheet" href="{{ "css/staticman.css" | absURL }}" />
-  {{- end -}}
+  {{ end }}
 
-  {{- if .Site.Params.selfHosted -}}
-  <link rel="stylesheet" href="{{ "css/fonts.css" | absURL }}" />
-  {{- else -}}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  {{- end -}}
+  <link rel="stylesheet" href="{{ "vendors/fontawesome/css/all.css" | absURL }}" />
 
-  {{- if .Site.Params.useHLJS }}
+  <!-- highlight.js -->
   <link rel="stylesheet" href="{{ "vendors/highlight/css/highlight.min.css" | absURL }}" />
-  {{- else -}}
-  <link rel="stylesheet" href="{{ "css/syntax.css" | absURL }}" />
-  {{- end -}}
+  <!-- <link rel="stylesheet" href="{{ "css/syntax.css" | absURL }}" /> -->
   <!-- <link rel="stylesheet" href="{{ "css/codeblock.css" | absURL }}" /> -->
 
   {{- if .Site.Params.staticman.recaptcha -}}
   <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
   {{- end -}}
 
-  {{- if .Site.Params.selfHosted -}}
-  <link rel="stylesheet" href="{{ "css/photoswipe.min.css" | absURL }}" />
-  <link rel="stylesheet" href="{{ "css/photoswipe.default-skin.min.css" | absURL }}" />
-  {{- else -}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-  {{- end -}}
+  <link rel="stylesheet" href="{{ "vendors/photoswipe/photoswipe.css" | absURL }}" />
+  <link rel="stylesheet" href="{{ "vendors/photoswipe/default-skin.css" | absURL }}" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ "css/fonts.css" | absURL }}" />
   <link rel="stylesheet" href="{{ "css/admonitions.css" | absURL }}" />
+  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" />
 
 {{ template "_internal/google_analytics_async.html" . }}

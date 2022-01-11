@@ -2,4 +2,6 @@ module github.com/e-roux
 
 go 1.17
 
-require github.com/alex-shpak/hugo-book v0.0.0-20211019200541-8bb6d7ebec03 // indirect
+require github.com/gohugoio/hugo-mod-bootstrap-scss-v5 v1.0.0 // indirect
+
+replace github.com/gohugoio/hugo-mod-bootstrap-scss-v5 => /Users/manu/development/github.com/e-roux/hugo-mod-bootstrap-scss-v5

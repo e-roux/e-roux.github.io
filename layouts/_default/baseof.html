@@ -5,9 +5,28 @@
   </head>
   <body>
     {{ partial "nav.html" . }}
+
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
-    {{ block "main" . }}{{ end }}
-    {{ partial "footer.html" . }}
-    {{ block "footer" . }}{{ end }}
+
+    {{- block "main" . -}}
+      <main class="{{.Type}} {{ .Kind }}" role="main">
+        {{ if eq .Type "docs" }}
+          {{ partial "side_navigation.html" . }}
+        {{- end -}}
+
+
+        <div role="content">
+          {{ if eq .Type "docs" }}
+            {{ partial "breadcrumb.html" . }}
+          {{- end -}}
+          {{ block "content" . }}{{ end }}
+        </div>
+        {{ if eq .Kind "page" }}
+          {{ partial "toc.html" . }}
+        {{ end }}
+      </main>
+    {{ end }}
+
+    {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
   </body>
 </html>

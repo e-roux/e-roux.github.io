@@ -1,11 +1,114 @@
-<div class="">
+<nav role="explorer" class="nav-{{- .Type -}}">
+
+  {{/* {{ with .FirstSection  }} */}}
+  {{/*   {{ .Pages }} */}}
+  {{/*   {{ .RegularPages }} */}}
+  {{/*   <br/> */}}
+  {{/*   <ul> */}}
+  {{/*   {{ range .RegularPagesRecursive }} */}}
+  {{/*     <li> */}}
+  {{/*     {{ .Title  }} · {{ .SectionsEntries }} */}}
+  {{/*     </li> */}}
+  {{/*   {{ end }} */}}
+  {{/*   <ul/> */}}
+  {{/*   AAA */}}
+  {{/* {{ end }} */}}
+  {{/* {{ range $idx, $page := .FirstSection.Pages }} */}}
+  {{/*   {{ $idx }} {{ $page.Title }} -  {{ $page.Next }}<br/> */}}
+  {{/* {{ end }} */}}
+
+  {{/* {{ $docs := where .Site.RegularPages "Type" .Section }} */}}
+  {{/* {{ $custMenu := newScratch }} */}}
+
+  {{/*   var $scratch = newScratch */}}
+  {{/*   for each $page in $pages: */}}
+  {{/*     var $sections = $page.SectionsEntries */}}
+  {{/*     if len $sections == 1: */}}
+  {{/*       $scratch.store $page */}}
+  {{/*     else: */}}
+  {{/*       for each $index, $section in $sections: */}}
+  {{/*         if $index == 0: */}}
+  {{/*           pass */}}
+  {{/*         else if $index == 1: */}}
+  {{/*           if exist $scratch.$section: */}}
+  {{/*             localdict = $scratch.section */}}
+  {{/*           else: */}}
+  {{/*             localdict = newDict */}}
+  {{/*             $scratch.section = localdict */}}
+
+  {{/* {{ range $doc := $docs }} */}}
+  {{/*   {{ $sections := $doc.SectionsEntries }} */}}
+  {{/*   {{ $localScratch := $custMenu }} */}}
+
+  {{/*   {{ range $index, $section := $sections }} */}}
+
+  {{/*   {{ $lastIndex := ( sub ( len $sections ) 1) }} */}}
+  {{/*   {{ if eq $index $lastIndex }} */}}
+  {{/*     {{ $localScratch.Set $doc.Title $doc }} */}}
+  {{/*   {{ end }} */}}
+
+  {{/*   {{ if gt $index 0 }} */}}
+  {{/*     {{/1* {{ $lastIndex }} / {{ $index }} *1/}} */}}
+  {{/*     {{/1* <b>{{ $index  }} {{ $section }}</b><br/> *1/}} */}}
+  {{/*     {{ if ne ( $localScratch.Get $section ) }} */}}
+  {{/*       {{ $localScratch.Set $section dict  }} */}}
+  {{/*     {{ end }} */}}
+  {{/*     {{ $localScratch = $localScratch.Get $section }} */}}
+  {{/*   {{ end }} */}}
+
+  {{/* {{ end }} */}}
+  {{/* {{ end }} */}}
+
+  {{/* {{ $custMenu.Set "FOO" dict }} */}}
+
+  {{/* {{ $myDict := (dict "key1" "value1") }} */}}
+  {{/* {{ $myDict = merge $myDict ($custMenu.Get "FOO") }} */}}
+
+  {{/* {{ $custMenu.Set "FOO" $myDict }} */}}
+
+  {{/* <!-- {{ $custMenu.Values }} --> */}}
+  {{/* {{ $custMenu.Get "devops" }} */}}
+  {{/* {{ $custMenu }} */}}
+
+  {{/* {{ $.Scratch.Set "docs" (where .Site.Pages "Type" "docs" | len) }} */}}
+  {{/* {{/1* {{ if gt (.Scratch.Get "docs") 0 }} *1/}} */}}
+  {{/* {{ end }} */}}
+  {{/* {{ .Scratch.Get "posts" }} */}}
+  {{/* {{ range ($docs.GroupBy "Kind") }} */}}
+  {{/* {{ end }} */}}
+
+
   <ul>
-    <!-- orders content according to the "lastmod" field in front matter -->
-    {{ range .Pages.ByLastmod }}
-    <li>
-      <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-      <time>{{ .Date.Format "Mon, Jan 2, 2006" }}</time>
-    </li>
+    {{- range $group := .Site.Data.docs.sidebar -}}
+
+
+    <ul>{{ .title | urlize }}
+      {{ range $page := $group.pages }}
+        {{ $href := printf "%s/docs" .Site.BaseUrl  | urlize }}
+
+      <<a href="{{ $href }}" alt="{{.Title}}"><li>{{ .Site.GetPage ( $href )  }} · {{ .title }}</li></a>
+      {{ end }}
+
+      </ul>
+    {{/* {{ range $docs }} */}}
+      {{/*<pre>{{ . }}</pre>*/}}
+      {{/*  <pre>{{ .Kind }}/{{ .BundleType }}/{{ .Type }}/{{ len .SectionsEntries }}/</pre>*/}}
+      {{/* {{ template "mysidetemplate" (dict "p1" . "p2" .FirstSection ) }} */}}
     {{ end }}
   </ul>
-</div>
+</nav>
+
+{{/* {{ define "mysidetemplate" }} */}}
+{{/*   {{ if .p1.Parent }} */}}
+{{/*     {{ template "mysidetemplate" (dict "p1" .p1.Parent "p2" .p2  )  }} */}}
+{{/*   {{end}} */}}
+{{/*   {{/1* {{ template "sidemenuli" (dict "p1" .p1 "p2" .p2  )  }} *1/}} */}}
+{{/* {{ end }} */}}
+
+{{/* {{ define "sidemenuli" }} */}}
+{{/*   <li role="main" class="{{ if eq .p1 .p2 }} active{{ end }}"> */}}
+{{/*     {{ with .p1 }} */}}
+{{/*       <a href="{{ .Permalink }}">{{ .Title }}</a> */}}
+{{/*     {{ end }} */}}
+{{/*   </li> */}}
+{{/* {{ end }} */}}

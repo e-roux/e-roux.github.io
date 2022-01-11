@@ -56,7 +56,7 @@ on this topic.
 
 ### Get podman connections
 
-```terminal
+```shell
 ❯ podman system connection list
 Name                          Identity                                   URI
 airflow                       /Users/username/.ssh/airflow                 ssh://core@localhost:51672/run/user/1000/podman/podman.sock
@@ -67,27 +67,29 @@ podman-machine-default-root*  /Users/username/.ssh/podman-machine-default  ssh:/
 
 ### Use a non default connection
 
-```terminal
+```shell
 ❯ podman -c airflow version
 ```
 
 ### SSH connection
 
-```terminal
+```shell
 ❯ ssh -i ~/.ssh/podman-machine-default -p 50102 root@localhost
 ```
 
 ### Get additional logs
 
-```terminal
+```shell
 ❯ podman --log-level=debug  machine ssh
 ```
 
 ### Trust unsigned registries
 
+```shell
 [root@localhost ~]# cat /etc/containers/containers.conf
 [engine]
 machine_enabled=true
+```
 
 ### Manage Linux container registries
 

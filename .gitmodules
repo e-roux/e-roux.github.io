@@ -4,6 +4,3 @@
 [submodule "docs/python"]
 	path = docs/python
 	url = git@github.com:fesaille/doc-python.git
-[submodule "themes/hugo-book"]
-	path = themes/hugo-book
-	url = https://github.com/alex-shpak/hugo-book
