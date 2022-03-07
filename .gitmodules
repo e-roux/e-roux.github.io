@@ -4,3 +4,9 @@
 [submodule "docs/python"]
 	path = docs/python
 	url = git@github.com:fesaille/doc-python.git
+[submodule "highlightjs"]
+	path = vendors/highlightjs
+	url = https://github.com/highlightjs/highlight.js
+[submodule "clipboardjs"]
+	path = vendors/clipboardjs
+	url = https://github.com/zenorocha/clipboard.js

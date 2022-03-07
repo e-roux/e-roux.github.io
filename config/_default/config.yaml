@@ -35,7 +35,18 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: ""
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: true
+    style: solarized-light
+    tabWidth: 4
 #[[Params.bigimg]]
 #  src = "img/triangle.jpg"
 #  desc = "Triangle"
@@ -69,7 +80,8 @@ module:
     min: "0.65.0"
   imports:
     - disable: false
-      path: "github.com/gohugoio/hugo-mod-bootstrap-scss-v5"
-  # mounts:
-  #   - source: "node_modules/@fortawesome/fontawesome-free/scss/"
-  #     target: "assets/scss/fontawesome"
+      path: "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"
+    - path: "github.com/zenorocha/clipboard.js"
+      mounts:
+        - source: "dist/clipboard.min.js"
+          target: "assets/js/clipboardjs.min.js"
