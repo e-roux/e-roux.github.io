@@ -5,6 +5,7 @@ draft: false
 tags:
  - keychain
  - database
+menu: docs
 ---
 
 ## Postgres

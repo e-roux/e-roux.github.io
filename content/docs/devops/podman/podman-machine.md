@@ -2,6 +2,10 @@
 title: "Podman machine"
 date: 2021-12-20T11:21:10+01:00
 draft: false
+menu:
+  docs:
+    name: SPAM
+    parent: podman
 resources:
   - name: Replace docker
     href: https://www.redhat.com/sysadmin/replace-docker-podman-mac-revisited

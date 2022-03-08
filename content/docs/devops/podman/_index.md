@@ -7,6 +7,12 @@ image: ""
 tags:
   - podman
 draft: false
+weight: 10
+menu:
+  docs:
+    name: Podman
+    identifier: podman
+    parent: devops
 ---
 
 ## Podman
