@@ -1,0 +1,91 @@
+$admonitions: foobar, attention, caution, warning, danger, error, note, tip, important;
+
+:root {
+  // https://getbootstrap.com/docs/5.1/customize/color/
+  --color-admonition-attention: #{$white};
+  --color-admonition-caution: #{$white};
+  --color-admonition-default: #{$black};
+  --color-admonition-error: #{$white};
+  --color-admonition-hint: #{$white};
+  --color-admonition-important: #{$white};
+  --color-admonition-note: #{$white};
+  --color-admonition-tip: #{$white};
+  --color-admonition-warning: #{$white};
+  --background-color-admonition-attention: #{$red-500};
+  --background-color-admonition-caution: #{$orange-500};
+  --background-color-admonition-default: #{$gray-500};
+  --background-color-admonition-error: #{$red-500};
+  --background-color-admonition-hint: #{$green-500};
+  --background-color-admonition-important: #{$pink-500};
+  --background-color-admonition-note: #{$indigo-500};
+  --background-color-admonition-tip: #{$blue-500};
+  --background-color-admonition-warning: #{$orange-500};
+}
+
+.admonition, div.admonition {
+  margin: 1.5625em auto;
+  padding: 0 .6rem;
+  overflow: hidden;
+  page-break-inside: avoid;
+  border-left: .2rem solid;
+  border-left-color: var(--background-color-admonition-default);
+  border-bottom-color: var(--background-color-admonition-default);
+  border-right-color: var(--background-color-admonition-default);
+  border-top-color: var(--background-color-admonition-default);
+  border-radius: .2rem;
+  box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .05), 0 0 .0625rem rgba(0, 0, 0, .1);
+  transition:color .25s, background-color .25s, border-color .25s;
+
+  :last-child {
+    margin-bottom:0;
+  }
+
+  :last-child:after {
+    content: "aze";
+    background-color: blue;
+  }
+
+  > nav {
+    padding:0 1.4rem;
+    position: relative;
+    margin: 0 -.6rem;
+    padding: .4rem .6rem .4rem 2rem;
+    font-weight: 700;
+    background-color:var(--background-color-admonition-default);
+  }
+
+  > ol, > ul, {
+    margin-left:1em;
+  }
+
+  // > .admonition-title:before {
+  //   position: absolute;
+  //   left: .6rem;
+  //   width: 1rem;
+  //   height: 1rem;
+  //   color: var(--background-color-admonition-default);
+  //   font-family: Font Awesome\ 5 Free;
+  //   font-weight: 900;
+  //   content:var(--icon-admonition-default);
+  // }
+
+  // > nav + * {
+  //   margin-top:.4em;
+  // }
+
+  @each $i in $admonitions {
+    &.#{$i} {
+      border-color:var(--background-color-admonition-#{$i});
+
+      & > .admonition-title {
+        color: var(--color-admonition-#{$i});
+        background-color:var(--background-color-admonition-#{$i});
+      }
+
+      & > .admonition-title:before {
+        color: var(--color-admonition-#{$i});
+        content:var(--icon-admonition-#{$i});
+      }
+    }
+  }
+}
