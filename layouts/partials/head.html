@@ -23,9 +23,9 @@
   {{- $.Scratch.Set "Title" ( .Title | default .Site.Title ) }}
 {{- end }}
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Site Title, Description, Author, and Favicon -->
 {{- with ($.Scratch.Get "Title") }}
@@ -42,38 +42,32 @@
   <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
 {{- end -}}
 <!-- Hugo Version number -->
-  {{ hugo.Generator -}}
+{{ hugo.Generator -}}
 <!-- Links and stylesheets -->
-  <link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
+<link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 
- {{ $style := resources.Get "scss/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+{{/* scss generation */}}
+{{ $style := resources.Get "scss/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
-  {{- if .Params.renderMath -}}
+{{- if .Params.renderMath -}}
   <link rel="stylesheet" href="{{ "vendors/katex/css/katex.min.css" | absURL }}" />
-  {{- end -}}
+{{- end -}}
 
-  {{- if .Site.Params.staticman -}}
+{{- if .Site.Params.staticman -}}
   <link rel="stylesheet" href="{{ "css/staticman.css" | absURL }}" />
-  {{ end }}
+{{- end -}}
 
-  <link rel="stylesheet" href="{{ "vendors/fontawesome/css/all.css" | absURL }}" />
+<link rel="stylesheet" href="{{ "vendors/fontawesome/css/all.css" | absURL }}" />
 
-  <!-- highlight.js -->
-  <link rel="stylesheet" href="{{ "vendors/highlight/css/highlight.min.css" | absURL }}" />
-  <!-- <link rel="stylesheet" href="{{ "css/syntax.css" | absURL }}" /> -->
-  <!-- <link rel="stylesheet" href="{{ "css/codeblock.css" | absURL }}" /> -->
-
-  {{- if .Site.Params.staticman.recaptcha -}}
+{{- if .Site.Params.staticman.recaptcha }}
   <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
-  {{- end -}}
+{{ end }}
+<link rel="stylesheet" href="{{ "vendors/photoswipe/photoswipe.css" | absURL }}" />
+<link rel="stylesheet" href="{{ "vendors/photoswipe/default-skin.css" | absURL }}" />
 
-  <link rel="stylesheet" href="{{ "vendors/photoswipe/photoswipe.css" | absURL }}" />
-  <link rel="stylesheet" href="{{ "vendors/photoswipe/default-skin.css" | absURL }}" />
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ "css/fonts.css" | absURL }}" />
-  <link rel="stylesheet" href="{{ "css/admonitions.css" | absURL }}" />
-  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" />
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{ "css/fonts.css" | absURL }}" />
+<link rel="stylesheet" href="{{ "css/main.css" | absURL }}" />
 
 {{ template "_internal/google_analytics_async.html" . }}

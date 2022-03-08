@@ -1,0 +1,13 @@
+<blockquote class="admonition {{- with .Get "class" }} {{ . }}{{ end -}}">
+  <nav
+     class="admonition-title"
+     data-bs-toggle="collapse"
+     href="#collapseExample"
+     role="button"
+     aria-expanded="false"
+     aria-controls="collapseExample"
+     ><i class="fas fa-camera"></i>
+  {{- with .Get "title" | default ( .Get "class") }} {{ . | markdownify }}{{ end -}}
+  </nav>
+  <article class="admonition-content collapse" id="collapseExample">{{ .Inner | markdownify }}</article>
+</blockquote>

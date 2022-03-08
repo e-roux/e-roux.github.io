@@ -1,13 +1,13 @@
 {{ define "content" }}
-<div>
-  {{ . }}
-  <!-- <div class="posts-list"> -->
-  {{ range .Pages }}
-  {{ partial "posts/preview.html" .}}
-  {{ end }}
-  <!-- </div> -->
+  <div>
+    {{ . }}
+    <!-- <div class="posts-list"> -->
+    {{ range .Pages }}
+      {{ partial "posts/preview.html" .}}
+    {{ end }}
+    <!-- </div> -->
 
-  {{ partial "paginator.html" . }}
+    {{ partial "paginator.html" . }}
 
-</div>
+  </div>
 {{ end }}

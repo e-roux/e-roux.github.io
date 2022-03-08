@@ -3,8 +3,8 @@
 {{ end }}
 <footer>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="grid">
+      <div class="g-col-12">
         <ul class="list-inline text-center footer-links">
           {{ range .Site.Data.social.social_icons }}
             {{- if isset $.Site.Author .id }}
@@ -49,6 +49,7 @@
           &nbsp;&bull;&nbsp;
           <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
         {{ end }}
+        Made with <span class='hugo'>ugo(https://gohugo.io/)</span>
         </p>
       </div>
     </div>
@@ -69,14 +70,14 @@
 {{- end }}
 
 
-<script src="{{ "vendors/highlight/js/highlight.min.js" | absURL }}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-      document.querySelectorAll('pre code').forEach((el) => {
-          hljs.highlightElement(el);
-        });
-    });
-</script>
+{{/* <script src="{{ "vendors/highlight/js/highlight.min.js" | absURL }}"></script> */}}
+
+{{/* <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.9/dist/clipboard.min.js"></script> */}}
+
+{{ $clipboardjs := resources.Get "js/clipboardjs.min.js" }}
+{{ $mainjs := slice $clipboardjs | resources.Concat "js/bla.js" | resources.Minify }}
+
+<script src="{{ $mainjs.Permalink }}"></script>
 
 <!-- <script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script> -->
 <!-- <script> renderMathInElement(document.body); </script> -->

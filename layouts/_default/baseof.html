@@ -4,16 +4,18 @@
     {{ partial "head.html" . }}
   </head>
   <body>
+    {{/* Top navigation bar */}}
     {{ partial "nav.html" . }}
 
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
 
     {{- block "main" . -}}
       <main class="{{.Type}} {{ .Kind }}" role="main">
+
+        {{/* Left navigation for the docs */}}
         {{ if eq .Type "docs" }}
           {{ partial "side_navigation.html" . }}
         {{- end -}}
-
 
         <div role="content">
           {{ if eq .Type "docs" }}

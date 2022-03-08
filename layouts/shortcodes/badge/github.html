@@ -1,5 +1,5 @@
-{{if .Get "repo"}}
-<a href="https://github.com/{{.Get "repo"}}"
+{{ if .Get "repo" -}}
+<a href="https://github.com/{{- .Get "repo" -}}"
    target="_blank"
    style="text-decoration-line: none;">
 <img
@@ -7,4 +7,4 @@
    style="cursor: pointer; display: inline-block;"
    src="https://img.shields.io/github/stars/{{.Get "repo"}}?style=social&label=☆">
 </a>
-{{end}}
+{{- end -}}
