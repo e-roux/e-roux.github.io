@@ -1,24 +1,3 @@
----
-title: "ZSH"
-author: Emmanuel Roux
-date: 2021-12-29T20:50:04+01:00
-subtitle: ""
-image: ""
-tags:
-  - shell
-  - zsh
-menu:
-  docs:
-    parent: Shell
-resources:
-  - name: Adding Vi to your Zsh
-    href: https://dougblack.io/words/zsh-vi-mode.html
-  - name: Moving to Zsh
-    href: https://scriptingosx.com/zsh/
-  - name: Introduction à la programmation parallèle avec Open MPI et Open MP
-    href: https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMFHS-099/Une-introduction-a-la-programmation-parallele-avec-Open-MPI-et-OpenMP
----
-
 # Zsh
 
 The Z-shell <span><badge-doc href="http://www.zsh.org/"> <badge-doc
@@ -540,3 +519,12 @@ directories that you have visited "frecently."
 - <b>zsh-autosuggestions</b> <badge-stars
 repo='zsh-users/zsh-autosuggestions'></badge-stars> Fish-like autosuggestions
 for zsh
+
+
+## Other links
+
+- [Adding Vi to your Zsh](https://dougblack.io/words/zsh-vi-mode.html)
+- [Moving to Zsh](https://scriptingosx.com/zsh/)
+
+Introduction à la programmation parallèle avec Open MPI et Open MP:
+[🔗](https://connect.ed-diamond.com/GNU-Linux-Magazine/GLMFHS-099/Une-introduction-a-la-programmation-parallele-avec-Open-MPI-et-OpenMP)

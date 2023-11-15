@@ -1,91 +1,8 @@
----
-title: "Shell"
-author: Emmanuel Roux
-date: 2021-12-29T20:50:04+01:00
-subtitle: ""
-image: ""
-tags:
-  - shell
-  - zsh
-menu:
-  docs:
-    name: Shell
----
 
-The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](http://pubs.opengroup.org/onlinepubs/9699919799/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
-
-## Initialization
-
-=== "bash"
-
-    |                  | Interactive login | Interactive non-login | Script |
-    |------------------|:-----------------:|:---------------------:|:------:|
-    | /etc/profile     |         A         |                       |        |
-    | /etc/bash.bashrc |                   |           A           |        |
-    | ~/.bashrc        |                   |           B           |        |
-    | ~/.bash_profile  |         B1        |                       |        |
-    | ~/.bash_login    |         B2        |                       |        |
-    | ~/.profile       |         B3        |                       |        |
-    | BASH_ENV         |                   |                       |    A   |
-    | ~/.bash_logout   |         C         |                       |        |
-
-    Executes A, then B, then C, etc. The B1, B2, B3 means it executes only the
-    first of those files found.
-
-=== "zsh"
-
-    |               | Interactive login | Interactive non-login | Script |
-    |---------------|:-----------------:|:---------------------:|:------:|
-    | /etc/profile  |         A         |                       |        |
-    | /etc/zshenv   |         A         |           A           |    A   |
-    | ~/.zshenv     |         B         |           B           |    B   |
-    | /etc/zprofile |         C         |                       |        |
-    | ~/.zprofile   |         D         |                       |        |
-    | /etc/zshrc    |         E         |           C           |        |
-    | ~/.zshrc      |         F         |           D           |        |
-    | /etc/zlogin   |         G         |                       |        |
-    | ~/.zlogin     |         H         |                       |        |
-    | ~/.zlogout    |         I         |                       |        |
-    | /etc/zlogout  |         J         |                       |        |
-
-[Source](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
+# Utils
 
 
-## Configuration
-### Line edition and keybindings
-
-GNU Readline <badge-wiki
-href='https://en.wikipedia.org/wiki/GNU_Readline'></badge-wiki> is a software
-library that provides line-editing and history capabilities for interactive
-programs with a command-line interface. Bash typically uses this library (same [
-original author
-](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer))). Emacs-like
-keybindings are [ default
-](https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html)
-but readline enables configuration files at `/etc/inputrc` or `~/.inputrc`.
-
-A lot of program not specifically written in C rely on `readline`, e.g. the
-[impala-shell](https://docs.cloudera.com/documentation/enterprise/latest/topics/impala_impala_shell.html)
-through python's [readline
-module](https://docs.python.org/3/library/readline.html).
-
-
-Zsh does not use readline, instead uses an own development [Zsh Line Editor
-(ZLE)](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html). Keybindings
-in `inputrc` are not read, rely instead on an internal command
-[`bindkey`](`terminfo`) that can be coupled to `terminfo`.
-
-
-### `LS_COLORS`
-
-**vivid** <badge-stars repo='sharkdp/vivid'></badge-stars> is a generator for
-the `LS_COLORS` environment variable
-
-``` bash
-export LS_COLORS="$(vivid generate molokai)"
-```
-
-### GNU Stow
+## GNU Stow
 
 [GNU Stow](https://www.gnu.org/software/stow/) is a symlink farm manager which
 takes distinct packages of software and/or data located in separate directories
@@ -93,7 +10,7 @@ on the filesystem, and makes them appear to be installed in the same place.
 
 The software can be used to manage dotfiles.
 
-### GNU envsubst (Gettext package)
+## GNU envsubst (Gettext package)
 
 [GNU envsubst](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html)
 substitutes the values of environment variables.
@@ -213,7 +130,6 @@ Further utilities:
 
 - `whereis` locate the binary, source and man page for a command. Neither POSIX nor UNIX std.
 - `whatis` display one line manual page descriptions, renamed `type` on Unix v8. Neither POSIX nor UNIX std.
-
 - `apropos`  search the manual pages names and decriptions, seems similar to `man -k`.
 
 Genral check if one command is available:
@@ -233,32 +149,6 @@ Genral check if one command is available:
     - some info on post [Stackexchange
       85249](https://unix.stackexchange.com/questions/85249/why-not-use-which-what-to-use-then).
 
-
-## Working with structured data
-
-### JSON
-
-
-**jq** <badge-stars repo='stedolan/jq'></badge-stars> <badge-doc
-href="https://stedolan.github.io/jq/"></badge-doc>
-
-??? Question "JQ cheatsheet"
-
-    <script
-    src="https://gist.github.com/olih/f7437fb6962fb3ee9fe95bda8d2c8fa4.js"></script>
-
-
-!!! Example  "Prepare cookiecutter templates from `molecule init` outputs"
-
-    ```bash URL=$(you-get --json "https://www.youtube.com/watch?v=ZzfHjytDceU" |
-    jq  -s 'sort_by(.streams.__default__.size) | reverse |
-    .[0].streams.__default__.src[0]' | sed -e s/\"//g)
-    ```
-
-### YAML
-
-**yq** <badge-stars repo='mikefarah/yq'></badge-stars> <badge-doc
-href="https://mikefarah.gitbook.io/yq/"></badge-doc>
 
 ## Workflows
 
@@ -289,7 +179,7 @@ versions with a single CLI tool, extendable via plugins.
 
 ## Others
 
-**nutshell** <badge-stars repo='nushell/nushell'></badge-stars> is a new kind of
+**nushell** <badge-stars repo='nushell/nushell'></badge-stars> is a new kind of
 shell, currently under heavy development.
 
 ### Style guide

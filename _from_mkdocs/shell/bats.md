@@ -1,37 +1,20 @@
----
-title: "Testing Bash: `Bats`"
-author: Emmanuel Roux
-date: 2021-12-29T20:50:04+01:00
-subtitle: ""
-image: ""
-tags:
-  - shell
-  - bats
-  - test
-menu:
-  docs:
-    parent: Shell
-    name: Bats
----
+# Bash Testing: `bats`
 
-{{% badge/github repo="bats-core/bats-core" %}}
-
- <badge-doc
+ <badge-stars repo='bats-core/bats-core'></badge-stars> <badge-doc
  href='https://bats-core.readthedocs.io'></badge-doc> is a
  TAM-compliant testing framework for Bash.
 
-{{% admonition class="info" title="Test Anything Protocol" %}}
+!!! Info "Test Anything Protocol"
 
-[TAP](https://testanything.org/), the Test Anything Protocol, is a simple
-text-based interface between testing modules in a test harness. It
-decouples the reporting of errors from the presentation of the reports.
-{{%/ admonition %}}
+    [TAP](https://testanything.org/), the Test Anything Protocol, is a simple
+    text-based interface between testing modules in a test harness. It
+    decouples the reporting of errors from the presentation of the reports.
 
 ## Installation
 
 ### git based
 
-```terminal
+```console
 git submodule add https://github.com/bats-core/bats-core.git test/bats
 git submodule add https://github.com/bats-core/bats-support.git test/test_helper/bats-support
 git submodule add https://github.com/bats-core/bats-assert.git test/test_helper/bats-assert

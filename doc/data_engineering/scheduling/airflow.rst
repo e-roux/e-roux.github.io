@@ -111,7 +111,40 @@ https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html#templat
 Timetables
 ^^^^^^^^^^
 
-Airflow has builtin support for cron expressions  and time delta :py:class:`airflow.timetables.interval.DeltaDataIntervalTimetable`.
+Airflow has builtin support for cron expressions (i.e. ``schedule="0 0 * * 1-5"``) and time delta. For complex timetable, sublcass of ``Timetable`` is necessary 
+
+
+.. tab-set::
+
+    .. tab-item:: Plugin
+
+        The timetable must subclass ``Timetable`` be registered in a plugin:
+
+        .. code:: python 
+
+            from airflow.plugins_manager import AirflowPlugin
+            from airflow.timetables.base import Timetable
+
+
+            class AfterWorkdayTimetable(Timetable):
+                pass
+
+
+            class WorkdayTimetablePlugin(AirflowPlugin):
+                name = "workday_timetable_plugin"
+                timetables = [AfterWorkdayTimetable]
+
+    .. tab-item:: Logic
+
+        Scheduling is done according to the triggering method:
+
+        - **manual**: :py:function:`timetable.infer_manual_data_interval(*, run_after)` will be called.
+        - **scheduled**: ``next_dagrun(*, last_automated_data_interval_ restriction)``
+
+        
+
+
+:py:class:`airflow.timetables.interval.DeltaDataIntervalTimetable`.
 
 .. tab-set::
 

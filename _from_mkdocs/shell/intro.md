@@ -1,16 +1,4 @@
----
-title: "Shell"
-author: Emmanuel Roux
-date: 2021-12-29T20:50:04+01:00
-subtitle: ""
-image: ""
-tags:
-  - shell
-  - zsh
-menu:
-  docs:
-    name: Shelll
----
+# Shell
 
 The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](http://pubs.opengroup.org/onlinepubs/9699919799/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
 

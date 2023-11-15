@@ -106,7 +106,7 @@ unqualified-search-registries = ["registry.fedoraproject.org", "registry.access.
 
 #### Skip TLS verification
 
-```terminal
+```console
 # [[registry]]
 [[registry]]
 location='docker-registry-default.myorg.com'
