@@ -1,6 +1,6 @@
 # Shell
 
-The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](http://pubs.opengroup.org/onlinepubs/9699919799/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
+The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
 
 ```{eval-rst}
 .. toctree::
@@ -12,6 +12,7 @@ The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wik
     version_manager
     structured_data
     utils
+    zsh/working-with-directories
 ```
 
 The Z-shell <span><badge-doc href="http://www.zsh.org/"> <badge-doc
@@ -53,38 +54,19 @@ Basically:
 :::
 
 :::{tab-item} zsh
+:selected:
 :sync: zsh
 
-|               | Interactive login | Interactive non-login | Script |
-|---------------|:-----------------:|:---------------------:|:------:|
-| /etc/profile  |         A         |                       |        |
-| /etc/zshenv   |         A         |           A           |    A   |
-| ~/.zshenv     |         B         |           B           |    B   |
-| /etc/zprofile |         C         |                       |        |
-| ~/.zprofile   |         D         |                       |        |
-| /etc/zshrc    |         E         |           C           |        |
-| ~/.zshrc      |         F         |           D           |        |
-| /etc/zlogin   |         G         |                       |        |
-| ~/.zlogin     |         H         |                       |        |
-| ~/.zlogout    |         I         |                       |        |
-| /etc/zlogout  |         J         |                       |        |
+|                               | Interactive login   | Interactive non-login   | Script   | Usage                                        |
+| ---------------               | :-----------------: | :---------------------: | :------: | :---:                                        |
+| /etc/profile                  | A                   |                         |          | Used for bash, sometime sourced              |
+| /etc/zshenv <br>~/.zshenv     | A                   | A                       | A        | Set global and user specific env vars        |
+| /etc/zprofile <br>~/.zprofile | B                   |                         |          | Cfg and cmds executed once per login         |
+| /etc/zshrc <br>~/.zshrc       | C                   | B                       |          | Aliases, prompt conf and other shell options |
+| /etc/zlogin <br>~/.zlogin     | D                   |                         |          | Cfg and cmds executed once per login         |
+| ~/.zlogout <br>/etc/zlogout   | E                   |                         |          | Cms executed at logout                       |
 
-If `$ZDOTDIR`, `$RCS` or `$GLOABL_RCS` are not set, Zsh performs initialiation
-in the following order:
-
-- `/etc/zsh/zshenv`
-- `~/.zshenv`
-- login mode:
-	- `/etc/zsh/zprofile`
-	- `~/.zprofile`
-- interactive:
-	- `/etc/zsh/zshrc`
-	- `~/.zshrc`
-- login mode:
-	- `/etc/zsh/login`
-	- `~/.zlogin`
-
-`.zlogout` and `/etc/zsh/zshlogout` are called when exiting, not when opening.
+`$ZDOTDIR` controls where user configuration files are located, default to `$HOME`
 
 See [this post](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)
 for a complementary information.
@@ -168,7 +150,22 @@ New bindings are affected to the current (`main`) **keymap**.
 
 ::::
 
-## Parameters set by the shell
+## Parameters and Variables
+
+### Built-in
+
+| Parameter                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$!` <S>                                            | Process ID of the last background command.                                                                                                                                                                                                                                                                                                                                                                          |
+| `$#` <S>                                            | Number of positional parameters. <br> Caution: `$#param` substitutes the length of param. Use `${#}` to resolve ambiguities.                                                                                                                                                                                                                                                                                        |
+| `$*` <S>                                            | Array containing the positional parameters.                                                                                                                                                                                                                                                                                                                                                                         |
+| `$-` <S>                                            | Flags supplied to the shell on invocation or by the set or setopt commands.                                                                                                                                                                                                                                                                                                                                         |
+| `$$` <S>                                            | Process ID of this shell. <br>All processes forked from the shells without executing a new program, such as subshells started by (...), substitute the same value.                                                                                                                                                                                                                                                  |
+| `$@` <S>                                            | Same as argv[@], even when argv is not set.                                                                                                                                                                                                                                                                                                                                                                         |
+| `$?` <S>                                            | The exit status returned by the last command.                                                                                                                                                                                                                                                                                                                                                                       |
+| `$0` <S>                                            | The name used to invoke the current shell, or as set by the -c command line option upon invocation. If the FUNCTION_ARGZERO option is set, $0 is set upon entry to a shell function to the name of the function, and upon entry to a sourced script to the name of the script, and reset to its previous value when the function or script returns.                                                                 |
+
+### Parameters set by the shell
 
 ::::{tab-set}
 
@@ -179,60 +176,53 @@ New bindings are affected to the current (`main`) **keymap**.
 :::
 
 :::{tab-item} ZSH
+:selected:
 :sync: zsh
 
-| Parameter                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                       |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `!` <S>                                           | The process ID of the last command started in the background with &, put into the background with the bg builtin, or spawned with coproc.                                                                                                                                                                                                                                                                         |
-| `#` <S>                                           | The number of positional parameters in decimal. Note that some confusion may occur with the syntax `$#param` which substitutes the length of param. Use `${#}` to resolve ambiguities. In particular, the sequence ‘$#-...’ in an arithmetic expression is interpreted as the length of the parameter -, q.v.                                                                                                       |
-| `ARGC` <S> <Z>                                    | Same as #.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `$` <S>                                           | The process ID of this shell. Note that this indicates the original shell started by invoking zsh; all processes forked from the shells without executing a new program, such as subshells started by (...), substitute the same value.                                                                                                                                                                           |
-| `-` <S>                                           | Flags supplied to the shell on invocation or by the set or setopt commands.                                                                                                                                                                                                                                                                                                                                       |
-| `*` <S>                                           | An array containing the positional parameters.                                                                                                                                                                                                                                                                                                                                                                    |
-| `argv` <S> <Z>                                    | Same as *. Assigning to argv changes the local positional parameters, but argv is not itself a local parameter. Deleting argv with unset in any function deletes it everywhere, although only the innermost positional parameter array is deleted (so * and @ in other scopes are not affected).                                                                                                                  |
-| `@` <S>                                           | Same as argv[@], even when argv is not set.                                                                                                                                                                                                                                                                                                                                                                       |
-| `?` <S>                                           | The exit status returned by the last command.                                                                                                                                                                                                                                                                                                                                                                     |
-| `0` <S>                                           | The name used to invoke the current shell, or as set by the -c command line option upon invocation. If the FUNCTION_ARGZERO option is set, $0 is set upon entry to a shell function to the name of the function, and upon entry to a sourced script to the name of the script, and reset to its previous value when the function or script returns.                                                               |
-| `status` <S> <Z>                                  | Same as ?.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `pipestatus` <S> <Z>                              | An array containing the exit statuses returned by all commands in the last pipeline.                                                                                                                                                                                                                                                                                                                              |
-| `_` <S>                                           | The last argument of the previous command. Also, this parameter is set in the environment of every command executed to the full pathname of the command.                                                                                                                                                                                                                                                          |
-| `CPUTYPE`                                         | The machine type (microprocessor class or machine model), as determined at run time.                                                                                                                                                                                                                                                                                                                              |
-| `EGID` <S>                                        | The effective group ID of the shell process. If you have sufficient privileges, you may change the effective group ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command with a different effective group ID by ‘(EGID=gid; command)’                                                                                                     |
-| `EUID` <S>                                        | The effective user ID of the shell process. If you have sufficient privileges, you may change the effective user ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command with a different effective user ID by ‘(EUID=uid; command)’                                                                                                        |
-| `ERRNO` <S>                                       | The value of errno (see man page errno(3)) as set by the most recently failed system call. This value is system dependent and is intended for debugging purposes. It is also useful with the zsh/system module which allows the number to be turned into a name or message.                                                                                                                                       |
-| `FUNCNEST` <S>                                    | Integer. If greater than or equal to zero, the maximum nesting depth of shell functions. When it is exceeded, an error is raised at the point where a function is called. The default value is determined when the shell is configured, but is typically 500. Increasing the value increases the danger of a runaway function recursion causing the shell to crash. Setting a negative value turns off the check. |
-| `GID` <S>                                         | The real group ID of the shell process. If you have sufficient privileges, you may change the group ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command under a different group ID by ‘(GID=gid; command)’                                                                                                                              |
-| `HISTCMD`                                         | The current history event number in an interactive shell, in other words the event number for the command that caused $HISTCMD to be read. If the current history event modifies the history, HISTCMD changes to the new maximum history event number.                                                                                                                                                            |
-| `HOST`                                            | The current hostname.                                                                                                                                                                                                                                                                                                                                                                                             |
-| `LINENO` <S>                                      | The line number of the current line within the current script, sourced file, or shell function being executed, whichever was started most recently. Note that in the case of shell functions the line number refers to the function as it appeared in the original definition, not necessarily as displayed by the functions builtin.                                                                             |
-| `LOGNAME`                                         | If the corresponding variable is not set in the environment of the shell, it is initialized to the login name corresponding to the current login session. This parameter is exported by default but this can be disabled using the typeset builtin. The value is set to the string returned by the man page getlogin(3) system call if that is available.                                                         |
-| `MACHTYPE`                                        | The machine type (microprocessor class or machine model), as determined at compile time.                                                                                                                                                                                                                                                                                                                          |
-| `OLDPWD`                                          | previous working directory, set when the shell initializes and whenever the directory changes.                                                                                                                                                                                                                                                                                                        |
-| `OPTARG` <S>                                      | The value of the last option argument processed by the getopts command.                                                                                                                                                                                                                                                                                                                                           |
-| `OPTIND` <S>                                      | The index of the last option argument processed by the getopts command.                                                                                                                                                                                                                                                                                                                                           |
-| `OSTYPE`                                          | The operating system, as determined at compile time.                                                                                                                                                                                                                                                                                                                                                              |
-| `PPID` <S>                                        | The process ID of the parent of the shell.                                                                                                                                                                                                                                                                                                                                                                        |
-| `PWD`                                             | The present working directory. This is set when the shell initializes and whenever the directory changes.                                                                                                                                                                                                                                                                                                         |
-| `RANDOM` <S>                                      | A pseudo-random integer from 0 to 32767.
-| `SECONDS` <S>                                     | The number of seconds since shell invocation.
-| `SHLVL` <S>                                       | Incremented by one each time a new shell is started.                                                                                                                                                                                                                                                                                                                                                              |
-| `signals`                                         | An array containing the names of the signals.                                                                                                                                                                                                                                                                                                                                                                     |
-| `TRY_BLOCK_ERROR` <S>                             | In an always block, indicates whether the preceding list of code caused an error. The value is 1 to indicate an error, 0 otherwise. It may be reset, clearing the error condition. See Complex Commands                                                                                                                                                                                                           |
-| `TRY_BLOCK_INTERRUPT` <S>                         | This variable works in a similar way to `TRY_BLOCK_ERROR`, but represents the status of an interrupt from the signal SIGINT, which typically comes from the keyboard when the user types ^C. If set to 0, any such interrupt will be reset; otherwise, the interrupt is propagated after the always block.                                                                                                        |
-| `TTY`                                             | The name of the tty associated with the shell, if any.                                                                                                                                                                                                                                                                                                                                                            |
-| `TTYIDLE` <S>                                     | The idle time of the tty associated with the shell in seconds or -1 if there is no such tty.                                                                                                                                                                                                                                                                                                                      |
-| `UID <S>`                                         | The real user ID of the shell process.
-| `USERNAME` <S>                                    | The username corresponding to the real user ID of the shell process. If you have sufficient privileges, you may change the username (and also the user ID and group ID) of the shell by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command under a different username (and user ID and group ID) by ‘(USERNAME=username; command)’                                |
-| `VENDOR`                                          | The vendor, as determined at compile time.                                                                                                                                                                                                                                                                                                                                                                        |
-| `zsh_eval_context` <S> <Z> (`ZSH_EVAL_CONTEXT` <S>) | An array (colon-separated list) indicating the context of shell code that is being run. See [documentation](http://zsh.sourceforge.net/Doc/Release/Parameters.html) for details.                                                                                                                                                                                                                                  |
-| `ZSH_ARGZERO`                                     | If zsh was invoked to run a script, this is the name of the script. Otherwise, it is the name used to invoke the current shell. This is the same as the value of $0 when the POSIX_ARGZERO option is set, but is always available.                                                                                                                                                                                |
-| `ZSH_EXECUTION_STRING`                            | If the shell was started with the option -c, this contains the argument passed to the option. Otherwise it is not set.                                                                                                                                                                                                                                                                                            |
-| `ZSH_NAME`                                        | Expands to the basename of the command used to invoke this instance of zsh.                                                                                                                                                                                                                                                                                                                                       |
-| `ZSH_PATCHLEVEL`                                  | The output of ‘git describe –tags –long’ for the zsh repository used to build the shell. This is most useful in order to keep track of versions of the shell during development between releases; hence most users should not use it and should instead rely on $ZSH_VERSION.                                                                                                                                     |
-| `zsh_scheduled_events`                            | See The zsh/sched Module.                                                                                                                                                                                                                                                                                                                                                                                         |
-| `ZSH_SCRIPT`                                      | If zsh was invoked to run a script, this is the name of the script, otherwise it is unset.                                                                                                                                                                                                                                                                                                                        |
-| `ZSH_SUBSHELL`                                    | Readonly integer. Initially zero, incremented each time the shell forks to create a subshell for executing code. Hence ‘(print $ZSH_SUBSHELL)’ and ‘print $(print $ZSH_SUBSHELL)’ output 1, while ‘( (print $ZSH_SUBSHELL) )’ outputs 2.                                                                                                                                                                          |
-| `ZSH_VERSION`                                     | The version number of the release of zsh.                                                                                                                                                                                                                                                                                                                                                                         |
+| Parameter                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ARGC` <S> <Z>                                      | Same as #.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `argv` <S> <Z>                                      | Same as *. Assigning to argv changes the local positional parameters, but argv is not itself a local parameter. Deleting argv with unset in any function deletes it everywhere, although only the innermost positional parameter array is deleted (so * and @ in other scopes are not affected).                                                                                                                    |
+| `status` <S> <Z>                                    | Same as ?.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `pipestatus` <S> <Z>                                | An array containing the exit statuses returned by all commands in the last pipeline.                                                                                                                                                                                                                                                                                                                                |
+| `_` <S>                                             | The last argument of the previous command. Also, this parameter is set in the environment of every command executed to the full pathname of the command.                                                                                                                                                                                                                                                            |
+| `CPUTYPE`                                           | The machine type (microprocessor class or machine model), as determined at run time.                                                                                                                                                                                                                                                                                                                                |
+| `EGID` <S>                                          | The effective group ID of the shell process. If you have sufficient privileges, you may change the effective group ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command with a different effective group ID by ‘(EGID=gid; command)’                                                                                                       |
+| `EUID` <S>                                          | The effective user ID of the shell process. If you have sufficient privileges, you may change the effective user ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command with a different effective user ID by ‘(EUID=uid; command)’                                                                                                          |
+| `ERRNO` <S>                                         | The value of errno (see man page errno(3)) as set by the most recently failed system call. This value is system dependent and is intended for debugging purposes. It is also useful with the zsh/system module which allows the number to be turned into a name or message.                                                                                                                                         |
+| `FUNCNEST` <S>                                      | Integer. If greater than or equal to zero, the maximum nesting depth of shell functions. When it is exceeded, an error is raised at the point where a function is called. The default value is determined when the shell is configured, but is typically 500. Increasing the value increases the danger of a runaway function recursion causing the shell to crash. Setting a negative value turns off the check.   |
+| `GID` <S>                                           | The real group ID of the shell process. If you have sufficient privileges, you may change the group ID of the shell process by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command under a different group ID by ‘(GID=gid; command)’                                                                                                                                |
+| `HISTCMD`                                           | The current history event number in an interactive shell, in other words the event number for the command that caused $HISTCMD to be read. If the current history event modifies the history, HISTCMD changes to the new maximum history event number.                                                                                                                                                              |
+| `HOST`                                              | The current hostname.                                                                                                                                                                                                                                                                                                                                                                                               |
+| `LINENO` <S>                                        | The line number of the current line within the current script, sourced file, or shell function being executed, whichever was started most recently. Note that in the case of shell functions the line number refers to the function as it appeared in the original definition, not necessarily as displayed by the functions builtin.                                                                               |
+| `LOGNAME`                                           | If the corresponding variable is not set in the environment of the shell, it is initialized to the login name corresponding to the current login session. This parameter is exported by default but this can be disabled using the typeset builtin. The value is set to the string returned by the man page getlogin(3) system call if that is available.                                                           |
+| `MACHTYPE`                                          | The machine type (microprocessor class or machine model), as determined at compile time.                                                                                                                                                                                                                                                                                                                            |
+| `OLDPWD`                                            | previous working directory, set when the shell initializes and whenever the directory changes.                                                                                                                                                                                                                                                                                                                      |
+| `OPTARG` <S>                                        | The value of the last option argument processed by the getopts command.                                                                                                                                                                                                                                                                                                                                             |
+| `OPTIND` <S>                                        | The index of the last option argument processed by the getopts command.                                                                                                                                                                                                                                                                                                                                             |
+| `OSTYPE`                                            | The operating system, as determined at compile time.                                                                                                                                                                                                                                                                                                                                                                |
+| `PPID` <S>                                          | The process ID of the parent of the shell.                                                                                                                                                                                                                                                                                                                                                                          |
+| `PWD`                                               | The present working directory. This is set when the shell initializes and whenever the directory changes.                                                                                                                                                                                                                                                                                                           |
+| `RANDOM` <S>                                        | A pseudo-random integer from 0 to 32767.
+| `SECONDS` <S>                                       | The number of seconds since shell invocation.
+| `SHLVL` <S>                                         | Incremented by one each time a new shell is started.                                                                                                                                                                                                                                                                                                                                                                |
+| `signals`                                           | An array containing the names of the signals.                                                                                                                                                                                                                                                                                                                                                                       |
+| `TRY_BLOCK_ERROR` <S>                               | In an always block, indicates whether the preceding list of code caused an error. The value is 1 to indicate an error, 0 otherwise. It may be reset, clearing the error condition. See Complex Commands                                                                                                                                                                                                             |
+| `TRY_BLOCK_INTERRUPT` <S>                           | This variable works in a similar way to `TRY_BLOCK_ERROR`, but represents the status of an interrupt from the signal SIGINT, which typically comes from the keyboard when the user types ^C. If set to 0, any such interrupt will be reset; otherwise, the interrupt is propagated after the always block.                                                                                                          |
+| `TTY`                                               | The name of the tty associated with the shell, if any.                                                                                                                                                                                                                                                                                                                                                              |
+| `TTYIDLE` <S>                                       | The idle time of the tty associated with the shell in seconds or -1 if there is no such tty.                                                                                                                                                                                                                                                                                                                        |
+| `UID <S>`                                           | The real user ID of the shell process.
+| `USERNAME` <S>                                      | The username corresponding to the real user ID of the shell process. If you have sufficient privileges, you may change the username (and also the user ID and group ID) of the shell by assigning to this parameter. Also (assuming sufficient privileges), you may start a single command under a different username (and user ID and group ID) by ‘(USERNAME=username; command)’                                  |
+| `VENDOR`                                            | The vendor, as determined at compile time.                                                                                                                                                                                                                                                                                                                                                                          |
+| `zsh_eval_context` <S> <Z> (`ZSH_EVAL_CONTEXT` <S>) | An array (colon-separated list) indicating the context of shell code that is being run. See [documentation](http://zsh.sourceforge.net/Doc/Release/Parameters.html) for details.                                                                                                                                                                                                                                    |
+| `ZSH_ARGZERO`                                       | If zsh was invoked to run a script, this is the name of the script. Otherwise, it is the name used to invoke the current shell. This is the same as the value of $0 when the POSIX_ARGZERO option is set, but is always available.                                                                                                                                                                                  |
+| `ZSH_EXECUTION_STRING`                              | If the shell was started with the option -c, this contains the argument passed to the option. Otherwise it is not set.                                                                                                                                                                                                                                                                                              |
+| `ZSH_NAME`                                          | Expands to the basename of the command used to invoke this instance of zsh.                                                                                                                                                                                                                                                                                                                                         |
+| `ZSH_PATCHLEVEL`                                    | The output of ‘git describe –tags –long’ for the zsh repository used to build the shell. This is most useful in order to keep track of versions of the shell during development between releases; hence most users should not use it and should instead rely on $ZSH_VERSION.                                                                                                                                       |
+| `zsh_scheduled_events`                              | See The zsh/sched Module.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `ZSH_SCRIPT`                                        | If zsh was invoked to run a script, this is the name of the script, otherwise it is unset.                                                                                                                                                                                                                                                                                                                          |
+| `ZSH_SUBSHELL`                                      | Readonly integer. Initially zero, incremented each time the shell forks to create a subshell for executing code. Hence ‘(print $ZSH_SUBSHELL)’ and ‘print $(print $ZSH_SUBSHELL)’ output 1, while ‘( (print $ZSH_SUBSHELL) )’ outputs 2.                                                                                                                                                                            |
+| `ZSH_VERSION`                                       | The version number of the release of zsh.                                                                                                                                                                                                                                                                                                                                                                           |
 :::
 
 ::::
@@ -249,6 +239,7 @@ New bindings are affected to the current (`main`) **keymap**.
 :::
 
 :::{tab-item} ZSH
+:selected:
 :sync: zsh
 
 Prompt sequences undergo a [special form of
@@ -291,11 +282,14 @@ export LS_COLORS="$(vivid generate molokai)"
 ::::{tab-set}
 
 :::{tab-item} Bash
+:sync: bash
 
 ...
 :::
 
 :::{tab-item} ZSH
+:selected:
+:sync: zsh
  <badge-doc
  href='http://zsh.sourceforge.net/Doc/Release/Completion-System.html'></badge-doc>
 
@@ -449,53 +443,54 @@ The precedence of the operators given above is (highest) ‘^’, ‘/’, ‘~�
 
 #### [glob qualifiers](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers)
 
-??? abstract "Furthers qualifiers"
+:::{admonition} abstract "Furthers qualifiers"
+:class: p-0 m-0
 
-    | Qualifiers      | Scope                                                                                                                         |
-    | -----------     | -----------------------------------------------                                                                               |
-    | /               | directories                                                                                                                   |
-    | F               | ‘full’ (i.e. non-empty) directories.                                                                                          |
-    | .               | plain files                                                                                                                   |
-    | @               | symbolic links                                                                                                                |
-    | =               | sockets                                                                                                                       |
-    | p               | named pipes (FIFOs)                                                                                                           |
-    | *               | executable plain files (0100 or 0010 or 0001)                                                                                 |
-    | %               | device files (character or block special)                                                                                     |
-    | %b              | block special files                                                                                                           |
-    | %c              | character special files                                                                                                       |
-    | r               | owner-readable files (0400)                                                                                                   |
-    | w               | owner-writable files (0200)                                                                                                   |
-    | x               | owner-executable files (0100)                                                                                                 |
-    | A               | group-readable files (0040)                                                                                                   |
-    | I               | group-writable files (0020)                                                                                                   |
-    | E               | group-executable files (0010)                                                                                                 |
-    | R               | world-readable files (0004)                                                                                                   |
-    | W               | world-writable files (0002)                                                                                                   |
-    | X               | world-executable files (0001)                                                                                                 |
-    | s               | setuid files (04000)                                                                                                          |
-    | S               | setgid files (02000)                                                                                                          |
-    | t               | files with the sticky bit (01000)                                                                                             |
-    | fspec           | files with access rights matching spec.                                                                                       |
-    | estring +cmd    | The string will be executed as shell code.                                                                                    |
-    | ddev            | files on the device dev                                                                                                       |
-    | l[-\|+]ct       | files having a link count less than ct (-), greater than ct (+), or equal to ct                                               |
-    | U               | files owned by the effective user ID                                                                                          |
-    | G               | files owned by the effective group ID                                                                                         |
-    | uid             | files owned by user ID id if that is a number.                                                                                |
-    | gid             | like uid but with group IDs or names                                                                                          |
-    | a[Mwhms][-\|+]n | files accessed exactly n days ago.                                                                                            |
-    | m[Mwhms][-\|+]n | like the file access qualifier, except that it uses the file modification time.                                               |
-    | c[Mwhms][-\|+]n | like the file access qualifier, except that it uses the file inode change time.                                               |
-    | L[+\|-]n        | files less than n bytes (-), more than n bytes (+), or exactly n bytes in length.                                             |
-    | ^               | negates all qualifiers following it                                                                                           |
-    | -               | toggles between making the qualifiers work on symbolic links (the default) and the files they point to                        |
-    | M               | sets the MARK_DIRS option for the current pattern                                                                             |
-    | T               | appends a trailing qualifier mark to the filenames, analogous to the LIST_TYPES option, for the current pattern (overrides M) |
-    | N               | sets the NULL_GLOB option for the current pattern                                                                             |
-    | D               | sets the GLOB_DOTS option for the current pattern                                                                             |
-    | n               | sets the NUMERIC_GLOB_SORT option for the current pattern                                                                     |
-    | Yn              | enables short-circuit mode: the pattern will expand to at most n filenames.                                                   |
-
+| Qualifiers      | Scope                                                                                                                         |
+| -----------     | -----------------------------------------------                                                                               |
+| /               | directories                                                                                                                   |
+| F               | ‘full’ (i.e. non-empty) directories.                                                                                          |
+| .               | plain files                                                                                                                   |
+| @               | symbolic links                                                                                                                |
+| =               | sockets                                                                                                                       |
+| p               | named pipes (FIFOs)                                                                                                           |
+| *               | executable plain files (0100 or 0010 or 0001)                                                                                 |
+| %               | device files (character or block special)                                                                                     |
+| %b              | block special files                                                                                                           |
+| %c              | character special files                                                                                                       |
+| r               | owner-readable files (0400)                                                                                                   |
+| w               | owner-writable files (0200)                                                                                                   |
+| x               | owner-executable files (0100)                                                                                                 |
+| A               | group-readable files (0040)                                                                                                   |
+| I               | group-writable files (0020)                                                                                                   |
+| E               | group-executable files (0010)                                                                                                 |
+| R               | world-readable files (0004)                                                                                                   |
+| W               | world-writable files (0002)                                                                                                   |
+| X               | world-executable files (0001)                                                                                                 |
+| s               | setuid files (04000)                                                                                                          |
+| S               | setgid files (02000)                                                                                                          |
+| t               | files with the sticky bit (01000)                                                                                             |
+| fspec           | files with access rights matching spec.                                                                                       |
+| estring +cmd    | The string will be executed as shell code.                                                                                    |
+| ddev            | files on the device dev                                                                                                       |
+| l[-\|+]ct       | files having a link count less than ct (-), greater than ct (+), or equal to ct                                               |
+| U               | files owned by the effective user ID                                                                                          |
+| G               | files owned by the effective group ID                                                                                         |
+| uid             | files owned by user ID id if that is a number.                                                                                |
+| gid             | like uid but with group IDs or names                                                                                          |
+| a[Mwhms][-\|+]n | files accessed exactly n days ago.                                                                                            |
+| m[Mwhms][-\|+]n | like the file access qualifier, except that it uses the file modification time.                                               |
+| c[Mwhms][-\|+]n | like the file access qualifier, except that it uses the file inode change time.                                               |
+| L[+\|-]n        | files less than n bytes (-), more than n bytes (+), or exactly n bytes in length.                                             |
+| ^               | negates all qualifiers following it                                                                                           |
+| -               | toggles between making the qualifiers work on symbolic links (the default) and the files they point to                        |
+| M               | sets the MARK_DIRS option for the current pattern                                                                             |
+| T               | appends a trailing qualifier mark to the filenames, analogous to the LIST_TYPES option, for the current pattern (overrides M) |
+| N               | sets the NULL_GLOB option for the current pattern                                                                             |
+| D               | sets the GLOB_DOTS option for the current pattern                                                                             |
+| n               | sets the NUMERIC_GLOB_SORT option for the current pattern                                                                     |
+| Yn              | enables short-circuit mode: the pattern will expand to at most n filenames.                                                   |
+:::
 
   ```bash
   # show only directories
@@ -574,6 +569,7 @@ normally.
 :::
 
 :::{tab-item} ZSH
+:selected:
 :sync: zsh
 
 - <b>zsh-z</b> <badge-stars repo='agkozak/zsh-z'></badge-stars> Jump quickly to
@@ -596,6 +592,7 @@ for zsh
 :::
 
 :::{tab-item} ZSH
+:selected:
 :sync: zsh
 [Modules](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html) are loaded
 with `zmodload`
