@@ -1,6 +1,4 @@
-[submodule "md-guide"]
-	path = vendors/markdown-guide
-	url = https://github.com/mattcone/markdown-guide.git
-[submodule "highlightjs"]
-	path = vendors/highlightjs
-	url = https://github.com/highlightjs/highlight.js
+[submodule "dot"]
+	path = external/dot
+	url = https://github.com/e-roux/dot
+	branch = develop
