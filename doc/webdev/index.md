@@ -5,6 +5,16 @@
 - WHATWG maintains the HTML and DOM Living Standards
 - W3C bridges communities, develop use cases, fill issues, write tests, mediate issue resolution
 
+```{eval-rst}
+.. toctree::
+    :hidden:
+    :maxdepth: 2
+
+    jinja2
+    sphinx
+    
+```
+
 
 ## HTML semantic elements
 

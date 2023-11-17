@@ -1,9 +1,11 @@
 # Jinja2
 
-## API
+## High level API
 
-### [ `Environment` ](https://jinja.palletsprojects.com/en/master/api/#jinja2.Environment)
+::::{tab-set}
 
+:::{tab-item}  Environment 
+(Environment)=
 [`Environment`](https://jinja.palletsprojects.com/en/master/api/#jinja2.Environment)
 is a central class whose instances grant access to configuration and globals:
 
@@ -26,61 +28,62 @@ is a central class whose instances grant access to configuration and globals:
 - variable definition:
     - [globals](`https://jinja.palletsprojects.com/en/master/api/#jinja2.Environment.globals)
 
-!!! important ""
-
-    Because of its nature, `Environment` instances should only be modified if they
-    are not shared and if no template was loaded so far.
-
+```{important}
+Because of its nature, `Environment` instances should only be modified if they
+are not shared and if no template was loaded so far.
+```
 
 Several attributes and parameters are available, see the
 [documentation](https://jinja.palletsprojects.com/en/master/api/#jinja2.Environment)
 
+```python
+from jinja2 import Environment, PackageLoader
+env = Environment(
+    loader=PackageLoader("yourapp"),
+)
 
-??? Example
+# Get a template
+template = env.get_template("mytemplate.html")
 
-    ```python
-    from jinja2 import Environment, PackageLoader
-    env = Environment(
-        loader=PackageLoader("yourapp"),
-    )
+# Render it
+template.render(the="variables", go="here")
+```
+:::
 
-    # Get a template
-    template = env.get_template("mytemplate.html")
-
-    # Render it
-    template.render(the="variables", go="here")
-    ```
-
-
-### [ `Template` ](https://jinja.palletsprojects.com/en/master/api/#jinja2.Template)
+:::{tab-item} Template
 
 Normaly generated from an `Environment`, can
 
 
-??? Example
 
-    ```python
-    template = Template('Hello {{ name }}!')
+```python
+template = Template('Hello {{ name }}!')
 
-    template.render(name='John Doe') == u'Hello John Doe!'
-    True
+template.render(name='John Doe') == u'Hello John Doe!'
+True
 
-    stream = template.stream(name='John Doe')
+stream = template.stream(name='John Doe')
 
-    next(stream) == u'Hello John Doe!'
-    True
+next(stream) == u'Hello John Doe!'
+True
 
-    next(stream)
-    Traceback (most recent call last):
-        ...
-    StopIteration
-    ```
+next(stream)
+Traceback (most recent call last):
+    ...
+StopIteration
+```
+:::
 
+:::{tab-item} TemplateStream
 
-`TemplateStream`
+...
+:::
 
+::::
 
-### [ `Context` ](https://jinja.palletsprojects.com/en/master/api/#jinja2.the-context)
+::::{tab-set}
+
+:::{tab-item} Context
 
 A [context](https://jinja.palletsprojects.com/en/master/api/#the-context) holds
 the variables of a template: values and public names it export. It defines
@@ -93,9 +96,9 @@ various attributes:
 - `exported_vars`
 - `call` for calling a callable and passing parameters
 - ...
+:::
 
-
-### [ `Loaders` ](https://jinja.palletsprojects.com/en/master/api/#loaders)
+:::{tab-item} Loaders
 
 Subclass of [ `BaseLoader`
 ](https://jinja.palletsprojects.com/en/master/api/#jinja2.BaseLoader), they are
@@ -107,6 +110,10 @@ responsible for loading resources such as the file system. Builtin loaders:
   template source.
 - `FunctionLoader`
 - ...
+:::
+
+::::
+
 
 ### [ Autoescaping ](https://jinja.palletsprojects.com/en/master/api/#autoescaping)
 
@@ -117,11 +124,13 @@ responsible for loading resources such as the file system. Builtin loaders:
 
 ## Templates
 
+https://jinja.palletsprojects.com/en/stable/templates/
+
 ### Basic syntax
 
 #### Delimiters
 
-Defined in the [`Environment`](#environment), theis default:
+Defined in the [`Environment`](#environment), theirs default:
 
 - `{% ... %}` for Statements
 - `{{ ... }}` for Expressions to print to the template output
@@ -153,7 +162,7 @@ list](https://jinja.palletsprojects.com/en/master/templates/#builtin-tests)
 Language blocks are removed when the template is rendered but whitespaces remain
 in place.
 
-Striping can be configuring at the [`Environment`](#environment) level with
+Striping can be configuring at the [`Environment`](#Environment) level with
 `trim_blocks` and `lstrip_blocks`. They can also be manualy activated or
 deactivated with `+` and `-` symbols at block start and end level.
 
@@ -163,4 +172,4 @@ deactivated with `+` and `-` symbols at block start and end level.
 {%- endfor %}
 ```
 
-#### Esaping
+#### Escaping
