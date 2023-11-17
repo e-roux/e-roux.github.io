@@ -106,6 +106,7 @@ module](https://docs.python.org/3/library/readline.html).
 :::
 
 :::{tab-item} ZSH: ZLE
+:selected:
 :sync: zsh
 
 Zsh does not use readline, instead uses an own development [Zsh Line Editor

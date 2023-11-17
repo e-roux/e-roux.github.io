@@ -112,9 +112,9 @@ Some other text
 
 ### Builders
 
-```{eval-rst}
-.. include:: confluence/sphinx_builder.rst
-```
+<!-- ```{eval-rst} -->
+<!-- .. include:: confluence/sphinx_builder.rst -->
+<!-- ``` -->
 
 
 ## Glossary

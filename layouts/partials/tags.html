@@ -1,6 +1,0 @@
-  {{ if .Params.tags }}
-    <h1>Tags</h1>
-    {{ range .Params.tags }}
-      <a href="{{ $.Site.LanguagePrefix | absURL }}/tags/{{ . | urlize }}/">#{{ . }}</a>&nbsp;
-    {{ end }}
-  {{ end }}

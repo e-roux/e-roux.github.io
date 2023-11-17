@@ -1,6 +1,0 @@
-github.com/gohugoio/hugo-mod-bootstrap-scss/v5 v5.20101.20300 h1:1Xe5fPOjFpMakBfsXKzzKtdu/sfqoM0o7JuSp2l1RiU=
-github.com/gohugoio/hugo-mod-bootstrap-scss/v5 v5.20101.20300/go.mod h1:/FiWjAJyOiVrC2vDur97ogmWIaBB+YS6jH7nf6cm+3E=
-github.com/gohugoio/hugo-mod-jslibs-dist/popperjs/v2 v2.21100.20000/go.mod h1:mFberT6ZtcchrsDtfvJM7aAH2bDKLdOnruUHl0hlapI=
-github.com/twbs/bootstrap v5.1.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
-github.com/zenorocha/clipboard.js v2.0.10+incompatible h1:n3mE0c9gmG73RMZ0/XlO/R3L3f7TpNwu7FPLX6GeE1g=
-github.com/zenorocha/clipboard.js v2.0.10+incompatible/go.mod h1:O4LYrBFJk1EQ3l9TUhF+Df4JmeMW5eApvdsQmgg8z0E=

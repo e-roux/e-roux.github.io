@@ -1,0 +1,83 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "manux"
+authors = [
+    { name = "Emmanuel Roux" },
+    {email = "15956441+fesaille@users.noreply.github.com" }
+]
+dynamic = ["version"]
+dependencies = []
+description = ""
+
+[project.optional-dependencies]
+	doc = ["sphinx", "sphinx-pyproject", "furo", "sphinx-autobuild", "myst-parser", "sphinx_design"]
+	test = ["coverage[toml]>=7", "pytest>=7"]
+	fmt = ["black"]
+	lint = ["ruff", "yamllint"]
+
+[tool.black]
+line-length = 80
+include = '\.py$'
+target-version = ["py39", "py310", "py311"]
+skip-string-normalization = true
+
+[tool.coverage.run]
+command_line = "-m pytest --junitxml=report.xml"
+source = [
+  "src"
+]
+disable_warnings = [ "no-data-collected" ]
+
+[tool.coverage.report]
+exclude_lines = [
+	"if TYPE_CHECKING:",
+	"pragma: no cover"
+]
+omit = ["src/manux/__version__.py"]
+
+[tool.mypy]
+mypy_path = "stubs"
+files = "src"
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+warn_return_any = true
+
+[tool.ruff]
+cache-dir = "/Users/manu/development/github.com/e-roux/e-roux.github.io/wt/sphinx/.cache/ruff"
+
+[tool.pytest.ini_options]
+addopts = [ 
+    "--ignore=setup.py",
+    "--strict-markers",
+    "--strict-config",
+    "-ra"
+]
+filterwarnings = [
+  "ignore:the imp module is deprecated"
+]
+markers = [
+  "e2e: tests that require an external connection",
+]
+testpaths = [
+  "/Users/manu/development/github.com/e-roux/e-roux.github.io/wt/sphinx/test",
+]
+cache_dir = ".cache/pytest"
+
+[tool.sphinx-pyproject]
+templates_path = ["_templates"]
+html_theme = "furo"
+copyright = ""
+language = "en"
+extensions = [
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autodoc',
+]
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+html_static_path = ['_static']
+
+[tool.sphinx-pyproject.intersphinx_mapping]
+python = ['https://docs.python.org/3', '']

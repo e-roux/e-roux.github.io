@@ -11,3 +11,7 @@ node_modules
 static/vendors
 public
 resources/_gen
+.local/share/mlib
+build
+.cache
+.local/bin
