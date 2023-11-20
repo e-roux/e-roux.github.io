@@ -138,7 +138,7 @@ Airflow has builtin support for cron expressions (i.e. ``schedule="0 0 * * 1-5"`
 
         Scheduling is done according to the triggering method:
 
-        - **manual**: :py:function:`timetable.infer_manual_data_interval(*, run_after)` will be called.
+        - **manual**: py:func:`timetable.infer_manual_data_interval(\*, run_after)` will be called.
         - **scheduled**: ``next_dagrun(*, last_automated_data_interval_ restriction)``
 
         
@@ -160,8 +160,7 @@ Airflow has builtin support for cron expressions (i.e. ``schedule="0 0 * * 1-5"`
         Restriction on when a DAG can be scheduled for a run.
 
         - ``earliest``/``latest`` are time
-        - ``catchup``: if False, the run must also not be earlier than the
-        current time, i.e. “missed” schedules are not backfilled.
+        - ``catchup``: if False, the run must also not be earlier than the current time, i.e. “missed” schedules are not backfilled.
 
         These values are generally set on the DAG or task’s start_date,
         end_date, and catchup arguments.

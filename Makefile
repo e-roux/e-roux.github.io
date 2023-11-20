@@ -4,5 +4,3 @@
 PYTHON_PROJECT_NAME := manux
 
 include mlib.mk
-include python.mk
-

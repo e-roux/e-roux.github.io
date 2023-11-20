@@ -1,0 +1,18 @@
+/* A tippy is essentially three nested divs. */
+/**/
+/* tippy-popper is the outermost node. It is what Popper.js uses to position the tippy. You don't need to apply any styles to this element. */
+/* tippy-tooltip is the actual tooltip node. */
+/* tippy-content is the content node. */
+
+/* Furo theme variables:
+ * https://github.com/pradyunsg/furo/blob/main/src/furo/assets/styles/variables/_colors.scss
+ */
+
+.tippy-box {
+  background-color: var(--color-background-hover);
+  color: var(--color-foreground-primary);
+}
+
+.tippy-arrow {
+  color: var(--color-background-hover);
+}

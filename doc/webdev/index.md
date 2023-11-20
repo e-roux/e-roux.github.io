@@ -11,7 +11,6 @@
     :maxdepth: 2
 
     jinja2
-    sphinx
     
 ```
 

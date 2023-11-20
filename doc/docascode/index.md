@@ -7,4 +7,5 @@
 
     sphinx_rst
     sphinx_myst
+    ../webdev/jinja2
 ```

@@ -2,6 +2,9 @@
 
 
 ```{eval-rst}
+
+Some text :ghstars:`numpy/numpy`
+
 .. toctree::
     :hidden:
     :maxdepth: 2
@@ -22,7 +25,7 @@
     :hidden:
     :maxdepth: 2
 
-    data_engineering/index
+    data_engineering/scheduling/index
     webdev/index
 
 ```
