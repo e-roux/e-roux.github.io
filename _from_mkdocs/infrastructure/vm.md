@@ -1,6 +1,6 @@
 #  VM
 
-[Wikipedia](https://fr.wikipedia.org/wiki/Virtualisation)
+[Virtualization](wiki:Virtualisation)
 
 ## VirtualBox
 
@@ -65,7 +65,7 @@ vbm guestproperty enumerate Cloudera | grep IP | awk '{print $4}' | sed -e 's/,/
 
     **Virtual box creation**
 
-    ```console
+    ```shell
     vbm createvm --name <VM> --ostype <OSTYPE> --basefolder <BASEFOLDER> --register
     # OSTYPE can be set from a list, e.g. RedHat_64
     vbm list ostypes

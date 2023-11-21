@@ -1,6 +1,5 @@
 # Docutils
 
-
 ## Roles
 
 ### Types

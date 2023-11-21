@@ -2,6 +2,7 @@
 
 ## Terminal capabilities
 
+(#terminfo)
 Terminfo (formerly Termcap) is a database of terminal capabilities and more. For every (well almost) model of terminal it tells application programs what the terminal is capable of doing. 
 
 

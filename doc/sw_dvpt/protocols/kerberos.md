@@ -45,7 +45,7 @@ For ticket management at the user level <badge-doc href='https://web.mit.edu/ker
   based on existing credential cache contents or the local username of the user
   invoking kinit.
 
-  ```console
+  ```shell
   > kinit <PRINCIPAL>
 
   > kinit -kt <KEYTAB> <PRINCIPAL>
@@ -54,7 +54,7 @@ For ticket management at the user level <badge-doc href='https://web.mit.edu/ker
 - `klist` lists the Kerberos principal and Kerberos tickets held in a
   credentials cache, or the keys held in a keytab file.
 
-  ```console
+  ```shell
   > klist
 
   > klist -k <KEYTAB>

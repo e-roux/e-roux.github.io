@@ -1,6 +1,6 @@
 # Shell
 
-The Portable Operating System Interface (POSIX) <badge-wiki href='https://en.wikipedia.org/wiki/POSIX'></badge-wiki> is a [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
+The Portable Operating System Interface [POSIX](wiki:POSIX) is a [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
 
 ```{eval-rst}
 .. toctree::
@@ -83,36 +83,64 @@ first of those files found.
 
 ### Line edition and keybindings
 
-::::{tab-set}
+Some edition features provided by modern shells:
 
-:::{tab-item} Bash: readline
+- Line Editing 
+- Keybindings
+- Completion
+- Command History
+- Macro expansion
+
+:::::{tab-set}
+
+::::{tab-item} Bash: readline
 :sync: bash
 
-GNU Readline <badge-wiki
-href='https://en.wikipedia.org/wiki/GNU_Readline'></badge-wiki> is a software
-library that provides line-editing and history capabilities for interactive
-programs with a command-line interface. Bash typically uses this library (same [
+Bash uses [GNU Readline](https://en.wikipedia.org/wiki/GNU_Readline) (both same [
 original author
-](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer))). Emacs-like
-keybindings are [ default
+](https://en.wikipedia.org/wiki/Brian_Fox_(computer_programmer))). 
+Emacs-like keybindings are [ default
 ](https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html)
 but readline enables configuration files at `/etc/inputrc` or `~/.inputrc`.
 
-A lot of program not specifically written in C rely on `readline`, e.g. the
-[impala-shell](https://docs.cloudera.com/documentation/enterprise/latest/topics/impala_impala_shell.html)
-through python's [readline
-module](https://docs.python.org/3/library/readline.html).
 
+:::{note}
+A lot of programs rely on readline, e.g. REPL like [Postgres
+psql](https://www.postgresql.org/docs/current/app-psql.html),
+[Sqlite](https://www.sqlite.org/cli.html) or some interpreted language REPL like
+[R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#The-command_002dline-editor),
+[Python](https://docs.python.org/3/using/cmdline.html) providing a [readline
+bindind](https://docs.python.org/3/library/readline.html) used e.g. in 
+[impala-shell](https://docs.cloudera.com/documentation/enterprise/latest/topics/impala_impala_shell.html)
 :::
 
-:::{tab-item} ZSH: ZLE
+
+Readline provides [configuration](https://tiswww.cwru.edu/php/chet/readline/rluserman.html#Readline-Init-File) for:
+
+- [Motion](https://tiswww.cwru.edu/php/chet/readline/readline.html#Commands-For-Moving)
+- [Edition](https://tiswww.cwru.edu/php/chet/readline/readline.html#Commands-For-Text), [yanking](https://tiswww.cwru.edu/php/chet/readline/readline.html#Commands-For-Killing), 
+- [History manipulation](https://tiswww.cwru.edu/php/chet/readline/readline.html#Commands-For-History)
+- [Completion](https://tiswww.cwru.edu/php/chet/readline/readline.html#Commands-For-Completion) and [numeric arguments](https://tiswww.cwru.edu/php/chet/readline/readline.html#Numeric-Arguments)
+- [Macros](https://tiswww.cwru.edu/php/chet/readline/readline.html#Keyboard-Macros)
+- [Various compatibility](https://tiswww.cwru.edu/php/chet/readline/readline.html#Miscellaneous-Commands)
+
+
+Configuration can be reloaded with `bind`:
+
+```shell
+bind -f ~/.inputrc
+```
+
+::::
+
+::::{tab-item} ZSH: ZLE
 :selected:
 :sync: zsh
 
-Zsh does not use readline, instead uses an own development [Zsh Line Editor
+Zsh do not rely on readline, instead uses an own development [Zsh Line Editor
 (ZLE)](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html). Keybindings
 in `inputrc` are not read, rely instead on an internal command
-[`bindkey`](`terminfo`) that can be coupled to `terminfo`.
+[`bindkey`](terminfo) that can be coupled to `terminfo`.
 
 All actions in the editor are performed by
 [widgets](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets).
@@ -147,9 +175,9 @@ New bindings are affected to the current (`main`) **keymap**.
 
 - an [intro on widgets](https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/)
 
-:::
-
 ::::
+
+:::::
 
 ## Parameters and Variables
 
@@ -222,7 +250,7 @@ New bindings are affected to the current (`main`) **keymap**.
 | `ZSH_PATCHLEVEL`                                    | The output of ‘git describe –tags –long’ for the zsh repository used to build the shell. This is most useful in order to keep track of versions of the shell during development between releases; hence most users should not use it and should instead rely on $ZSH_VERSION.                                                                                                                                       |
 | `zsh_scheduled_events`                              | See The zsh/sched Module.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `ZSH_SCRIPT`                                        | If zsh was invoked to run a script, this is the name of the script, otherwise it is unset.                                                                                                                                                                                                                                                                                                                          |
-| `ZSH_SUBSHELL`                                      | Readonly integer. Initially zero, incremented each time the shell forks to create a subshell for executing code. Hence ‘(print $ZSH_SUBSHELL)’ and ‘print $(print $ZSH_SUBSHELL)’ output 1, while ‘( (print $ZSH_SUBSHELL) )’ outputs 2.                                                                                                                                                                            |
+| `ZSH_SUBSHELL`                                      | Readonly integer. Initially zero, incremented each time the shell forks to create a subshell for executing code.                                                                                                                                                                            |
 | `ZSH_VERSION`                                       | The version number of the release of zsh.                                                                                                                                                                                                                                                                                                                                                                           |
 :::
 
@@ -584,27 +612,28 @@ for zsh
 
 ## Modules
 
-::::{tab-set}
+:::::{tab-set}
 
-:::{tab-item} Bash
+::::{tab-item} Bash
 :sync: bash
 
 ...
-:::
+::::
 
-:::{tab-item} ZSH
+::::{tab-item} ZSH
 :selected:
 :sync: zsh
 [Modules](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html) are loaded
 with `zmodload`
 
-??? note "ZSH modules"
+:::{note} ZSH modules
 
-    ZSH modules are loaded with the prefix `zsh/`, e.g. for `net/tcl`
+ZSH modules are loaded with the prefix `zsh/`, e.g. for `net/tcl`
 
-    ```bash
-    ❯ zmodload zsh/net/tcp
-    ```
+```bash
+❯ zmodload zsh/net/tcp
+```
+:::
 
 | Modules          | Description                                                                           |
 |------------------|---------------------------------------------------------------------------------------|
@@ -663,14 +692,16 @@ The zsh/zutil module adds some builtins:
   ❯ ztcp
   ```
 
-??? note "File descriptors"
+:::{note} 
+:name: File descriptors
 
-    Wikipedia: [🔗](https://en.wikipedia.org/wiki/File_descriptor)
+[File Descriptors](wiki:File_descriptor)
 
-    Send to  stdout of the current terminal
-    ```bash
-    echo "hello" >> /proc/$$/fd/2
-    ```
+Send to  stdout of the current terminal
+```bash
+echo "hello" >> /proc/$$/fd/2
+```
 :::
-
 ::::
+
+:::::
