@@ -13,7 +13,7 @@ dependencies = []
 description = ""
 
 [project.optional-dependencies]
-	doc = ["sphinx", "sphinx-pyproject", "furo", "sphinx-autobuild", "myst-parser", "sphinx_design"]
+	doc = ["sphinx", "sphinx-pyproject", "furo", "sphinx-autobuild", "myst-parser", "sphinx_design", "sphinx_tippy"]
 	test = ["coverage[toml]>=7", "pytest>=7"]
 	fmt = ["black"]
 	lint = ["ruff", "yamllint"]

@@ -37,6 +37,7 @@ extensions = [
     "sphinx_design",
     "myst_parser",
     "sphinx_tippy",
+    "manux",
 ]
 
 show_authors = True
@@ -187,8 +188,10 @@ def depart_ghstars_html(self, _):
 
 def setup_extension(app: Sphinx) -> None:
     # app.connect()
-    app.add_node(GhStars, html=(visit_ghstars_html, depart_ghstars_html))
-    app.add_role("ghstars", _GHSTARs())
+    ...
+    # Does not work:
+    # app.add_node(GhStars, html=(visit_ghstars_html, depart_ghstars_html))
+    # app.add_role("ghstars", _GHSTARs())
 
 
 def setup(app):
