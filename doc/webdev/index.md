@@ -10,6 +10,7 @@
     :hidden:
     :maxdepth: 2
 
+    rst
     jinja2
     
 ```

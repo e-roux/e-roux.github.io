@@ -5,13 +5,7 @@
 
 Some text :ghstars:`numpy/numpy`
 
-.. toctree::
-    :hidden:
-    :maxdepth: 2
-    :caption: Software Development
-
-    sw_dvpt/protocols/index
-    docascode/index
+.. include:: sw_dvpt/toc
 
 .. toctree::
     :hidden:

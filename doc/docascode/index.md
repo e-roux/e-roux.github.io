@@ -5,7 +5,6 @@
     :hidden:
     :maxdepth: 2
 
-    sphinx_rst
-    sphinx_myst
-    ../webdev/jinja2
+    content_generation/index
+    content_management/index
 ```

@@ -1,5 +1,7 @@
 # GIT
 
+READ: https://www.atlassian.com/git/tutorials/git-log
+
 ## Configuration
 
 The configuration is made out of [four files](https://git-scm.com/docs/git-config#FILES):
