@@ -1,6 +1,4 @@
 # Version manager
 
-
-Bash: <badge-stars repo='bpkg/bpkgt'></badge-stars> <badge-doc href='http://www.bpkg.sh'></badge-doc>
-C: <badge-stars repo='clibs/clib'></badge-stars> <badge-doc
-href='https://www.clibs.org/'></badge-doc>
+Bash: {ghstars}`bpkg/bpkgt` <badge-doc href='http://www.bpkg.sh'></badge-doc>
+C: {ghstars}`clibs/clib` <badge-doc href='https://www.clibs.org/'></badge-doc>

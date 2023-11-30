@@ -1,6 +1,4 @@
-
 # Utils
-
 
 ## GNU Stow
 
@@ -15,48 +13,62 @@ The software can be used to manage dotfiles.
 [GNU envsubst](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html)
 substitutes the values of environment variables.
 
-## Autojump
+## Directory content
 
-These utilities give the most visited directory for the shortest search term typed.
+### List content
 
-- **jump** <badge-stars repo='gsamokovarov/jump'></badge-stars> is written in go.
-- **autojump** <badge-stars repo='wting/autojump'></badge-stars> is written in python.
-- **zoxide** <badge-stars repo='ajeetdsouza/zoxide'></badge-stars> is written in rust.
-- **zsh-z** <badge-stars repo='agkozak/zsh-z'></badge-stars> is a native zsh port of z.sh
+- {ghstars}`ogham/exa` <badge-doc href="https://the.exa.website/"></badge-doc> is a replacement for ls written in Rust.
 
+{ghstars}`bootandy/dust` is a rust application
+printing a similar output to `du` with additional bar chart.
 
-## Finding files
+### File manager
 
-- **nnn** <badge-stars repo='jarun/nnn'></badge-stars> <badge-doc href="https://github.com/jarun/nnn/wiki"></badge-doc> is another vi-inspired filemanager for the console, lightweight, written in C.
-- **Ranger** <badge-stars repo='ranger/ranger'></badge-stars> <badge-doc href="https://ranger.github.io"></badge-doc>, vim-inspired filemanager for the console, written in python.
+- {ghstars}`jarun/nnn` <badge-doc href="https://github.com/jarun/nnn/wiki"></badge-doc> is another vi-inspired filemanager for the console, lightweight, written in C.
+- {ghstars}`ranger/ranger` <badge-doc href="https://ranger.github.io"></badge-doc>, vim-inspired filemanager for the console, written in python.
 
     Install with `pipx install ranger-fm`
 
-- **exa** <badge-stars repo='ogham/exa'></badge-stars> <badge-doc href="https://the.exa.website/"></badge-doc> is a replacement for ls written in Rust.
+## Change directories
+
+### Autojump
+
+These utilities give the most visited directory for the shortest search term typed.
+
+- {ghstars}`gsamokovarov/jump` is written in go.
+- {ghstars}`wting/autojump` is written in python.
+- {ghstars}`ajeetdsouza/zoxide` is written in rust.
+- {ghstars}`agkozak/zsh-z` is a native zsh port of z.sh
+
+## Finding files
 
 
-## Directory content
+### fuzzy finder
 
-**dust** <badge-stars repo='bootandy/dust'></badge-stars> is a rust application
-printing a similar output to `du` with additional bar chart.
+- {ghstars}`jhawthorn/fzy` is written in C, now seems 
+- {ghstars}`junegunn/fzf` <badge-doc
+  href="https://github.com/junegunn/fzf#table-of-contents"></badge-doc> is
+  written in go
 
+#### FZF
 
-## fuzzy finder
+::::{tab-set}
 
-**fzf** <badge-stars repo='junegunn/fzf'></badge-stars> <badge-doc href="https://github.com/junegunn/fzf#table-of-contents"></badge-doc> is a go fuzzy finder
+:::{tab-item} Syntax
 
+| Token     | Match type                 | Description                          |
+| --------- | -------------------------- | ------------------------------------ |
+| `sbtrkt`  | fuzzy-match                | Items that match `sbtrkt`            |
+| `'wild`   | exact-match (quoted)       | Items that include `wild`            |
+| `^music`  | prefix-exact-match         | Items that start with `music`        |
+| `.mp3$`   | suffix-exact-match         | Items that end with `.mp3`           |
+| `!fire`   | inverse-exact-match        | Items that do not include `fire`     |
+| `!^music` | inverse-prefix-exact-match | Items that do not start with `music` |
+| `!.mp3$`  | inverse-suffix-exact-match | Items that do not end with `.mp3`    |
 
-??? Help "Search syntax"
+:::
 
-    | Token     | Match type                 | Description                          |
-    | --------- | -------------------------- | ------------------------------------ |
-    | `sbtrkt`  | fuzzy-match                | Items that match `sbtrkt`            |
-    | `'wild`   | exact-match (quoted)       | Items that include `wild`            |
-    | `^music`  | prefix-exact-match         | Items that start with `music`        |
-    | `.mp3$`   | suffix-exact-match         | Items that end with `.mp3`           |
-    | `!fire`   | inverse-exact-match        | Items that do not include `fire`     |
-    | `!^music` | inverse-prefix-exact-match | Items that do not start with `music` |
-    | `!.mp3$`  | inverse-suffix-exact-match | Items that do not end with `.mp3`    |
+:::{tab-item} Bindings
 
 `fzf` [provides
 bindings](https://github.com/junegunn/fzf#key-bindings-for-command-line):
@@ -67,13 +79,16 @@ bindings](https://github.com/junegunn/fzf#key-bindings-for-command-line):
 - fuzzy competion is activated with `**`, e.g. `vim **<TAB>` completes all files
   in the cwd.
 
+:::
 
-**fzy** <badge-stars repo='jhawthorn/fzy'></badge-stars> is written in C
+::::
 
 
-## File content search
 
-Search can be efficiently performed by **the silver search (`ag`)** <badge-stars repo='ggreer/the_silver_searcher'></badge-stars> <badge-doc href='https://geoff.greer.fm/ag/'></badge-doc> and **ripgrep (`rg`)** <badge-stars repo='BurntSushi/ripgrep'></badge-stars> <badge-doc logo='Markdown' href='https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md'></badge-doc>, written resp. in C and rust. `rg` tends to be one of the quickest.
+
+## Search file content 
+
+Search can be efficiently performed by {ghstars}`ggreer/the_silver_searcher` <badge-doc href='https://geoff.greer.fm/ag/'></badge-doc> and {ghstars}`BurntSushi/ripgrep` <badge-doc logo='Markdown' href='https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md'></badge-doc>, written resp. in C and rust. `rg` tends to be one of the quickest.
 
 **Ripgrep**
 
@@ -113,8 +128,10 @@ Link: https://learnbyexample.github.io/substitution-with-ripgrep/
 
 ## Command information
 
-- `which` was a csh cmd, locates a command, get aliases from `~/.cshrc` and assumes an interactive shell. Neither POSIX nor UNIX std.
-- `type` display was a bash addition in the mid 80's, command informations. **UNIX std**.
+- `which` was a csh cmd, locates a command, get aliases from `~/.cshrc` and
+  assumes an interactive shell. Neither POSIX nor UNIX std.
+- `type` display was a bash addition in the mid 80's, command informations.
+  **UNIX std**.
 - `whence` is a korn-shell addition of the mid 80's
 
     - `whence` as `command -v`
@@ -152,26 +169,26 @@ Genral check if one command is available:
 
 ## Workflows
 
-**desk** <badge-stars repo='jamesob/desk'></badge-stars> makes it easy
+{ghstars}`jamesob/desk` makes it easy
 to flip back and forth between different project contexts in your favorite
 shell. Change directory, activate a virtualenv or rvm, load in domain-specific
 aliases, environment variables, functions, arbitrary shell files, all in a
 single command.
 
-**direnv** <badge-stars repo='direnv/direnv'></badge-stars> augments existing
+{ghstars}`direnv/direnv` augments existing
 shells with a new feature that can load and unload environment variables
 depending on the current directory.
 
-**Modules** <badge-stars repo='cea-hpc/modules'></badge-stars>  is a tool that
+{ghstars}`cea-hpc/modules`  is a tool that
 simplify shell initialization and lets users easily modify their environment
 during the session with modulefiles.
 
-**zsh-autoenv** <badge-stars repo='Tarrasch/zsh-autoenv'></badge-stars>
-automatically sources (known/whitelisted) `.autoenv.zsh ` files, handles "enter"
-and leave" events, nesting, and stashing of variables (overwriting and
+{ghstars}`Tarrasch/zsh-autoenv` automatically sources (known/whitelisted)
+`.autoenv.zsh ` files, handles "enter" and leave" events, nesting, and stashing
+of variables (overwriting and
 restoring).
 
-**asdf** <badge-stars repo='asdf-vm/asdf'></badge-stars> manage multiple runtime
+{ghstars}`asdf-vm/asdf` manage multiple runtime
 versions with a single CLI tool, extendable via plugins.
 
 <!-- shadowenv - uses an s-expression format to define -->
@@ -179,8 +196,7 @@ versions with a single CLI tool, extendable via plugins.
 
 ## Others
 
-**nushell** <badge-stars repo='nushell/nushell'></badge-stars> is a new kind of
-shell, currently under heavy development.
+{ghstars}`nushell/nushell` is a new kind of shell, currently under heavy development.
 
 ### Style guide
 
@@ -188,5 +204,4 @@ shell, currently under heavy development.
 
 ### Linting
 
-**shellcheck** <badge-stars repo='koalaman/shellcheck'></badge-stars>, can be
-used by [ ALE ](https://github.com/) in vim.
+{ghstars}`koalaman/shellcheck` can be used by [ALE](https://github.com/) in vim.

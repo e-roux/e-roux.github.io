@@ -102,7 +102,7 @@ Text that is output directly to stdout or stderr (file descriptor 1 or 2), ie ec
 
 ## Common assertions
 
-bats-assert <badge-stars repo='bats-core/bats-assert'></badge-stars>  is a helper library
+{ghstars}`bats-core/bats-assert`  is a helper library
  providing common assertions:
 
 - `assert` / `refute`: a given expression evaluates to true or false.
@@ -114,7 +114,7 @@ bats-assert <badge-stars repo='bats-core/bats-assert'></badge-stars>  is a helpe
 
 ## Common functions
 
-bats-support <badge-stars repo='bats-core/bats-support'></badge-stars> is a
+{ghstars}`bats-core/bats-support` is a
 supporting library providing common functions to test helper libraries:
 
 - Error reporting

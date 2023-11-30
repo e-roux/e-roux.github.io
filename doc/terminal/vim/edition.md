@@ -236,4 +236,4 @@ Note the caveat above about macros which end in `<CR>` or `<NL>`.
 
 ## Linting
 
-- **ale** <badge-stars repo="dense-analysis/ale"></badge-stars>
+- {ghstars}`dense-analysis/ale`

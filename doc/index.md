@@ -26,8 +26,7 @@ Some text :ghstars:`numpy/numpy`
     sw_dvpt/git.md
     sw_dvpt/make.md
     sw_dvpt/patterns.md
-    sw_dvpt/testing.md
-    sw_dvpt/version_manager.md
+    sw_dvpt/testing/index.md
     
 
 .. toctree::
