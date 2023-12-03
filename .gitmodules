@@ -1,4 +1,0 @@
-[submodule "dot"]
-	path = external/dot
-	url = https://github.com/e-roux/dot
-	branch = develop

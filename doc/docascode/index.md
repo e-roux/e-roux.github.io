@@ -6,5 +6,5 @@
     :maxdepth: 2
 
     content_generation/index
-    content_management/index
+    sphinx/index
 ```

@@ -1,0 +1,17 @@
+.admonition {
+  &.attention,
+  &.caution,
+  &.danger,
+  &.error,
+  &.hint,
+  &.important,
+  &.note,
+  &.tip,
+  &.warning {
+    border-radius: unset;
+    box-shadow: unset;
+    > .admonition-title {
+      background-color: unset;
+    }
+  }
+}

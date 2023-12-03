@@ -1,26 +1,25 @@
 # Kerberos
 
-**Kerberos** <badge-stars repo='krb5/krb5'></badge-stars> (mirror) <badge-doc
-href='https://web.mit.edu/kerberos/krb5-latest/doc/'></badge-doc>  is a network
-authentication protocol. It provides a strong authentication for client/server
-applications by using secret-key cryptography.
+[Kerberos](wiki:Kerberos_(protocol)) is a network
+authentication protocol based on ticket. It provides a strong authentication
+for client/server applications by using secret-key cryptography.
 
-## Protocol
+From [Wikipedia](wiki:Kerberos_(protocol)) and [some python notes](http://python-notes.curiousefficiency.org/en/latest/python_kerberos.html):
 
-From [Wikipedia](https://en.wikipedia.org/wiki/Kerberos_(protocol)) and [some python notes](http://python-notes.curiousefficiency.org/en/latest/python_kerberos.html):
+## Protocol short description
 
-- After login on the client machine, the client transform the password into the key of a symmetric cipher
-The AS becomes the request and uses the password to decrypt the request: the user is **verified**.
+Verification
+: After login on the client machine, the client transform the password into the key of a symmetric cipher
+The **Authentication Server (AS)** becomes the request and uses the password to decrypt the request: the user is **verified**.
 
-- **User Client-based Login**
-
-	The client authenticates itself to the **Authentication Server (AS)**:
+User Client-based Login
+: The client authenticates itself to the AS.
 
 	- Client sends an unauthenticated request to the server
 	- Server sends back a 401 response with a `WWW-Authenticate: Negotiate` header with no authentication details
 
-- **Client Authentication**
-		which forwards the username to a **key distribution center (KDC)**. The KDC
+Client Authentication
+: forwards the username to a **key distribution center (KDC)**. The KDC
 issues a **ticket-granting ticket (TGT)**, which is time stamped and encrypts
 it using the **ticket-granting service's (TGS)** secret key and returns the
 encrypted result to the user's workstation.

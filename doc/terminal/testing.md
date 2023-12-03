@@ -1,4 +1,6 @@
-# Bats
+# Testing
+
+## Bats
 
  <badge-doc
  href='https://bats-core.readthedocs.io'></badge-doc> is a
@@ -11,9 +13,9 @@ text-based interface between testing modules in a test harness. It
 decouples the reporting of errors from the presentation of the reports.
 {{%/ admonition %}}
 
-## Installation
+### Installation
 
-### git based
+git based
 
 ```shell
 git submodule add https://github.com/bats-core/bats-core.git test/bats
@@ -21,8 +23,8 @@ git submodule add https://github.com/bats-core/bats-support.git test/test_helper
 git submodule add https://github.com/bats-core/bats-assert.git test/test_helper/bats-assert
 ```
 
-## Basic commands
-### `run`
+### Basic commands
+#### `run`
 
 `run` invokes its arguments as a command in a subshell, saves the exit status
 and output into global variables: `$status` and `$output`.
@@ -41,7 +43,7 @@ lines of output.
     }
     ```
 
-### `load`
+#### `load`
 
 `load` sources a Bash source file relative to the location of the current test
 file.
@@ -52,7 +54,7 @@ file.
     load test_helper.bash
     ```
 
-### `skip`
+#### `skip`
 
 Tests can be skipped by using the skip command at the point in a test you wish to skip.
 
@@ -69,7 +71,7 @@ Tests can be skipped by using the skip command at the point in a test you wish t
     }
     ```
 
-### `setup` and `teardown`
+#### `setup` and `teardown`
 Pre- and post-test hooks have two scopes:
 
 - `setup` and `teardown` functions run before and after each test case,
@@ -77,11 +79,11 @@ respectively.
 - `setup_file` and `teardown_file` run once before the first test’s `setup` and
 after the last test’s `teardown` for the containing file.
 
-### Print to terminal
+#### Print to terminal
 
 Text that is output directly to stdout or stderr (file descriptor 1 or 2), ie echo 'text' is considered part of the test function output and is printed only on test failures. To have text printed unconditionally from within a test function you need to redirect the output to file descriptor 3, eg `echo 'text' >&3`.
 
-## Environment variables
+### Environment variables
 
 
 |            Environment variable            | Description                                                                                                                                                                  |
@@ -100,7 +102,7 @@ Text that is output directly to stdout or stderr (file descriptor 1 or 2), ie ec
 |    `$BATS_FILE_TMPDIR`    | Temporary directory common to all tests of a test file. Could be used to create files required by multiple tests in the same test file.                                 |
 |    `$BATS_TEST_TMPDIR`    | Temporary directory unique for each test. Could be used to create files required only for specific tests.                                                               |
 
-## Common assertions
+### Common assertions
 
 {ghstars}`bats-core/bats-assert`  is a helper library
  providing common assertions:
@@ -112,7 +114,7 @@ Text that is output directly to stdout or stderr (file descriptor 1 or 2), ie ec
 - `assert_line` / `refute_line`: a specific line of output does (not) contain
   given content.
 
-## Common functions
+### Common functions
 
 {ghstars}`bats-core/bats-support` is a
 supporting library providing common functions to test helper libraries:

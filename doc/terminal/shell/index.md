@@ -1,18 +1,25 @@
 # Shell
 
-The Portable Operating System Interface [POSIX](wiki:POSIX) is a [family of standards](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/) for both system- and user-level API. It is specified by the [IEEE Computer Society](https://www.computer.org/). Among of these standards, shell and utilities.
+:::{toctree}
+:hidden:
+:maxdepth: 2
 
-```{eval-rst}
-.. toctree::
-    :hidden: 
-    :maxdepth: 2
+zsh/index
+:::
 
-    bats
-    tmux
-    version_manager
-    structured_data
-    utils
-    zsh/working-with-directories
+:::{note}
+[POSIX](wiki:POSIX) is a set of
+[standards](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition)
+defining a common interface and functionality for Unix-like operating systems,
+facilitating compatibility and portability between different platforms. 
+
+It is specified by the [IEEE Computer Society](https://www.computer.org/).
+:::
+
+```{toctree}
+:hidden: 
+:maxdepth: 2
+
 ```
 
 The Z-shell <span><badge-doc href="http://www.zsh.org/"> <badge-doc
@@ -40,7 +47,6 @@ Basically:
 
 :::{tab-item} Bash
 :sync: bash
-
 |                  | Interactive login | Interactive non-login | Script |
 |------------------|:-----------------:|:---------------------:|:------:|
 | /etc/profile     |         A         |                       |        |
@@ -56,7 +62,6 @@ Basically:
 :::{tab-item} zsh
 :selected:
 :sync: zsh
-
 |                               | Interactive login   | Interactive non-login   | Script   | Usage                                        |
 | ---------------               | :-----------------: | :---------------------: | :------: | :---:                                        |
 | /etc/profile                  | A                   |                         |          | Used for bash, sometime sourced              |
@@ -72,6 +77,14 @@ See [this post](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)
 for a complementary information.
 :::
 
+:::{tab-item} Nu
+:sync: nu
+
+NuShell uses [reedline](nushell:line_editor)
+
+...
+:::
+
 ::::
 
 Executes A, then B, then C, etc. The B1, B2, B3 means it executes only the
@@ -79,9 +92,7 @@ first of those files found.
 
 [Source](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
 
-## Configuration
-
-### Line edition and keybindings
+## Line edition
 
 Some edition features provided by modern shells:
 
@@ -145,6 +156,103 @@ in `inputrc` are not read, rely instead on an internal command
 All actions in the editor are performed by
 [widgets](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets).
 
+[Hooks](project:#zle-hooks) can be configured to trigger action on widget init and synchronisation, key changes
+
+**Links**
+
+- an [intro on widgets](https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/)
+
+::::
+
+::::{tab-item} Nu
+:sync: nu
+
+NuShell uses [reedline](nushell:line_editor)
+
+::::
+
+:::::
+
+### Prompt
+
+::::{tab-set}
+
+:::{tab-item} Bash
+:sync: bash
+
+...
+
+:::
+
+:::{tab-item} ZSH
+:selected:
+:sync: zsh
+
+Prompt sequences undergo a [special form of
+expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Some
+modules make it easier to personalize the prompt.
+
+The prompt system must be loaded (performed by extensions): `autoload -U
+promptinit; promptinit`.
+
+A theme can be applied with the `prompt` cmd.
+
+```bash
+❯ prompt <TAB>
+-- prompt theme --
+adam1    bigfade  elite    fire     pure     restore  zefram
+adam2    clint    elite2   off      pws      suse
+bart     default  fade     oliver   redhat   walters
+```
+
+Third party modules:
+
+- <b>spaceshift</b> <badge-stars repo='denysdovhan/spaceship-prompt'></badge-stars> is a pure zsh prompt providing VCS integration, language version, job indicator and more.
+- <b>starshift</b> <badge-stars repo='starship/starship'></badge-stars> is a port of spaceshift in rust.
+- <b>pure</b> <badge-stars repo='sindresorhus/pure'></badge-stars> is a lighweight prompt in pure zsh.
+:::
+
+:::{tab-item} nu
+:sync: nu
+
+```bash
+$env.STARSHIP_SHELL = "nu"
+
+def create_left_prompt [] {
+    starship prompt --profile=nu --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+}
+$env.PROMPT_COMMAND = {|| create_left_prompt }
+$env.PROMPT_COMMAND_RIGHT = {|| }
+
+# The prompt indicators are environmental variables that represent
+# the state of the prompt
+$env.PROMPT_INDICATOR = {|| "❯ " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| "❯ " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| "❮ " }
+$env.PROMPT_MULTILINE_INDICATOR = {|| "... " }
+```
+
+:::
+
+::::
+
+#### `starship`
+
+{ghstars}`starship/starship` is a rust
+
+### Completion
+
+### Keybindings
+
+::::{tab-set}
+
+:::{tab-item} Bash
+:sync:bash
+...
+:::
+
+:::{tab-item} ZSH
+:sync:zsh
 Bindings are affected to **keymaps**. The current used keymap is `main`.
 
 Initially, there are eight keymaps:
@@ -156,9 +264,8 @@ Initially, there are eight keymaps:
 - `visual` vi emulation - selection active
 - `isearch` incremental search mode
 - `command` read a command name
-- `.safe`  fallback keymap
+- `.safe`  fallback keymap, cannot be altered.
 
-These keymaps can be accessed l
 
 Keymap can be created and must be affected to `main` to be in use:
 ```bash
@@ -170,14 +277,25 @@ New bindings are affected to the current (`main`) **keymap**.
 
 - `bindkey -lL` shows  which  keymap is linked to `main'.
 - `zle -la` list all existing keymap names in the form of bindkey commands to create or link the keymaps.
+:::
 
-**Links**
+:::{tab-item} Nu
+:sync:nu
 
-- an [intro on widgets](https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/)
+https://www.nushell.sh/book/line_editor.html#keybindings
+
+:::
 
 ::::
 
-:::::
+### `LS_COLORS`
+
+**vivid** <badge-stars repo='sharkdp/vivid'></badge-stars> is a generator for
+the `LS_COLORS` environment variable
+
+``` bash
+export LS_COLORS="$(vivid generate molokai)"
+```
 
 ## Parameters and Variables
 
@@ -192,7 +310,7 @@ New bindings are affected to the current (`main`) **keymap**.
 | `$$` <S>                                            | Process ID of this shell. <br>All processes forked from the shells without executing a new program, such as subshells started by (...), substitute the same value.                                                                                                                                                                                                                                                  |
 | `$@` <S>                                            | Same as argv[@], even when argv is not set.                                                                                                                                                                                                                                                                                                                                                                         |
 | `$?` <S>                                            | The exit status returned by the last command.                                                                                                                                                                                                                                                                                                                                                                       |
-| `$0` <S>                                            | The name used to invoke the current shell, or as set by the -c command line option upon invocation. If the FUNCTION_ARGZERO option is set, $0 is set upon entry to a shell function to the name of the function, and upon entry to a sourced script to the name of the script, and reset to its previous value when the function or script returns.                                                                 |
+| `$0` <S>                                            | name used to invoke the current shell.
 
 ### Parameters set by the shell
 
@@ -256,123 +374,55 @@ New bindings are affected to the current (`main`) **keymap**.
 
 ::::
 
-## Prompt
-
-::::{tab-set}
-
-:::{tab-item} Bash
-:sync: bash
-
-...
-
-:::
-
-:::{tab-item} ZSH
-:selected:
-:sync: zsh
-
-Prompt sequences undergo a [special form of
-expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Some
-modules make it easier to personalize the prompt.
-
-The prompt system must be loaded (performed by extensions): `autoload -U
-promptinit; promptinit`.
-
-A theme can be applied with the `prompt` cmd.
-
-```bash
-❯ prompt <TAB>
--- prompt theme --
-adam1    bigfade  elite    fire     pure     restore  zefram
-adam2    clint    elite2   off      pws      suse
-bart     default  fade     oliver   redhat   walters
-```
-
-Third party modules:
-
-- <b>spaceshift</b> <badge-stars repo='denysdovhan/spaceship-prompt'></badge-stars> is a pure zsh prompt providing VCS integration, language version, job indicator and more.
-- <b>starshift</b> <badge-stars repo='starship/starship'></badge-stars> is a port of spaceshift in rust.
-- <b>pure</b> <badge-stars repo='sindresorhus/pure'></badge-stars> is a lighweight prompt in pure zsh.
-:::
-
-::::
-
-### `LS_COLORS`
-
-**vivid** <badge-stars repo='sharkdp/vivid'></badge-stars> is a generator for
-the `LS_COLORS` environment variable
-
-``` bash
-export LS_COLORS="$(vivid generate molokai)"
-```
-
-## Completion
-
-::::{tab-set}
-
-:::{tab-item} Bash
-:sync: bash
-
-...
-:::
-
-:::{tab-item} ZSH
-:selected:
-:sync: zsh
- <badge-doc
- href='http://zsh.sourceforge.net/Doc/Release/Completion-System.html'></badge-doc>
-
 ### Initialization
 
-```bash
+
+:::::{tab-set}
+
+::::{tab-item} Bash
+:sync: bash
+
+...
+::::
+
+::::{tab-item} ZSH
+:selected:
+:sync: zsh
+
+<badge-doc href='http://zsh.sourceforge.net/Doc/Release/Completion-System.html'></badge-doc>
+
+```{code-block} zsh
 # menu-select widget, part of the zsh/complist module
 # must be loaded before the call to compinit
 zmodload -i zsh/complist
 # Use modern completion system
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 ```
 
-### Cache reset
+:::{note}
+`zmodload` load dynamically linkable modules into the Zsh shell.
 
-```bash
-rm -f ~/.zcompdump% compinit 
-```
+`autoload` load Zsh functions on demand and thus help to keep the initial shell startup fast and efficient.
+:::
 
-#### Behind the hood
+::::
 
-Completion is provided by files named as the command name prefixed by an
-underscore: `_cmd` contains the completion logic for `cmd`. The location of this
-file must be in `$fpath`. Addition of a path can be done with `fpath+=<PATH TO
-COMPLETION FILE>`.
-
-When `compinit` is run, the first line of accessible files in `$fpath` is read.
-Those containing one of the tags [`#compdef` or
-`#autoload`](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Autoloaded-files)
-will be autoloaded.
-The declaration can be done for multiple commands, function aliases can be
-referenced too, e.g. `slogin` to `ssh` hereunder:
-
-```
-#compdef ssh slogin=ssh scp ssh-add ssh-agent ssh-copy-id ssh-keygen ssh-keyscan sftp
-```
-
-As an alternative, `compdef` [may be called
-directly](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Functions-4)
+:::::
 
 ### Configuration
 
- [🔗](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System-Configuration)
+::::{tab-set}
 
-### User defined completion
+:::{tab-item} bash
 
-Some [utility functions](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System-Configuration)
+...
 
-####
+:::
 
-Sources:
+:::{tab-item} zsh
 
-- zsh-completion how to: [🔗](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org)
+[🔗](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System-Configuration)
+
 :::
 
 ::::
@@ -381,13 +431,30 @@ Sources:
 
 ### Associative arrays
 
+:::::{tab-set}
+
+::::{tab-item} bash
+:sync: bash
 Declared with `declare -A <ARRAY>` or `typeset -A <ARRAY>`
 
 ```{warning}
 Associative arrays can not be nested
 ```
+::::
 
-## Parameters expansion
+::::{tab-item} zsh
+:sync: zsh
+...
+::::
+
+::::{tab-item} nu
+:sync: nu
+...
+::::
+
+:::::
+
+## Expansion
 
 This section is a cheatsheet on expansion, based on the manual and reads,
 especially this [blog
@@ -545,6 +612,7 @@ The precedence of the operators given above is (highest) ‘^’, ‘/’, ‘~�
   # keep it simple
   ❯ ls -l zsh_demo/**/*(.Lm-2mh-1om[1,3])
   ```
+
 ## Functions
 
 ### Hook functions <badge-doc href="http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions"></badge-doc>

@@ -23,7 +23,7 @@ TAILWINDCSS := build/doc/_static/css/tailwind.css
 .PHONY: $(TAILWINDCSS)
 
 $(TAILWINDCSS):
-	@npx tailwindcss -c $(MLIB_CONFIG_HOME)/tailwindcss/tailwind.config.js -o $@
+	@npx tailwindcss -c $(MLIB_CONFIG_HOME)/tailwindcss/tailwind.config.js -i $(DOC_SRC_HOME)/_static/css/$(@F) -o $@
 
 tailwindcss: $(TAILWINDCSS)
 

@@ -50,14 +50,14 @@ Enable to see commits between two history points that can be on different branch
 ::::{admonition} Examples 
 :class: dropdown m-0 p-0
 
-:::{code-block} bash
+```bash
 :class: m-0 p-0
 # Show what is beeing pulled (what's between HEAD and origin/master)
 git log --pretty=oneline -n 10 HEAD..origin/master
 
 # Show a branch history (master to parent's commit o new_branch)
 git log master..new_branch^
-:::
+```
 ::::
 
 ### Exclude reachable commit
@@ -252,6 +252,60 @@ Vim has a powerfull diff mode <badge-doc
 href='https://vimhelp.org/diff.txt.html' logo='vim'></badge-doc>.
 
 Jumping to diff, backwards/forewargs: `[c`, `]c`.
+
+## List files
+
+### Tree modifications
+
+```{eval-rst}
+.. role:: bash(code)
+   :language: bash
+
+.. role:: console(code)
+   :language: console
+
+List files ready to be committed
+    :bash:`git diff --cached --name-only`
+
+List modified files containing the string `spam`
+    :bash:`git ls-files --modified | xargs git grep -l "spam"`
+
+List deleted files
+    :bash:`git ls-files --deleted`
+
+List untracked files
+    :bash:`git ls-files --others --exclude-standard`
+
+List untracked directories
+    :bash:`git ls-files --others --exclude-standard --directory`
+
+List untracked files containing the string `spam`
+    :bash:`git ls-files --others --exclude-standard | xargs git grep -l "spam"`
+
+List deleted files between two commits
+    :bash:`git log --diff-filter=D --summary HEAD~10..HEAD~9 | grep delete | awk '{print $4}'`
+
+
+```
+
+## Search history
+
+```{eval-rst}
+.. role:: bash(code)
+   :language: bash
+
+.. role:: console(code)
+   :language: console
+
+List the last 10 commits on one line
+    :bash:`log -n 10 --date=short --decorate --pretty=oneline`
+
+List the last 10 commits on one line with custom format
+    :bash:`log -n 10 --date=short --decorate --pretty=format:%C(yellow)%h\ %ad%Cred%d\ %Creset%s%Cblue\ [%cn]`
+
+Search the first 20 commits whose comment contains string "spam", case insensitive
+    :bash:`git log -i --grep ^spam -n 20` 
+```
 
 ## History revision
 

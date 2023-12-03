@@ -1,5 +1,12 @@
 # Terminal
 
+```{toctree}
+:hidden:
+:maxdepth: 2
+
+tmux
+```
+
 ## Terminal capabilities
 
 (terminfo)=

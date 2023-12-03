@@ -1,21 +1,14 @@
-import os
-import re
 from datetime import datetime
 from os import environ
 from typing import TYPE_CHECKING
 
-from docutils.nodes import Element, Inline
-from sphinx.util.docutils import SphinxRole
-
 if TYPE_CHECKING:
-    from docutils.nodes import Node, system_message
     from sphinx.application import Sphinx
-    from sphinx.writers.html5 import HTML5Translator
 
 environ["SPHINX_AUTODOC_RELOAD_MODULES"] = "1"
 
 coverage_statistics_to_report = coverage_statistics_to_stdout = True
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "blog"]
 
 # Project informations
 author = "Emmanuel Roux"
@@ -37,6 +30,7 @@ extensions = [
     "sphinx_design",
     "myst_parser",
     "sphinx_tippy",
+    "sphinx_togglebutton",
     "manux",
 ]
 
@@ -74,6 +68,10 @@ extlinks = {
         "https://docutils.sourceforge.io/docs/ref/rst/" "directives.html#%s",
         "%s",
     ),
+    "sphext": (
+        "https://www.sphinx-doc.org/en/master/usage/extensions/%s.html",
+        "%s",
+    ),
 }
 
 # ··························································
@@ -91,14 +89,30 @@ intersphinx_mapping = {
 # ··························································
 # Extension: myst
 # ··························································
-myst_enable_extensions = ["colon_fence"]
+myst_enable_extensions = ["colon_fence", "deflist"]
 
 myst_url_schemes = {
     "http": None,
     "https": None,
     "wiki": "https://en.wikipedia.org/wiki/{{path}}#{{fragment}}",
+    "git": {
+        "url": "https://git-scm.com/docs/{{path}}#{{fragment}}",
+        "title": "Git: #{{fragment}}",
+    },
     "jinapi": {
         "url": "https://jinja.palletsprojects.com/en/3.1.x/api/#{{fragment}}",
+        "title": "API: #{{fragment}}",
+    },
+    "jintpl": {
+        "url": "https://jinja.palletsprojects.com/en/3.1.x/templates/#{{fragment}}",
+        "title": "API: #{{fragment}}",
+    },
+    "nushell": {
+        "url": "https://www.nushell.sh/book/{{path}}.html#{{fragment}}",
+        "title": "NuShell: #{{fragment}}",
+    },
+    "sphmarkapi": {
+        "url": "https://www.sphinx-doc.org/en/master/extdev/markupapi.html#{{fragment}}",
         "title": "API: #{{fragment}}",
     },
     "sphapi": {
@@ -116,6 +130,7 @@ tippy_rtd_urls = [
     "https://jinja.palletsprojects.com/en/3.1.x",
     "https://www.sphinx-doc.org/en/master/",
     "https://docs.readthedocs.io/en/stable/",
+    "https://sphinx-tippy.readthedocs.io/en/latest/",
 ]
 
 # ··························································
@@ -129,11 +144,15 @@ todo_include_todos = True
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # ··························································
 html_theme = "furo"
-html_theme_options = {"light_css_variables": {}}
+html_theme_options = {
+    "light_css_variables": {},
+}
 html_extra_path = []
 html_theme_path = ["_theme"]
 html_static_path = ["_static"]  # Site custom css and js
 html_css_files = [
+    "css/override.css",
+    "css/tailwind.css",
     "css/tippy.css",
 ]
 html_js_files = ["js/extra.js"]
@@ -148,50 +167,10 @@ linkcheck_timeout = 5
 # ··························································
 # Application interface
 # ··························································
-class GhStars(Inline, Element):
-    pass
-
-
-class _GHSTARs(SphinxRole):
-    gh_re = re.compile(r'\w+\/\w+')
-
-    def run(self) -> tuple[list[Node], list[system_message]]:
-        if self.gh_re.match(self.text):
-            node = GhStars(repo=self.text)
-            node.attributes['repo'] = self.text
-
-            return [node], []
-
-        return [], []
-
-        # msg = inliner.reporter.warning(
-        #     f"{text} did not pass github regex validation", line=lineno
-        # )
-        # return [
-        #     nodes.system_message(
-        #         msg.msg, level=msg.level, line=lineno, source=rawtext
-        #     )
-        # ], []
-
-
-def visit_ghstars_html(self: HTML5Translator, node: GhStars):
-    self.body.append(
-        f"<span class='font-bold'>{node.get('repo').split('/')[-1]} </span>"
-    )
-    elt = self.starttag(node, "gh-stars", repo=node.get('repo'))
-    self.body.append(elt)
-
-
-def depart_ghstars_html(self, _):
-    self.body.append('</gh-stars>')
 
 
 def setup_extension(app: Sphinx) -> None:
-    # app.connect()
     ...
-    # Does not work:
-    # app.add_node(GhStars, html=(visit_ghstars_html, depart_ghstars_html))
-    # app.add_role("ghstars", _GHSTARs())
 
 
 def setup(app):

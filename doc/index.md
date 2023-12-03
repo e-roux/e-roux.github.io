@@ -34,9 +34,13 @@ Some text :ghstars:`numpy/numpy`
     :maxdepth: 2
     :caption: Living in the terminal
 
+    terminal/index
     terminal/shell/index
     terminal/vim/index
-    terminal/index
+    terminal/version_manager
+    terminal/structured_data
+    terminal/utils
+    terminal/testing
 
 .. toctree::
     :hidden:

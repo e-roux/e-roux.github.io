@@ -1,4 +1,4 @@
-# Utils
+# Utilities
 
 ## GNU Stow
 
@@ -35,22 +35,22 @@ printing a similar output to `du` with additional bar chart.
 
 These utilities give the most visited directory for the shortest search term typed.
 
-- {ghstars}`gsamokovarov/jump` is written in go.
 - {ghstars}`wting/autojump` is written in python.
+- {ghstars}`gsamokovarov/jump` is written in go.
 - {ghstars}`ajeetdsouza/zoxide` is written in rust.
 - {ghstars}`agkozak/zsh-z` is a native zsh port of z.sh
 
-## Finding files
+# Finding files
 
 
-### fuzzy finder
+## fuzzy finder
 
-- {ghstars}`jhawthorn/fzy` is written in C, now seems 
+- {ghstars}`jhawthorn/fzy` is written in C
 - {ghstars}`junegunn/fzf` <badge-doc
   href="https://github.com/junegunn/fzf#table-of-contents"></badge-doc> is
   written in go
 
-#### FZF
+### FZF
 
 ::::{tab-set}
 
@@ -83,10 +83,7 @@ bindings](https://github.com/junegunn/fzf#key-bindings-for-command-line):
 
 ::::
 
-
-
-
-## Search file content 
+# Search file content 
 
 Search can be efficiently performed by {ghstars}`ggreer/the_silver_searcher` <badge-doc href='https://geoff.greer.fm/ag/'></badge-doc> and {ghstars}`BurntSushi/ripgrep` <badge-doc logo='Markdown' href='https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md'></badge-doc>, written resp. in C and rust. `rg` tends to be one of the quickest.
 
@@ -106,7 +103,7 @@ Search can be efficiently performed by {ghstars}`ggreer/the_silver_searcher` <ba
 
 - `--type <TYPE>` where `<TYPE>` is part of the registered types, can be displayed with `rg --list-types`
 
-### Search with substitution
+## Search with substitution
 
 In respect of [DOTADIW](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well), `rg` does [not support](https://github.com/BurntSushi/ripgrep/issues/74) natively search and replacement. This can be achieved with a pipe.
 
@@ -118,7 +115,7 @@ In respect of [DOTADIW](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thi
 
 Link: https://learnbyexample.github.io/substitution-with-ripgrep/
 
-### Manual filtering: globs
+## Manual filtering: globs
 
 !!! Example  "Exclude path 'pack' from search"
 

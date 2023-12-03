@@ -31,8 +31,6 @@ and the script is installed with:
 pre-commit install
 ```
 
-Some [hooks]() are available for various purpose:
-
 ### General
 
 Some ["built-in" hooks](https://github.com/pre-commit/pre-commit-hooks#hooks-available) are provided with pre-commit.

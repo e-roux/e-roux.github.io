@@ -1,0 +1,34 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+/* BUG: & necessary for inline selector */
+/* corrected in Safari 17.2  */
+.directive {
+  @apply border-solid border-0 border-l-4 border-l-gray-300 pl-3;
+  & dl {
+    @apply grid grid-cols-3 gap-0 text-sm;
+    & dt {
+      @apply font-bold font-mono;
+      & span.colon {
+        @apply invisible;
+      }
+    }
+    & *.field-even,
+    & *.field-odd {
+      @apply my-0 py-1 pl-1;
+    }
+    & *.field-even {
+      @apply bg-transparent;
+    }
+    & *.field-odd {
+      @apply bg-slate-100;
+    }
+    & dd {
+      @apply col-span-2 pl-1 ml-0;
+      & p:last-child {
+        @apply mb-0;
+      }
+    }
+  }
+}

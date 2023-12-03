@@ -87,16 +87,16 @@ Basic commands to survive on PostgreSQL.
 
 
 ```sql
- -- Input from stdin
- echo """1 | Paul  |  32 | California|  20000
-  2 | Allen |  25 | Texas     |  15000
-  3 | Teddy |  23 | Norway    |  20000
-  4 | Mark  |  25 | Rich-Mond |  65000
-  5 | David |  27 | Texas     |  85000
-  6 | Kim   |  22 | South-Hall|  45000
-  7 | James |  24 | Houston   |  10000""" | \
-  psql -U postgres -h localhost -p 5432 -d mydb \
-  -c "COPY mytable FROM STDIN DELIMITER '|'"
+-- Input from stdin
+echo """1 | Paul  |  32 | California|  20000
+2 | Allen |  25 | Texas     |  15000
+3 | Teddy |  23 | Norway    |  20000
+4 | Mark  |  25 | Rich-Mond |  65000
+5 | David |  27 | Texas     |  85000
+6 | Kim   |  22 | South-Hall|  45000
+7 | James |  24 | Houston   |  10000""" | \
+psql -U postgres -h localhost -p 5432 -d mydb \
+-c "COPY mytable FROM STDIN DELIMITER '|'"
 
 -- Or from a file
 CAT mydata.csv | psql -U postgres -c "COPY mytable FROM STDIN"
