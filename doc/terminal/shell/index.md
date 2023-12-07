@@ -44,6 +44,7 @@ Basically:
   both connected to terminals.
 
 ::::{tab-set} 
+:name: shell_initialization
 
 :::{tab-item} Bash
 :sync: bash
@@ -60,8 +61,9 @@ Basically:
 :::
 
 :::{tab-item} zsh
-:selected:
 :sync: zsh
+:selected:
+
 |                               | Interactive login   | Interactive non-login   | Script   | Usage                                        |
 | ---------------               | :-----------------: | :---------------------: | :------: | :---:                                        |
 | /etc/profile                  | A                   |                         |          | Used for bash, sometime sourced              |
@@ -82,7 +84,7 @@ for a complementary information.
 
 NuShell uses [reedline](nushell:line_editor)
 
-...
+ppp
 :::
 
 ::::
@@ -103,6 +105,7 @@ Some edition features provided by modern shells:
 - Macro expansion
 
 :::::{tab-set}
+:name: shell_line_edition
 
 ::::{tab-item} Bash: readline
 :sync: bash
@@ -145,8 +148,8 @@ bind -f ~/.inputrc
 ::::
 
 ::::{tab-item} ZSH: ZLE
-:selected:
 :sync: zsh
+:selected:
 
 Zsh do not rely on readline, instead uses an own development [Zsh Line Editor
 (ZLE)](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html). Keybindings
@@ -176,17 +179,18 @@ NuShell uses [reedline](nushell:line_editor)
 ### Prompt
 
 ::::{tab-set}
+:name: shell_prompt
 
 :::{tab-item} Bash
 :sync: bash
 
-...
+ppp
 
 :::
 
 :::{tab-item} ZSH
-:selected:
 :sync: zsh
+:selected:
 
 Prompt sequences undergo a [special form of
 expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Some
@@ -247,12 +251,15 @@ $env.PROMPT_MULTILINE_INDICATOR = {|| "... " }
 ::::{tab-set}
 
 :::{tab-item} Bash
-:sync:bash
-...
+:sync: bash
+
+Content
 :::
 
 :::{tab-item} ZSH
-:sync:zsh
+:sync: zsh
+:selected:
+
 Bindings are affected to **keymaps**. The current used keymap is `main`.
 
 Initially, there are eight keymaps:
@@ -280,7 +287,7 @@ New bindings are affected to the current (`main`) **keymap**.
 :::
 
 :::{tab-item} Nu
-:sync:nu
+:sync: nu
 
 https://www.nushell.sh/book/line_editor.html#keybindings
 
@@ -319,12 +326,12 @@ export LS_COLORS="$(vivid generate molokai)"
 :::{tab-item} Bash
 :sync: bash
 
-...
+ppp
 :::
 
 :::{tab-item} ZSH
-:selected:
 :sync: zsh
+:selected:
 
 | Parameter                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -382,12 +389,12 @@ export LS_COLORS="$(vivid generate molokai)"
 ::::{tab-item} Bash
 :sync: bash
 
-...
+ppp
 ::::
 
 ::::{tab-item} ZSH
-:selected:
 :sync: zsh
+:selected:
 
 <badge-doc href='http://zsh.sourceforge.net/Doc/Release/Completion-System.html'></badge-doc>
 
@@ -413,13 +420,16 @@ autoload -U compinit && compinit
 
 ::::{tab-set}
 
-:::{tab-item} bash
+:::{tab-item} Bash
+:sync: bash
 
-...
+ppp
 
 :::
 
-:::{tab-item} zsh
+:::{tab-item} ZSH
+:sync: zsh
+:selected:
 
 [🔗](http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System-Configuration)
 
@@ -429,11 +439,52 @@ autoload -U compinit && compinit
 
 ## Data structures
 
+### Arrays
+
+:::::{tab-set}
+
+::::{tab-item} Bash
+:sync: bash
+
+```bash
+typeset -a array
+array=(a b c d)
+
+for ((i = 0; i < ${#array[@]}; i++)); do echo ${array[$i]}; done
+
+for i in "${array[@]}"; do echo $i ;done
+```
+
+:::{caution}
+Iteration begin at 0
+
+:::
+::::
+
+::::{tab-item} ZSH
+:sync: zsh
+:selected:
+
+```zsh
+typeset -a array
+array=(a b c d)
+
+for ((i = 1; i <= $#array; i++)); do print -r -- $array[i]; done
+# Or more synthetic
+for ((i = 1; i <= $#array; i++)) print -r -- $array[i]
+# Bash is supported
+for ((i = 1; i <= ${#array[@]}; i++)); do echo $array[$i]; done
+for i in "${array[@]}"; do echo $i ;done
+```
+::::
+
+:::::
+
 ### Associative arrays
 
 :::::{tab-set}
 
-::::{tab-item} bash
+::::{tab-item} Bash
 :sync: bash
 Declared with `declare -A <ARRAY>` or `typeset -A <ARRAY>`
 
@@ -442,14 +493,16 @@ Associative arrays can not be nested
 ```
 ::::
 
-::::{tab-item} zsh
+::::{tab-item} ZSH
 :sync: zsh
-...
+:selected:
+
+ppp
 ::::
 
 ::::{tab-item} nu
 :sync: nu
-...
+ppp
 ::::
 
 :::::
@@ -662,12 +715,12 @@ normally.
 :::{tab-item} Bash
 :sync: bash
 
-...
+ppp
 :::
 
 :::{tab-item} ZSH
-:selected:
 :sync: zsh
+:selected:
 
 - <b>zsh-z</b> <badge-stars repo='agkozak/zsh-z'></badge-stars> Jump quickly to
 directories that you have visited "frecently."
@@ -685,12 +738,13 @@ for zsh
 ::::{tab-item} Bash
 :sync: bash
 
-...
+ppp
 ::::
 
 ::::{tab-item} ZSH
-:selected:
 :sync: zsh
+:selected:
+
 [Modules](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html) are loaded
 with `zmodload`
 
