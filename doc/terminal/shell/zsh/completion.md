@@ -63,3 +63,30 @@ Some [utility functions](http://zsh.sourceforge.net/Doc/Release/Completion-Syste
 Sources:
 
 - zsh-completion how to: [🔗](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org)
+
+## zstyle
+
+
+```{svgbob}
+:align: center
+
+                                      ┌──► command to apply the style to
+                                      │
+                                      │          ┌──► cmd nth option or argument
+                                      │          │
+                                      │          │        ┌─► specific tag
+                                      │          │        │
+:completion:<function>:<completer>:<command>:<argument>:<tag>
+     │         │          │
+     │         │          └─► completer identification
+     │         │
+     │         └────────► completion of an external function or widget.
+     │         
+     └─────────────► act as a namespace
+
+
+
+```
+
+ https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Standard-Tags
+ https://zsh.sourceforge.io/Doc/Release/Style-and-Tag-Index.html

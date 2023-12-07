@@ -30,6 +30,7 @@ extensions = [
     "sphinx_design",
     "myst_parser",
     "sphinx_tippy",
+    "sphinxcontrib.svgbob",
     "sphinx_togglebutton",
     "manux",
 ]
@@ -119,6 +120,10 @@ myst_url_schemes = {
         "url": "https://www.sphinx-doc.org/en/master/extdev/appapi.html#{{fragment}}",
         "title": "API: #{{fragment}}",
     },
+    "pytapi": {
+        "url": "https://docs.pytest.org/en/stable/reference/reference.html#{{fragment}}",
+        "title": "Pytest API: {{path}}",
+    },
 }
 
 # ··························································
@@ -131,6 +136,7 @@ tippy_rtd_urls = [
     "https://www.sphinx-doc.org/en/master/",
     "https://docs.readthedocs.io/en/stable/",
     "https://sphinx-tippy.readthedocs.io/en/latest/",
+    "https://docs.pytest.org/en/stable/",
 ]
 
 # ··························································
