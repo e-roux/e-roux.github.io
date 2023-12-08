@@ -22,6 +22,7 @@ doc = [
   "sphinx_design",
   "sphinx_tippy",
   "sphinx-togglebutton",
+  "sphinxcontrib-svgbob>=0.2.1",
 ]
 test = ["coverage[toml]>=7", "pytest>=7"]
 fmt = ["black"]

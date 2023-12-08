@@ -49,6 +49,7 @@ Some text :ghstars:`numpy/numpy`
 
     data_engineering/scheduling/index
     data_engineering/db/index
+    data_engineering/data_observability
 
 .. toctree::
     :hidden:
