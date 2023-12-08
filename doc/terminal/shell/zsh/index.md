@@ -5,5 +5,4 @@
 :maxdepth: 2
 
 zle
-completion
 :::

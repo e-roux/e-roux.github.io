@@ -11,7 +11,6 @@ Vim
    edition
    motion
    autocmds
-   languages
    panes.md
    plugins
    script

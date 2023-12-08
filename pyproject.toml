@@ -9,7 +9,9 @@ authors = [
   { email = "15956441+fesaille@users.noreply.github.com" },
 ]
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    "sphinx-autobuild @ git+https://github.com/e-roux/sphinx-autobuild@e6c59cb3652578c6d4d62b8ddb7e01d283e7d0ac",
+]
 description = ""
 
 [project.optional-dependencies]
@@ -17,7 +19,6 @@ doc = [
   "sphinx",
   "sphinx-pyproject",
   "furo",
-  "sphinx-autobuild",
   "myst-parser",
   "sphinx_design",
   "sphinx_tippy",
@@ -27,6 +28,11 @@ doc = [
 test = ["coverage[toml]>=7", "pytest>=7"]
 fmt = ["black"]
 lint = ["ruff", "yamllint"]
+
+[tool]
+rye = { dev-dependencies = [
+    "sphinx-autobuild>=2024.2.4",
+] }
 
 [tool.black]
 line-length = 80

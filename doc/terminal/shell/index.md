@@ -5,6 +5,7 @@
 :maxdepth: 2
 
 zsh/index
+completion
 :::
 
 :::{note}
@@ -668,6 +669,11 @@ The precedence of the operators given above is (highest) ‘^’, ‘/’, ‘~�
 
 ## Functions
 
+Functions can be defined l
+and undefined with `unfunction <function_name>`
+
+### Special functions
+
 ### Hook functions <badge-doc href="http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions"></badge-doc>
 
 It is possible to define an array that has the same name as the function with
@@ -675,17 +681,19 @@ It is possible to define an array that has the same name as the function with
 function to execute; it is executed in the same context and with the same
 arguments as the basic function.
 
-!!! example
+````{hint}
+:class: dropdown m-0 
 
-    ```bash
-    ❯ echo $precmd_functions
-    _zsh_autosuggest_start _zsh_highlight_main__precmd_hook _zshz_precmd prompt_pure_precmd
+```console
+❯ echo $precmd_functions
+_zsh_autosuggest_start _zsh_highlight_main__precmd_hook _zshz_precmd prompt_pure_precmd
 
-    # Show the definition of a function:
-    # it is possible to use `which` or nearly identical to bash `type -f`
-    ❯ whence -f _zsh_autosuggest_start
-    ```
+# Show the definition of a function:
+# it is possible to use `which` or nearly identical to bash `type -f`
+❯ whence -f _zsh_autosuggest_start
+```
 
+````
 
 - **chpwd**: executed whenever the current working directory is changed.
 

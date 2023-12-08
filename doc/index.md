@@ -54,9 +54,17 @@ Some text :ghstars:`numpy/numpy`
 .. toctree::
     :hidden:
     :maxdepth: 2
+    :caption: ML
+
+    ml/index
+
+.. toctree::
+    :hidden:
+    :maxdepth: 2
     :caption: Languages
 
-    python/index
+    lang/python/index
+    lang/lua/index
 
 
 .. toctree::

@@ -124,6 +124,10 @@ myst_url_schemes = {
         "url": "https://docs.pytest.org/en/stable/reference/reference.html#{{fragment}}",
         "title": "Pytest API: {{path}}",
     },
+    "zshmod": {
+        "url": "https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002f{{fragment}}-Module",
+        "title": "ZSH module : {{fragment}}",
+    },
 }
 
 # ··························································

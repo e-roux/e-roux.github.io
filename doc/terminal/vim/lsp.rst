@@ -1,9 +1,21 @@
 Language Server Protocol
 ========================
 
-
 Short intro
 -----------
+
+[LSP](https://langserver.org/)
+
+.. admonition:: Language Server Protocol
+   :class: dropdown
+
+   Source: `Microsoft on Github <https://microsoft.github.io/language-server-protocol/overviews/lsp/overview/>`_
+
+   A language server runs as a separate process and development tools
+   communicate with the server using the language protocol over JSON-RPC
+
+   Example of server-client communication:
+   ![How it works](https://microsoft.github.io/language-server-protocol/overviews/lsp/img/language-server-sequence.png)
 
 The **Language Server Protocol (LSP)** is a standardized communication protocol
 using `JSON <wiki:JSON-RPC>`_, a lightweight remote procedure call (RPC) protocol. The
@@ -94,9 +106,7 @@ Other server capabilities can be added on *attach*:
 Server capabilities 
 ------------------- 
 
-.. code-block:: lua
-
-    :lua =vim.lsp.get_active_clients()[1].server_capabilities
+A LSP server provides information on its *capabilities*, i.e. the features it can handles. In vim, this is typically retrieved for the first client with :code:`vim.lsp.get_active_clients()[1].server_capabilities`
 
 Server capabilites commonly used:
 
@@ -105,3 +115,72 @@ Server capabilites commonly used:
 - :code:`vim.lsp.buf.references()`
 - :code:`vim.lsp.buf.implementation()`
 - :code:`vim.lsp.buf.code_action()`
+
+
+Implementation
+--------------
+
+Coc.vim
+.......
+
+:ghstars:`neoclide/coc.nvim` <badge-doc href="https://github.com/neoclide/coc.nvim/blob/master/doc/coc.txt" message="latest" logo="github"> </badge-doc> has full support for [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) completion
+
+LanguageClient-neovim
+.....................
+
+:ghstars:`autozimu/LanguageClient-neovim` <badge-doc href="https://github.com/autozimu/LanguageClient-neovim/blob/next/doc/LanguageClient.txt" logo="github" message="latest"></badge-doc>
+
+Language specific
+-----------------
+
+go
+..
+
+:ghstars:`fatih/vim-go` <badge-doc href='https://github.com/pangloss/vim-javascript' message=''>
+
+html
+....
+
+```
+:set omnifunc=htmlcomplete#CompleteTags
+```
+
+Javascript
+..........
+
+- <b>vim-javascript</b> :ghstars:`pangloss/vim-javascript` <badge-doc href='https://github.com/pangloss/vim-javascript#vim-javascript' message=''> </badge-doc>, comment stuff out
+- <b>vim-polyglot</b> <badge-stars repo='sheerun/vim-polyglot'></badge-stars> <badge-doc href='https://github.com/sheerun/vim-polyglot/blob/master/README.md'></badge-doc>, collection of language packs for Vim.
+
+Links:
+
+- [A guide to setting up Vim for JavaScript development](https://freshman.tech/vim-javascript/)
+- [JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/)
+
+Mardown md
+..........
+
+:ghstars:`plasticboy/vim-markdown` <badge-doc href="https://github.com/plasticboy/vim-markdown#vim-markdown"></badge-doc>, Markdown Vim Mode.
+
+Python
+......
+
+:ghstars:`palantir/python-language-server`
+
+- https://docs.python-guide.org/dev/env/
+- https://www.vimfromscratch.com/articles/vim-for-python/
+- https://github.com/neoclide/coc-python
+
+:ghstars:`pappasam/jedi-language-server`
+
+Vim
+...
+
+.. code-block:: shell
+
+   yarn global add vim-language-server
+
+
+YAML
+....
+
+:ghstars:`redhat-developer/yaml-language-server`
