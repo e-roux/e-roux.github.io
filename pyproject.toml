@@ -10,14 +10,8 @@ authors = [
 ]
 dynamic = ["version"]
 dependencies = [
-    "sphinx-autobuild @ git+https://github.com/e-roux/sphinx-autobuild@e6c59cb3652578c6d4d62b8ddb7e01d283e7d0ac",
-]
-description = ""
-
-[project.optional-dependencies]
-doc = [
+  "sphinx-autobuild @ git+https://github.com/e-roux/sphinx-autobuild@e6c59cb3652578c6d4d62b8ddb7e01d283e7d0ac",
   "sphinx",
-  "sphinx-pyproject",
   "furo",
   "myst-parser",
   "sphinx_design",
@@ -25,20 +19,15 @@ doc = [
   "sphinx-togglebutton",
   "sphinxcontrib-svgbob>=0.2.1",
 ]
+description = ""
+classifiers = [
+  "Programming Language :: Python :: 3.10",
+]
+requires-python = ">= 3.10"
+
+[project.optional-dependencies]
 test = ["coverage[toml]>=7", "pytest>=7"]
-fmt = ["black"]
 lint = ["ruff", "yamllint"]
-
-[tool]
-rye = { dev-dependencies = [
-    "sphinx-autobuild>=2024.2.4",
-] }
-
-[tool.black]
-line-length = 80
-include = '\.py$'
-target-version = ["py39", "py310", "py311"]
-skip-string-normalization = true
 
 [tool.coverage.run]
 command_line = "-m pytest --junitxml=report.xml"
@@ -68,15 +57,3 @@ testpaths = [
   "/Users/manu/development/github.com/e-roux/e-roux.github.io/wt/sphinx/test",
 ]
 cache_dir = ".cache/pytest"
-
-[tool.sphinx-pyproject]
-templates_path = ["_templates"]
-html_theme = "furo"
-copyright = ""
-language = "en"
-extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.autodoc']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-html_static_path = ['_static']
-
-[tool.sphinx-pyproject.intersphinx_mapping]
-python = ['https://docs.python.org/3', '']
