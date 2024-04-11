@@ -1,8 +1,8 @@
 # Data Engineering
 
-```{toc-tree}
+:::{toctree}
 :hidden:
-:max-depth: 2
+:maxdepth: 2
 
 data_observability
-```
+:::

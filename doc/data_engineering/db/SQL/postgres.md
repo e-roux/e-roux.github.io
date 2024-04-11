@@ -86,7 +86,7 @@ Basic commands to survive on PostgreSQL.
 ## Load data from cli/files
 
 
-```sql
+:::{sql}
 -- Input from stdin
 echo """1 | Paul  |  32 | California|  20000
 2 | Allen |  25 | Texas     |  15000
@@ -100,8 +100,7 @@ psql -U postgres -h localhost -p 5432 -d mydb \
 
 -- Or from a file
 CAT mydata.csv | psql -U postgres -c "COPY mytable FROM STDIN"
-```
-
+:::
 
 ## Common Table Expression (CTE)
 

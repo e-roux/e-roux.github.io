@@ -40,7 +40,6 @@ Some text :ghstars:`numpy/numpy`
     terminal/version_manager
     terminal/structured_data
     terminal/utils
-    terminal/testing
 
 .. toctree::
     :hidden:

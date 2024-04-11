@@ -9,6 +9,7 @@ Sphinx
     rst
     myst
     extensions
+    referencing
     extending/index
 
 .. grid::
@@ -58,6 +59,11 @@ Sphinx
 
          Sublime&Sphinx
 
+.. inline-buttons::
+
+   `link <https://python.org/>`_
+   `link2 <https://python.org/>`_
+
 Configuration
 -------------
 
@@ -88,7 +94,7 @@ Cross-referencing in Sphinx comprises references (pointers or links
 within documentation) and targets (destinations to which references
 point), creating an interconnected documentation structure.
 
-`rtd cross referencing`_.
+`rtd cross referencing`_
 
 
 .. tab-set::

@@ -23,7 +23,7 @@ extlinks
 intersphinx
   link to other projects 
 
-   `rtd intersphinx`_.
+   .. `rtd intersphinx`_.
 
 tippy
     `enables <https://sphinx-tippy.readthedocs.io/en/latest/>`_ tooltip using `tippy.js <https://atomiks.github.io/tippyjs>`_.

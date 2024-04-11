@@ -17,6 +17,7 @@ dependencies = [
   "sphinx_design",
   "sphinx_tippy",
   "sphinx-togglebutton",
+    "sphinxcontrib-mermaid",
   "sphinxcontrib-svgbob>=0.2.1",
 ]
 description = ""

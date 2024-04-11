@@ -1,12 +1,13 @@
 # GIT
 
+{ghstars}`git/git` is a distributed version control system.
+
 READ: https://www.atlassian.com/git/tutorials/git-log
+[So You Think You Know Git - FOSDEM 2024](https://www.youtube.com/watch?v=aolI_Rz0ZqY)
 
 ## Configuration
 
-The configuration is made out of [four files](https://git-scm.com/docs/git-config#FILES):
-
-[FILES](git:git-config#FILES)
+The configuration is made out of [four files](git:git-config#FILES):
 
 - `$(prefix)/etc/gitconfig`
 - `$XDG_CONFIG_HOME/git/config`
@@ -22,6 +23,57 @@ git config --global credential.helper 'cache --timeout=300'
 # To explicitly exits the daemon
 git credential-cache exit
 ```
+### Conditional includes
+
+Configurations can be conditionaly included with the [`includeIf`](git:git-config#_conditional_includes) directive. Conditions can be based on the project directory, the git version or the OS. 
+
+```ini
+[IncludeIf "gitdir:~/work/"]
+    path = ~/work/gitconfig
+[includeIf "gitdir:~/work/" and "gitversion:2.20.0"]
+    path = ~/work/gitconfig-v2.20
+```
+
+
+## Commands : Porcelan and Plumbing
+
+145 commandas are available in git, they are traditionally divided into [two categories](git:https:Git-Internals-Plumbing-and-Porcelain): *porcelain* and *plumbing*.
+
+PORCELAIN (82)
+    44 main commands (add, commit, push, pull, ...)
+    11 manipulators (config, reflog, replace, ...)
+    17 interrogators (blame, fsck, rerere, ...)
+    10 interactors (send-email, p4, svn, ...)
+
+PLUMBING (63)
+    19 manipulators (apply, commit-tree, update-ref, ...)
+    21 interrogators (cat-file, for-each-ref, ...)
+    5 syncing (fetch-pack, send-pack, ...)
+    18 internal (check-attr, sh-il8n, ...)
+
+## Branches
+
+### Create branches
+
+Branches can be explicitly created with:
+
+- `git branch <branch>` 
+
+Implicit creation is done with:
+- `git checkout -b <branch>`: creates the branch and checkout.
+- `git switch -c <branch>`: Creates the branch and switch.
+
+### Delete branches
+
+Local branches can be deleted `git branch -d <branch>` or `git branch -D
+<branch>` for a forced deletion. 
+Remote branches can be deleted with `git push origin --delete <branch>`.
+
+On Gitlab, an [API](https://docs.gitlab.com/ee/api/branches.html) is available to manage branches.
+
+- branch protection can be unset with the `glab` command: 
+    `glab api -X DELETE "/projects/:id/protected_branches/:name"`
+
 
 ## Revision selection
 
@@ -603,6 +655,7 @@ git checkout -b mybranch
 ```
 
 `git remote` manage the set of repositories ("remotes") whose branches you track.
+
 ```shell
 git remote -v
 # If upstream is not configured, add the upstream route

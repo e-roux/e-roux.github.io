@@ -45,7 +45,6 @@ Basically:
   both connected to terminals.
 
 ::::{tab-set} 
-:name: shell_initialization
 
 :::{tab-item} Bash
 :sync: bash
@@ -106,7 +105,6 @@ Some edition features provided by modern shells:
 - Macro expansion
 
 :::::{tab-set}
-:name: shell_line_edition
 
 ::::{tab-item} Bash: readline
 :sync: bash
@@ -180,7 +178,6 @@ NuShell uses [reedline](nushell:line_editor)
 ### Prompt
 
 ::::{tab-set}
-:name: shell_prompt
 
 :::{tab-item} Bash
 :sync: bash
@@ -416,6 +413,96 @@ autoload -U compinit && compinit
 ::::
 
 :::::
+
+```{eval-rst}
+Zsh `autoload` Command
+======================
+
+The `autoload` command in Zsh is used to load functions into memory on demand. It allows you to control various options to customize the behavior of autoloaded functions.
+
+Command Syntax
+--------------
+
+.. code-block:: zsh
+
+   autoload [ {+|-}RTUXdkmrtWz ] [ -w ] [ name ... ]
+
+Command Options
+---------------
+
+- `+RTUXdkmrtWz`: Enable specific autoload options.
+- `-RTUXdkmrtWz`: Disable specific autoload options.
+- `-w`: Mark functions to be autoloaded without executing them.
+
+Options:
+
+- `R`: Restrict access to autoloaded functions.
+- `T`: Track access times.
+- `U`: Enable monitoring for unloading.
+- `X`: Enable execution tracing.
+- `d`: Print debugging information.
+- `k`: Keep functions in memory after execution.
+- `m`: Preserve the modification time of the autoloaded file.
+- `r`: Force reloading of the autoloaded file.
+- `t`: Generate a trap when the function is executed.
+- `W`: Enable warnings for deprecated features.
+- `z`: Compress the functions when stored in memory.
+
+Usage
+-----
+
+1. Basic usage to autoload one or more functions:
+
+   .. code-block:: zsh
+
+      autoload function_name1 function_name2
+
+2. Autoloading functions with specific options:
+
+   .. code-block:: zsh
+
+      autoload +XRT function_name
+
+3. Autoloading functions and marking them without executing:
+
+   .. code-block:: zsh
+
+      autoload -w function_name
+
+Examples
+--------
+
+1. Autoload a function named `my_function`:
+
+   .. code-block:: zsh
+
+      autoload my_function
+
+2. Autoload a function with specific options:
+
+   .. code-block:: zsh
+
+      autoload +RT my_function
+
+3. Autoload multiple functions:
+
+   .. code-block:: zsh
+
+      autoload function1 function2 function3
+
+Additional Notes
+----------------
+
+- Use the `+` sign to enable options and the `-` sign to disable options.
+- The `autoload` command is often used in Zsh configuration files to load functions dynamically when needed.
+
+See Also
+--------
+
+- Zsh Manual: `man zshbuiltins` for more details on the `autoload` command.
+
+
+```
 
 ### Configuration
 
@@ -669,19 +756,22 @@ The precedence of the operators given above is (highest) ‘^’, ‘/’, ‘~�
 
 ## Functions
 
-Functions can be defined l
-and undefined with `unfunction <function_name>`
+Functions are usualy sourced from files using the buitlin `source` cmd. In `zsh`, a special mechanism `autoload` is provided to lazy load the function. This brings better starting times.
+
+Functions can be defined with the keyword `function`. They can be undefined (removed) with the `unset -f` command. In zsh, special syntax can be used: `typeset -uf` or `unfunctions`.
 
 ### Special functions
 
-### Hook functions <badge-doc href="http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions"></badge-doc>
+### Hook functions 
+
+<badge-doc href="http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions"></badge-doc>
 
 It is possible to define an array that has the same name as the function with
 `_functions` appended. Any element in such an array is taken as the name of a
 function to execute; it is executed in the same context and with the same
 arguments as the basic function.
 
-````{hint}
+::::{hint}
 :class: dropdown m-0 
 
 ```console
@@ -693,7 +783,7 @@ _zsh_autosuggest_start _zsh_highlight_main__precmd_hook _zshz_precmd prompt_pure
 ❯ whence -f _zsh_autosuggest_start
 ```
 
-````
+::::
 
 - **chpwd**: executed whenever the current working directory is changed.
 
@@ -723,22 +813,19 @@ normally.
 :::{tab-item} Bash
 :sync: bash
 
-ppp
+...
 :::
 
 :::{tab-item} ZSH
 :sync: zsh
 :selected:
 
-- <b>zsh-z</b> <badge-stars repo='agkozak/zsh-z'></badge-stars> Jump quickly to
-directories that you have visited "frecently."
-- <b>zsh-autosuggestions</b> <badge-stars
-repo='zsh-users/zsh-autosuggestions'></badge-stars> Fish-like autosuggestions
-for zsh
+- {ghstars}`agkozak/zsh-z` to jump quickly to
+directories that have been visited "frecently";
+- {ghstars}`zsh-users/zsh-autosuggestions` provides Fish-like autosuggestions for zsh.
 :::
 
 ::::
-
 ## Modules
 
 :::::{tab-set}
@@ -753,85 +840,8 @@ ppp
 :sync: zsh
 :selected:
 
-[Modules](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html) are loaded
-with `zmodload`
-
-:::{note} ZSH modules
-
-ZSH modules are loaded with the prefix `zsh/`, e.g. for `net/tcl`
-
-```bash
-❯ zmodload zsh/net/tcp
+```{include} zsh/intro_modules.md
 ```
-:::
 
-| Modules          | Description                                                                           |
-|------------------|---------------------------------------------------------------------------------------|
-| **attr**         | Builtins for manipulating extended attributes (xattr).                                |
-| **cap**          | Builtins for manipulating POSIX.1e (POSIX.6) capability (privilege) sets.             |
-| **clone**        | A builtin that can clone a running shell onto another terminal.                       |
-| **compctl**      | The compctl builtin for controlling completion.                                       |
-| **complete**     | The basic completion code.                                                            |
-| **complist**     | Completion listing extensions.                                                        |
-| **computil**     | A module with utility builtins needed for the shell function based completion system. |
-| **curses**       | curses windowing commands                                                             |
-| **datetime**     | Some date/time commands and parameters.                                               |
-| **deltochar**    | A ZLE function duplicating EMACS' zap-to-char.                                        |
-| **example**      | An example of how to write a module.                                                  |
-| **files**        | Some basic file manipulation commands as builtins.                                    |
-| **mapfile**      | Access to external files via a special associative array.                             |
-| **mathfunc**     | Standard scientific functions for use in mathematical evaluations.                    |
-| **net/socket**   | Manipulation of Unix domain sockets                                                   |
-| **net/tcp**      | Manipulation of TCP sockets                                                           |
-| **newuser**      | Arrange for files for new users to be installed.                                      |
-| **parameter**    | Access to internal hash tables via special associative arrays.                        |
-| **pcre**         | Interface to the PCRE library.                                                        |
-| **regex**        | Interface to the POSIX regex library.                                                 |
-| **sched**        | A builtin that provides a timed execution facility within the shell.                  |
-| **stat**         | A builtin command interface to the stat system call.                                  |
-| **system**       | A builtin interface to various low-level system features.                             |
-| **termcap**      | Interface to the termcap database.                                                    |
-| **terminfo**     | Interface to the terminfo database.                                                   |
-| **zftp**         | A builtin FTP client.                                                                 |
-| **zle**          | The Zsh Line Editor, including the bindkey and vared builtins.                        |
-| **zleparameter** | Access to internals of the Zsh Line Editor via parameters.                            |
-| **zprof**        | A module allowing profiling for shell functions.                                      |
-| **zpty**         | A builtin for starting a command in a pseudo-terminal.                                |
-| **zselect**      | Block and return when file descriptors are ready.                                     |
-| **zutil**        | Some utility builtins, e.g. the one for supporting configuration via styles.          |
+Details at ZSH {ref}`zsh_modules`.
 
-
-### zsh/zutil
-
-The zsh/zutil module adds some builtins:
-
-- `zstyle` is used to define and lookup styles.
-- `zformat` provides two different forms of formatting.
-- `zregexparse` implements some internals of the `_regex_arguments` function
-- `zparseopts` simplifies the parsing of options in positional parameters
-
-### zsh/net/tcp
-
-
-  ```bash
-  # list all open file descriptors ($$ refers to the current process)
-  ❯ ls -la /proc/$$/fd
-  ```
-
-  ```bash
-  ❯ ztcp
-  ```
-
-:::{note} 
-:name: File descriptors
-
-[File Descriptors](wiki:File_descriptor)
-
-Send to  stdout of the current terminal
-```bash
-echo "hello" >> /proc/$$/fd/2
-```
-:::
-::::
-
-:::::

@@ -4,6 +4,13 @@
 testing](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 
 
+:::{toctree}
+:caption: Testing
+:hidden:
+
+bats
+:::
+
 ## Unit testing
 
 > Repeatable, independant - isolated from the rest of the system - checking for
