@@ -1,17 +1,33 @@
+/* Overriding the default CSS of the Sphinx theme 
+* see https://github.com/pradyunsg/furo/blob/main/src/furo/assets/styles/variables/_spacing.scss 
+* 
+* Set the values in `root:` does not work, so we need to set them in the body
+* */
+body {
+    --sidebar-item-line-height: 0.9rem;
+    --sidebar-item-spacing-vertical: 0.25rem;
+}
+
 .admonition {
-  &.attention,
-  &.caution,
-  &.danger,
-  &.error,
-  &.hint,
-  &.important,
-  &.note,
-  &.tip,
-  &.warning {
-    border-radius: unset;
-    box-shadow: unset;
-    > .admonition-title {
-      background-color: unset;
+
+    &.attention,
+    &.caution,
+    &.danger,
+    &.error,
+    &.hint,
+    &.important,
+    &.note,
+    &.tip,
+    &.warning {
+        border-radius: unset;
+        box-shadow: unset;
+
+        >.admonition-title {
+            background-color: unset;
+        }
     }
-  }
+}
+
+.sidebar-tree {
+    font-size: 0.8em;
 }

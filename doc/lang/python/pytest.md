@@ -2,7 +2,6 @@
 
 This cheatsheet refers to pytest version 7
 
-
 ## Mark
 
 ### Registering markers
@@ -53,6 +52,11 @@ Instantiation order:
 - dependencies
 - autouse
 
+Fixtures can be listed with:
+
+```shell
+> pytest --fixtures
+```
 
 ```python
 # Fixtures can be factories

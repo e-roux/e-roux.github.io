@@ -26,7 +26,6 @@ Some text :ghstars:`numpy/numpy`
     sw_dvpt/git.md
     sw_dvpt/make.md
     sw_dvpt/patterns.md
-    sw_dvpt/testing/index.md
     
 
 .. toctree::
@@ -37,7 +36,6 @@ Some text :ghstars:`numpy/numpy`
     terminal/index
     terminal/shell/index
     terminal/vim/index
-    terminal/version_manager
     terminal/structured_data
     terminal/utils
 
@@ -65,6 +63,13 @@ Some text :ghstars:`numpy/numpy`
     lang/python/index
     lang/lua/index
 
+.. toctree::
+    :hidden:
+    :maxdepth: 2
+    :caption: Visualization
+
+    visualization/index
+    visualization/d3/index
 
 .. toctree::
     :hidden:

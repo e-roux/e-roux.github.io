@@ -1,9 +1,5 @@
 from datetime import datetime
 from os import environ
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from sphinx.application import Sphinx
 
 environ["SPHINX_AUTODOC_RELOAD_MODULES"] = "1"
 
