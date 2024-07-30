@@ -85,6 +85,7 @@ After a start:
 
 Other server capabilities can be added on *attach*:
 
+
 .. code-block:: lua
 
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -115,6 +116,28 @@ Server capabilites commonly used:
 - :code:`vim.lsp.buf.references()`
 - :code:`vim.lsp.buf.implementation()`
 - :code:`vim.lsp.buf.code_action()`
+
+
+Communication with the client
+-----------------------------
+
+
+.. code-block:: lua
+
+   local bufnr = vim.api.nvim_get_current_buf()
+   -- building block for several LSP requests
+   local params = vim.lsp.util.make_range_params()
+
+   params.context = {
+       triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
+       diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+   }
+
+   -- there is also a sync version: vim.lsp.buf_request_sync
+   vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(error, results, context, config)
+     -- results is an array of lsp.CodeAction
+   end)
+
 
 
 Implementation

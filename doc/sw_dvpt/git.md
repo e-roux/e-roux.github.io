@@ -283,7 +283,25 @@ Get the most recent tag:
 git describe --tags --abbrev=0
 ```
 
-## Git diff
+## Branches and Worktree
+
+List, copy, move, create and delete branches.
+
+```shell
+# List local branches
+git branch 
+# List all/remote branches
+git branch -a/-r
+```
+
+Local branches and remote:
+```shell
+git branch --format "%(refname:short) %(upstream)"
+```
+
+
+
+## Diff
 
 Git diff can be displayed side by side with delta as a pager
 <badge-stars repo='dandavison/delta'></badge-stars> <badge-doc
@@ -340,7 +358,9 @@ List deleted files between two commits
 
 ```
 
-## Search history
+## History
+
+### Search history
 
 ```{eval-rst}
 .. role:: bash(code)
@@ -359,13 +379,20 @@ Search the first 20 commits whose comment contains string "spam", case insensiti
     :bash:`git log -i --grep ^spam -n 20` 
 ```
 
-## History revision
+### File at a given commit
+
+```{eval-rst}
+:bash:`git show <COMMIT>:<FILE>`
+```
+
+### History revision
 
 Rewrite history: `git rebase`
 
-### Edit already pushed specific commit
+#### Edit already pushed specific commit
 
-!!! Danger "This is to be done in very specific situations"
+:::{danger} This is to be done only in very specific situations
+:::
 
 
 - Specify a rebase by identifying an earlier commit `git rebase -i <Earlier
@@ -380,7 +407,6 @@ Rewrite history: `git rebase`
 - eventualy, edit the commit message
 - continue with the rebase: `git rebase --continue`
 - force a pull `git pull --force`
-
 
 ## Cherry pick from another repository
 
@@ -628,7 +654,6 @@ admin rights are available, some alternatives:
   [gitlab](https://docs.gitlab.com/ee/ci/README.html)
 - push rules [gitlab](https://docs.gitlab.com/ee/push_rules/push_rules.html)
 
-
 ## Git flow
 
 From [Scott Chacon blog](http://scottchacon.com/2011/08/31/github-flow.html):
@@ -681,7 +706,6 @@ git push -u origin mybranch
        /
 z--z--z   (master, upstream/master, origin/master)
 ```
-
 
 ## Platform specific
 

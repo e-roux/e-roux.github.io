@@ -5,20 +5,20 @@ autodoc
     import a module for documention, and pull in documentation from docstrings in a semi-automatic way.
 
 extlinks
-   :sphext:`extlinks` feature that enables the creation of custom hyperlink aliases,
-   allowing users to define and use shorthand notations for external URLs within
-   documentation.
+   :sphext:`extlinks` enables the creation of custom hyperlink aliases, to
+   define and use shorthand notations for external URLs within documentation.
 
    .. # TODO: this must be converted to example
    .. hint:: 
 
-      This configuration allows the use of the :issue: role with an alias name. For
-      example, ``:issue:`123``` will display as a hyperlink to
-      https://github.com/sphinx-doc/sphinx/issues/123.
+      Configuration example to use :issue: role with an alias name. 
 
       .. code-block:: python
 
          extlinks = {'issue': ('https://github.com/sphinx-doc/sphinx/issues/%s', 'issue %s')}
+
+      For example, ``:issue:`123``` will display as a hyperlink to
+      https://github.com/sphinx-doc/sphinx/issues/123.
 
 intersphinx
   link to other projects 

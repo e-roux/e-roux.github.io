@@ -57,8 +57,7 @@ autosummary_generate = False
 # ··························································
 extlinks = {
     "duref": (
-        "https://docutils.sourceforge.io/docs/ref/rst/"
-        "restructuredtext.html#%s",
+        "https://docutils.sourceforge.io/docs/ref/rst/" "restructuredtext.html#%s",
         "%s",
     ),
     "durole": (
@@ -79,12 +78,12 @@ extlinks = {
 # Extension: intersphinx
 # ··························································
 intersphinx_mapping = {
-    'airflow': ('https://airflow.apache.org', None),
+    "airflow": ("https://airflow.apache.org", None),
     "jinja2": ("https://jinja.palletsprojects.com/en/3.1.x", None),
     "python": ("https://docs.python.org/3", None),
     "markdown_it": ("https://markdown-it-py.readthedocs.io/en/latest", None),
     "requests": ("https://requests.readthedocs.io/en/latest/", None),
-    'sphinx': ('https://www.sphinx-doc.org/en/master', None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
 }
 
 # ··························································
@@ -172,22 +171,3 @@ html_title = "My documentation"
 # Builder: linkcheck
 # ··························································
 linkcheck_timeout = 5
-
-
-# ··························································
-# Application interface
-# ··························································
-
-
-def setup_extension(app: Sphinx) -> None:
-    ...
-
-
-def setup(app):
-    setup_extension(app)
-
-    return {
-        "version": __version__,
-        "parallel_read_safe": True,
-        "parallel_write_safe": True,
-    }
