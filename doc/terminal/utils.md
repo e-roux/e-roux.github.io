@@ -1,6 +1,8 @@
 # Utilities
 
-## GNU Stow
+## Managing dots
+
+### GNU Stow
 
 [GNU Stow](https://www.gnu.org/software/stow/) is a symlink farm manager which
 takes distinct packages of software and/or data located in separate directories
@@ -19,15 +21,17 @@ substitutes the values of environment variables.
 
 - {ghstars}`ogham/exa` <badge-doc href="https://the.exa.website/"></badge-doc> is a replacement for ls written in Rust.
 
-{ghstars}`bootandy/dust` is a rust application
-printing a similar output to `du` with additional bar chart.
+- {ghstars}`bootandy/dust` is a rust implementation similar to `du` with additional bar chart.
 
 ### File manager
 
-- {ghstars}`jarun/nnn` <badge-doc href="https://github.com/jarun/nnn/wiki"></badge-doc> is another vi-inspired filemanager for the console, lightweight, written in C.
-- {ghstars}`ranger/ranger` <badge-doc href="https://ranger.github.io"></badge-doc>, vim-inspired filemanager for the console, written in python.
+Vi-inspired file managers for the console:
 
-    Install with `pipx install ranger-fm`
+- {ghstars}`kamiyaa/joshuto` <badge-doc href="https://github.com/kamiyaa/joshuto/tree/main/docs"></badge-doc> is written in rust.
+- {ghstars}`jarun/nnn` <badge-doc href="https://github.com/jarun/nnn/wiki"></badge-doc> is written in C.
+- {ghstars}`ranger/ranger` <badge-doc href="https://ranger.fm"></badge-doc> is written in python.
+
+- {ghstars}`Canop/broot` <badge-doc href="https://dystroy.org/broot/launch/"></badge-doc> tp get an overview of a directory. Unlisted files make it possible to focus on the content structure.
 
 ## Change directories
 
@@ -35,9 +39,9 @@ printing a similar output to `du` with additional bar chart.
 
 These utilities give the most visited directory for the shortest search term typed.
 
+- {ghstars}`ajeetdsouza/zoxide` is written in rust.
 - {ghstars}`wting/autojump` is written in python.
 - {ghstars}`gsamokovarov/jump` is written in go.
-- {ghstars}`ajeetdsouza/zoxide` is written in rust.
 - {ghstars}`agkozak/zsh-z` is a native zsh port of z.sh
 
 ## Finding files
@@ -91,7 +95,7 @@ Search can be efficiently performed by {ghstars}`ggreer/the_silver_searcher` <ba
 
  <badge-doc href='https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md' logo='github'></badge-doc>
 
-!!! info "Usage"
+:::{info} "Usage"
 
 	```bash
 	rg [OPTIONS] PATTERN [PATH ...]
@@ -100,6 +104,7 @@ Search can be efficiently performed by {ghstars}`ggreer/the_silver_searcher` <ba
 	rg [OPTIONS] --type-list
 	command | rg [OPTIONS] PATTERN
 	```
+:::
 
 - `--type <TYPE>` where `<TYPE>` is part of the registered types, can be displayed with `rg --list-types`
 
