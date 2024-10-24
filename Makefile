@@ -5,8 +5,6 @@ PYTHON_PROJECT_NAME := manux
 PYTHON_PREFIX := .local/share/mlib/venv
 MLIB_OUTPUT_HOME := ./build
 
-include .local/lib/mlib.mk
-
 # This is needed to patch sphinx-autobuild
 .PHONY: sphinx.patch
 sphinx.patch:
