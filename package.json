@@ -1,0 +1,13 @@
+{
+	"name": "mydoc",
+	"version": "0.1.0",
+	"scripts": {
+		"build": "npm run -w doc build",
+		"serve": "npm run -w doc start"
+	},
+	"keywords": [],
+	"workspaces": ["doc/", "@mx/*"],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
