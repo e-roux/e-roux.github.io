@@ -12,3 +12,8 @@ static/vendors
 public
 resources/_gen
 bkp
+doc/build
+build
+doc/.docusaurus
+.local/bin
+package-lock.json
