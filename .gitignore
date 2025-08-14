@@ -16,4 +16,3 @@ doc/build
 build
 doc/.docusaurus
 .local/bin
-package-lock.json

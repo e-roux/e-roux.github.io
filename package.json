@@ -1,13 +1,24 @@
 {
-	"name": "mydoc",
-	"version": "0.1.0",
+	"name": "e-roux.github.io",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
 	"scripts": {
-		"build": "npm run -w doc build",
-		"serve": "npm run -w doc start"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/e-roux/e-roux.github.io.git"
+	},
+	"bugs": {
+		"url": "https://github.com/e-roux/e-roux.github.io/issues"
+	},
+	"homepage": "https://github.com/e-roux/e-roux.github.io#readme",
 	"keywords": [],
-	"workspaces": ["doc/", "@mx/*"],
 	"author": "",
 	"license": "ISC",
-	"description": ""
+	"workspaces": [
+		"doc",
+		"@mx"
+	]
 }

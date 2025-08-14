@@ -2,9 +2,7 @@ name: Build documentation using mkdocs
 
 on:
   push:
-    branches: [src]
-  pull_request:
-    branches: [src]
+    branches: [mkdocs]
 jobs:
   build:
     name: Build and deploy documentation
