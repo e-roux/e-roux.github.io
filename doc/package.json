@@ -1,20 +1,21 @@
 {
-  "name": "doc",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/mdx": "^4.3.3",
-    "@astrojs/starlight": "^0.35.2",
-    "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.6.1",
-    "sharp": "^0.34.2",
-    "tailwindcss": "^4.1.11"
-  }
+	"name": "doc",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^4.3.3",
+		"@astrojs/starlight": "^0.35.2",
+		"@tailwindcss/vite": "^4.1.11",
+		"@mxhq/badges": "^0.1.2",
+		"astro": "^5.6.1",
+		"sharp": "^0.34.2",
+		"tailwindcss": "^4.1.11"
+	}
 }

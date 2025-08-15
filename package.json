@@ -17,8 +17,12 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
+	"private": true,
 	"workspaces": [
 		"doc",
-		"@mx"
-	]
+		"@mxhq/badges"
+	],
+	"devDependencies": {
+		"playwright": "^1.54.2"
+	}
 }
