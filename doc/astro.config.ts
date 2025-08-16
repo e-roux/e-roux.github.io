@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { sidebar } from "./astro.sidebar";
 
 import mdx from "@astrojs/mdx";
 
@@ -12,26 +13,9 @@ export default defineConfig({
     starlight({
       title: "My Docs",
       customCss: ["./src/styles/global.css"],
-      social: [
-        {
-          icon: "github",
-          label: "GitHub",
-          href: "https://github.com/withastro/starlight",
-        },
-      ],
-      sidebar: [
-        {
-          label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-          ],
-        },
-        {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
-        },
-      ],
+      social: [],
+      sidebar,
+      pagination: false,
     }),
     mdx(),
   ],
@@ -40,4 +24,3 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
-
