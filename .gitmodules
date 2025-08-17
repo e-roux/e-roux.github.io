@@ -1,0 +1,3 @@
+[submodule "@mxhq"]
+	path = @mxhq
+	url = https://github.com/e-roux/mxts

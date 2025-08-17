@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+
+header.header {
+  @apply bg-gray-300/50 
+   backdrop-grayscale backdrop-blur-md
+   text-white p-4;
+
+}

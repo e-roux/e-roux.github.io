@@ -1,0 +1,28 @@
+{
+	"name": "e-roux.github.io",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/e-roux/e-roux.github.io.git"
+	},
+	"bugs": {
+		"url": "https://github.com/e-roux/e-roux.github.io/issues"
+	},
+	"homepage": "https://github.com/e-roux/e-roux.github.io#readme",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"private": true,
+	"workspaces": [
+		"doc",
+		"@mxhq/badges"
+	],
+	"devDependencies": {
+		"playwright": "^1.54.2"
+	}
+}

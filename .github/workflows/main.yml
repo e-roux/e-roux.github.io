@@ -1,0 +1,19 @@
+name: Build documentation using mkdocs
+
+on:
+  push:
+    branches: [mkdocs]
+jobs:
+  build:
+    name: Build and deploy documentation
+    runs-on: Ubuntu-20.04
+    container: registry.gitlab.com/f.docker/mkdocs:latest
+    steps:
+      - name: Checkout Master
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Deploy
+        run: |
+          git pull --recurse-submodules
+          mkdocs gh-deploy
