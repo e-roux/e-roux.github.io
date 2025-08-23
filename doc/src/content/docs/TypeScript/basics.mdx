@@ -1,0 +1,106 @@
+---
+title: Typescript
+---
+
+## TypeScript basics
+
+### Type Annotations
+
+[Primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) in TypeScript include `string`, `number`, and `boolean`. Arrays can be defined using either `string[]` or the [angle-bracket syntax](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions) `Array<number>`. [Object types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types) properties annotations are separated with `,` or `;`, optional specified with `?` after the property name.
+
+
+Type annotations for variables, function parameters, and return types use the `:` syntax.
+
+```typescript
+// Basic types
+let isDone: boolean = false;
+let decimal: number = 6;
+let color: string = "blue";
+let list: number[] = [1, 2, 3];
+const tuple: readonly [string, number] = ["hello", 10] as const;
+
+// Object type
+interface Person {
+  firstName: string;
+  lastName: string;
+  age?: number; // Optional property
+}
+
+// Function type
+async function greet(person: Person): Promise<string> {
+  return `Hello, ${person.firstName} ${person.lastName}`;
+}
+```
+
+For anonymous functions, [contextual typing](https://www.typescriptlang.org/docs/handbook/type-inference.html#contextual-typing) allows TypeScript to infer types based on their usage.
+
+Unions are designated with `|` and [narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) occurs when TypeScript can deduce a more specific type for a value based on the structure of the code
+
+An object type can be defined using `type` and [cannot not be extended](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) when an `interface` can.
+
+Type assertions can provide extra information that Typescript cannot know about. 
+
+Specific strings can be referred to as [Literal](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types).
+
+[`null` and `undefined`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined) are used for absent or uninitialized value. [`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) represents the function return type of a function that does not return any value.
+
+:::danger
+In JavaScript, a function that doesn’t return any value will implicitly return the value undefined.
+:::
+
+
+## Intro to TSConfig
+
+[TSConfig](https://www.typescriptlang.org/tsconfig/
+) is a configuration file (`tsconfig.json`) that specifies the root files and compiler options required to compile a TypeScript project. It helps customize how TypeScript compiles your code.
+
+### Basic TSConfig Example
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
+```
+
+### Key TSConfig Options
+
+- **target**: JavaScript language version for compiled files (e.g., `"es2020"`, `"esnext"`)
+- **module**: Module system (`"esnext"`, `"commonjs"`, `"amd"`, etc.)
+- **strict**: Enable all strict type checking options
+- **outDir**: Directory for compiled JavaScript files
+- **include/exclude**: Specify which files to include/exclude
+
+### Common Configurations
+
+- **For React Projects**:
+  - Add `"jsx": "react"` or `"jsx": "react-jsx"`
+  - Set `"lib": ["dom", "dom.iterable", "esnext"]`
+
+- **For Node.js Projects**:
+  - Use `"module": "commonjs"`
+  - Set `"target": "es2020"` or newer
+
+
+
+## Learning Resources
+
+- [Official TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [TypeScript Playground](https://www.typescriptlang.org/play)
+- [TSConfig Reference](https://www.typescriptlang.org/tsconfig)
+- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
+
+## Next Steps
+
+- Learn about advanced types (unions, intersections, generics)
+- Explore utility types like `Partial<T>`, `Readonly<T>`, etc.
+- Practice integrating TypeScript with your favorite frameworks
