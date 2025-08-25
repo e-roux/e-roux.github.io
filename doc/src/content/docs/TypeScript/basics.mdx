@@ -2,21 +2,19 @@
 title: Typescript
 ---
 
-## TypeScript basics
-
-### Type Annotations
-
-[Primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) in TypeScript include `string`, `number`, and `boolean`. Arrays can be defined using either `string[]` or the [angle-bracket syntax](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions) `Array<number>`. [Object types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types) properties annotations are separated with `,` or `;`, optional specified with `?` after the property name.
-
+## Basics
 
 Type annotations for variables, function parameters, and return types use the `:` syntax.
 
+[Primitives] in TypeScript include `string`, `number`, and `boolean`. Arrays can be defined using either `string[]` or the [angle-bracket syntax] `Array<number>`. [Object] type properties annotations are separated with `,` or `;`, optional specified with `?` after the property name.
+
 ```typescript
-// Basic types
+// Simple type
 let isDone: boolean = false;
 let decimal: number = 6;
 let color: string = "blue";
 let list: number[] = [1, 2, 3];
+
 const tuple: readonly [string, number] = ["hello", 10] as const;
 
 // Object type
@@ -32,17 +30,47 @@ async function greet(person: Person): Promise<string> {
 }
 ```
 
-For anonymous functions, [contextual typing](https://www.typescriptlang.org/docs/handbook/type-inference.html#contextual-typing) allows TypeScript to infer types based on their usage.
+For anonymous functions, [contextual typing][contextual typing] allows TypeScript to infer types based on their usage.
 
-Unions are designated with `|` and [narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) occurs when TypeScript can deduce a more specific type for a value based on the structure of the code
+```typescript
+const names: Array<string> = ["Alice", "Bob", "Charlie"];
+// name will be implictly typed as string
+names.forEach((name) => { console.log(name.toUpperCase()); });
+```
 
-An object type can be defined using `type` and [cannot not be extended](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) when an `interface` can.
+Unions are designated with `|` and [narrowing] occurs when TypeScript can deduce a more specific type for a value based on the structure of the code. 4 kind of [narrowing]:
+- `typeof` type guards
+- Truthiness narrowing
+- `in` operator narrowing
+- `instanceof` narrowing
 
-Type assertions can provide extra information that Typescript cannot know about. 
+```typescript
+// Union types with narrowing
+function printId(id: number | string) {
+  if (typeof id === "string") {
+    console.log("ID (string):", id.toUpperCase());
+  } else {
+    console.log("ID (number):", id);
+  }
+}
+```
 
-Specific strings can be referred to as [Literal](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types).
+An [object] type can be defined using `type` and [cannot not be extended](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces) when an `interface` can.
 
-[`null` and `undefined`](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined) are used for absent or uninitialized value. [`void`](https://www.typescriptlang.org/docs/handbook/2/functions.html#void) represents the function return type of a function that does not return any value.
+[Type assertion]s can provide extra information that Typescript cannot know about. 
+
+```typescript
+const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
+```
+
+Specific strings can be referred to as [Literal].
+
+```typescript
+// Literal types
+let direction: "left" | "right" = "left";
+```
+
+[`null` and `undefined`][null and undefined] are used for absent or uninitialized value. [`void`][void] represents the function return type of a function that does not return any value.
 
 :::danger
 In JavaScript, a function that doesn’t return any value will implicitly return the value undefined.
@@ -51,8 +79,7 @@ In JavaScript, a function that doesn’t return any value will implicitly return
 
 ## Intro to TSConfig
 
-[TSConfig](https://www.typescriptlang.org/tsconfig/
-) is a configuration file (`tsconfig.json`) that specifies the root files and compiler options required to compile a TypeScript project. It helps customize how TypeScript compiles your code.
+[TSConfig][tsconfig] is a configuration file (`tsconfig.json`) that specifies the root files and compiler options required to compile a TypeScript project. It helps customize how TypeScript compiles your code.
 
 ### Basic TSConfig Example
 
@@ -104,3 +131,15 @@ In JavaScript, a function that doesn’t return any value will implicitly return
 - Learn about advanced types (unions, intersections, generics)
 - Explore utility types like `Partial<T>`, `Readonly<T>`, etc.
 - Practice integrating TypeScript with your favorite frameworks
+
+[contextual typing]: https://www.typescriptlang.org/docs/handbook/type-inference.html#contextual-typing
+[narrowing]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html "TypeScript Narrowing"
+[tsconfig]: https://www.typescriptlang.org/tsconfig/ 
+[angle-bracket syntax]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions "Type assertion"
+[type assertion]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions "Type assertion"
+
+[Primitives]: https://developer.mozilla.org/en-US/docs/Glossary/Primitive "JS primitive types"
+[literal]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types "Literal type"
+[null and undefined]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#null-and-undefined "null and undefined"
+[Object]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#object-types "Object type"
+[void]: https://www.typescriptlang.org/docs/handbook/2/functions.html#void

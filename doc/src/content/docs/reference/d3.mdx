@@ -2,8 +2,25 @@
 title: d3
 ---
 
-import FaithfulData from '../../../components/FaithfulData.astro';
+import FaithfulData from '@components/FaithfulData.astro';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
 
-<FaithfulData />
+<Tabs>
+    <TabItem label="d3"><FaithfulData /></TabItem>
+    <TabItem label="code">Some info</TabItem>
+</Tabs>
 
 ## Some heading
+
+<Steps>
+
+1. Import the component into your MDX file:
+
+   ```js
+   import { Steps } from '@astrojs/starlight/components';
+   ```
+
+2. Wrap `<Steps>` around your ordered list items.
+
+</Steps>

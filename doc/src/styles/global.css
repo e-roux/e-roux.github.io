@@ -1,5 +1,18 @@
 @import "tailwindcss";
+
 @layer base, starlight, theme, components, utilities;
+
+@layer base {
+	:root,
+	html[data-theme="dark"] pre:has(code),
+	html[data-theme="dark"] pre:has(code) span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
+	}
+}
 
 @theme {
 	/* Generated accent color palettes. */
@@ -17,6 +30,7 @@
 	--color-gray-800: #182a2f;
 	--color-gray-900: #121a1c;
 }
+
 header.header {
 	@apply bg-transparent/10 
   backdrop-grayscale backdrop-blur-md
@@ -25,5 +39,4 @@ header.header {
 
 [aria-label="Danger"] {
 	@apply bg-transparent;
-
 }
