@@ -25,12 +25,16 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
+          cache-dependency-path: 'doc'
       - name: Install dependencies
-        run: npm install --package-lock-only
+        run: npm install
+        working-directory: doc
       - name: Run CI
         run: npm ci
+        working-directory: doc
       - name: Build Astro
-        run: npm run build -w doc
+        run: npm run build
+        working-directory: doc
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

@@ -1,0 +1,34 @@
+---
+name: Golang
+content:
+  - name: 'Getting Started with Go'
+    desc: 'Topics include data types, protocols, formats, and writing code that incorporates RFCs and JSON'
+    img: 'coursera.go.jpg'
+    certificate: 'https://coursera.org/share/412ca82ca89671326489dcece922d177'
+    lecture-from: 'coursera.jpg'
+
+  - name: 'Functions, Methods, and Interfaces in Go'
+    desc: 'Implementation of functions, function types, interface, methods, and class instantiation'
+    img: 'coursera.go.jpg'
+    certificate: 'https://coursera.org/share/84dc0d49cf4699fb7f6e164ae86986b6'
+    lecture-from: 'coursera.jpg'
+
+  - name: 'Concurrency in Go'
+    desc: "Channels and goroutines in go's concurrency model"
+    img: 'coursera.go.jpg'
+    certificate: 'https://coursera.org/share/d7ee3ff9d4c70167f7abff9b70e342c3'
+    lecture-from: 'coursera.jpg'
+
+  - name: Introduction to Testing in Go
+    desc: Learn how to write effective unit and integration tests in Go, for web applications and REST APIs
+    img: 'react.go.jpg'
+    link: https://www.udemy.com/course/introduction-to-testing-in-go-golang/
+    lecture-from: udemy.png
+    ongoing: true
+
+  - name: 'Working with React and Go'
+    desc: 'React components, hooks, JSON and as GraphQL Go requests on the back end'
+    img: 'react.go.jpg'
+    link: https://www.udemy.com/course/working-with-react-and-go-golang/
+    lecture-from: udemy.png
+    ongoing: true

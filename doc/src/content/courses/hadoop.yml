@@ -1,0 +1,17 @@
+---
+name: 'Hadoop ecosystem'
+category: ''
+content:
+  - name: Cloudera Developer Training for Apache Spark™ and Hadoop
+    link: https://www.newhorizons.com/course-outline/courseid/300030047/coursename/cloudera-developer-training-for-spark-hadoop
+    desc: 'Four-day hands-on training course'
+    img: 'cloudera-spark.png'
+    certificate: '../img/courses/cloudera-hadoop.jpg'
+    lecture-from: 'cloudera.jpg'
+
+  - name: 'Foundations for Big Data Analysis with SQL'
+    desc: 'Big-picture view of using SQL for big data, starting with an overview of data, database systems, and the common querying language (SQL)'
+    link: 'https://www.coursera.org/learn/foundations-big-data-analysis-sql'
+    img: 'foundations-big-data-analysis-sql.jpeg'
+    certificate: 'https://coursera.org/share/515c667e2f7848eec168d6743669215f'
+    lecture-from: 'coursera.jpg'

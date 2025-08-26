@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@astrojs/mdx": "^4.3.3",
 		"@astrojs/starlight": "^0.35.2",
+		"@astrojs/starlight-tailwind": "^4.0.1",
 		"@mxhq/badges": "^0.1.2",
 		"@tailwindcss/vite": "^4.1.11",
 		"astro": "^5.6.1",

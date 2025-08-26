@@ -1,0 +1,36 @@
+name: Web development
+content:
+  - name: 'HTML, CSS, and Javascript for Web Developers'
+    desc: 'React components, hooks, JSON and as GraphQL Go requests on the back end'
+    img: 'html-css-javascript-for-web-developers.png'
+    link: 'https://www.coursera.org/learn/html-css-javascript-for-web-developers'
+    certificate: 'https://coursera.org/share/f83314a2981fcdf4b30984ae569ca018'
+    lecture-from: 'john_hopkins.png'
+
+  - name: 'Ruby on Rails: An Introduction'
+    desc: 'How to build web applications with the Ruby on Rails web application framework, which is geared towards rapid prototyping'
+    link: 'https://www.coursera.org/learn/ruby-on-rails-intro'
+    img: 'ruby-on-rails-intro.jpeg'
+    certificate: 'https://coursera.org/share/5c53d949d1cfd0703509062e3a894df0'
+    lecture-from: 'john_hopkins.png'
+
+  - name: 'Single Page Web Applications with AngularJS'
+    desc: 'Core design of AngularJS 1.x (latest version of AngularJS 1), its components and code organization techniques'
+    link: 'https://www.coursera.org/learn/single-page-web-apps-with-angularjs'
+    img: 'single-page-web-apps-with-angularjs.png'
+    certificate: 'https://coursera.org/share/904d425c265a83adde09a3f1468b0f2b'
+    lecture-from: 'john_hopkins.png'
+
+  - name: Design Patterns in TypeScript
+    desc: SOLID principles, implementing creational, structural, and behavioral design patterns in TypeScript, and using Dependency Injection to create flexible and testable application structures.
+    link: https://www.oreilly.com/videos/design-patterns-in/9781789347951
+    img: design-patterns.png
+    certificate: https://www.credly.com/badges/09f37b38-75c3-4051-b560-3699b7c07a3d
+    lecture-from: oreilly.png
+
+  - name: 'Working with React and Go'
+    desc: 'React components, hooks, JSON and as GraphQL Go requests on the back end'
+    img: 'react.go.jpg'
+    link: https://www.udemy.com/course/working-with-react-and-go-golang/
+    lecture-from: udemy.png
+    ongoing: true

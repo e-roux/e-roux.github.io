@@ -1,0 +1,14 @@
+name: Kubernetes
+content:
+  - name: Kubernetes Certified Application Developer (CKAD) with Tests
+    desc: Concepts and practice for the Kubernetes Certification with hands-on labs right in your browser - DevOps - CKAD
+    img: ckad.png
+    link: https://www.udemy.com/course/certified-kubernetes-application-developer/
+    lecture-from: udemy.png
+    ongoing: true
+
+  # - name: Certified Kubernetes Administrator (CKA) with Practice Tests
+  #   desc: 'How to build web applications with the Ruby on Rails web application framework, which is geared towards rapid prototyping'
+  #   link: https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/
+  #   img: 'ruby-on-rails-intro.jpeg'
+  #   lecture-from: udemy.png

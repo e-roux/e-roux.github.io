@@ -1,0 +1,37 @@
+name: MongoDB
+content:
+  - name: 'M001: MongoDB Basics'
+    desc: Fundamentals of MongoDB.
+    img: mongodb.M001.svg
+    certificate: https://university.mongodb.com/course_completion/a213964f-2787-4895-be2b-cfae900dfc31
+    lecture-from: mongodb-university-logo.png
+
+  - name: 'M103: Basic Cluster Administration'
+    desc: Learn the essentials of database administration in MongoDB.
+    img: mongodb.M103.svg
+    certificate: https://university.mongodb.com/course_completion/0ea1f817-f129-483b-ae5e-b286810a04ac
+    lecture-from: mongodb-university-logo.png
+
+  - name: 'M121: The MongoDB Aggregation Framework'
+    desc: Learn how to use MongoDB's Aggregation Framework.
+    img: mongodb.M121.svg
+    certificate: https://university.mongodb.com/course_completion/2244505e-a7ac-4634-8e77-73a4768adff3
+    lecture-from: mongodb-university-logo.png
+
+  - name: 'M201: MongoDB Performance'
+    desc: Learn how to optimize the performance of your MongoDB deployment.
+    img: mongodb.M201.svg
+    certificate: https://university.mongodb.com/course_completion/28b09481-6066-45dc-bded-1a97a990825e
+    lecture-from: mongodb-university-logo.png
+
+  - name: 'M220P: MongoDB for Python Developers'
+    desc: Learn the essentials of Python application development with MongoDB.
+    img: mongodb.M220.svg
+    certificate: https://university.mongodb.com/course_completion/4aeeee75-0c73-4333-8df0-753b0ceb2639
+    lecture-from: mongodb-university-logo.png
+
+  - name: 'M320: Data Modeling'
+    desc: Learn everything you need to know about data modeling for MongoDB.
+    img: mongodb.M320.svg
+    certificate: https://university.mongodb.com/course_completion/f83dc16a-f77d-46b4-aa3d-613c0a051379
+    lecture-from: mongodb-university-logo.png

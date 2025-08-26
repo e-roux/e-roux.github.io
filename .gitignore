@@ -9,7 +9,6 @@ tutorial
 .DS_Store
 node_modules
 static/vendors
-public
 resources/_gen
 bkp
 doc/build

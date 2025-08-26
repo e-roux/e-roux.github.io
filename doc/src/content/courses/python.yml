@@ -1,0 +1,7 @@
+---
+name: Python
+content:
+  - name: 'Advanced Programming Course with Python'
+    desc: 5 days with David Bealey’s on advanced python techniques including data abstraction, layering, object-orientation, functional programming, event-driven systems and more.
+    img: 'advpython.jpg'
+    link: https://dabeaz.com/advprog.html
